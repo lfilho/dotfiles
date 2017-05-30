@@ -1,2 +1,2 @@
-bindkey '^ ' autosuggest-accept
+bindkey '^N' autosuggest-accept
 source ${0:A:h}/autosuggestions/zsh-autosuggestions.zsh
