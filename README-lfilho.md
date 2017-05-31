@@ -25,6 +25,7 @@ The keymaps for each plugin or behaviour can be found peeking at [doc](doc) fold
     * `v` alias for opening `mvim` (MacVim)
     * Docker aliases
   * My personal zsh prompt theme (lfilho)
+  * [ZSH AutoSuggestions](https://github.com/zsh-users/zsh-autosuggestions) with <kbd>ctrl</kbd> + <kbd>N</kbd> for accept suggestions
 
 * GIT
   * New aliases
