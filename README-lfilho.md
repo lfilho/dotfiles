@@ -25,6 +25,7 @@ The keymaps for each plugin or behaviour can be found peeking at [doc](doc) fold
     * `v` alias for opening `mvim` (MacVim)
     * Docker aliases
   * My personal zsh prompt theme (lfilho)
+  * [ZSH AutoSuggestions](https://github.com/zsh-users/zsh-autosuggestions) with <kbd>ctrl</kbd> + <kbd>N</kbd> for accept suggestions
 
 * GIT
   * New aliases
@@ -59,6 +60,7 @@ The keymaps for each plugin or behaviour can be found peeking at [doc](doc) fold
   * Return `<C-x>` and `<C-z>` to their original functions
     * `,,n` and `,,p` to navigate the quickfix error list
   * `Ag` now highlights the search and doesn't open first result by default
+  * `,<esc>` and `,<shift-esc>` use their [EasyMotion's bidirectional](https://github.com/easymotion/vim-easymotion#bidirectional-motions) versions.
 
 * OSX
   * Config to open MacVim maximized by default
