@@ -14,7 +14,3 @@ bindkey -s "^[Op" "0"
 bindkey -s "^[Ol" "."
 bindkey -s "^[OM" "^M"
 
-
-# Accept Autosuggestions
-bindkey '^N' autosuggest-accept
-
