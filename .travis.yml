@@ -1,5 +1,8 @@
 language: generic
 
+services:
+  - docker
+
 git:
   depth: 1
 
@@ -7,17 +10,14 @@ matrix:
   include:
     - os: osx
       osx_image: xcode8
+    - os: osx
+      osx_image: xcode8.3
+    - os: linux
+      sudo: required
+      dist: trusty
 
-before_install:
-  - mv $TRAVIS_BUILD_DIR ~/.yadr
+before_install: ./test/travis-before-install.sh
 
-install:
-  - cd ~/.yadr && rake install
+install: ./test/travis-install.sh
 
-# The following is a caveat: we're forcing a zsh command (with the shebang),
-# as we can't simulate a login shell on Travis running the script (not that I'm aware of).
-# Ideally, after the chsh command (during the installation process)
-# we would enter a new shell session, now with zsh as our default shell,
-# and the execute the test script... ¯\_(ツ)_/¯
-script:
-  - ./test/install-smoke-test.sh
+script: ./test/travis-test-script.sh

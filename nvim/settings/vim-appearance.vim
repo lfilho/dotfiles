@@ -1,4 +1,5 @@
 " colorscheme base16-lfilho
+" let base16colorspace=256
 " let g:hybrid_custom_term_colors = 1
 " let g:hybrid_reduced_contrast = 1
 
@@ -12,7 +13,6 @@ if has("gui_running")
   if has("gui_gtk2")
     set guifont=Fira\ Code\ h12
   else
-    set macligatures
     set guifont=Fira\ Code:h12
   end
 endif
@@ -21,7 +21,6 @@ endif
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " Hide ~ for blank lines
 hi NonText guifg=bg
-let base16colorspace=256
 set cursorline
 
 " Don't try to highlight lines longer than 800 characters.

@@ -13,8 +13,7 @@ else
   let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others']
 endif
 
-" Default to filename searches - so that appctrl will find application
-" controller
+" Default to filename searches
 let g:ctrlp_by_filename = 1
 
 " Don't jump to already open window. This is annoying if you are maintaining
@@ -28,9 +27,6 @@ nnoremap <silent> <leader>t :CtrlP<CR>
 
 " Additional mapping for buffer search
 nnoremap <silent> <leader>b :CtrlPBuffer<cr>
-
-" Cmd-Shift-P to clear the cache
-nnoremap <silent> <D-P> :ClearCtrlPCache<cr>
 
 " Idea from : http://www.charlietanksley.net/blog/blog/2011/10/18/vim-navigation-with-lustyexplorer-and-lustyjuggler/
 " Open CtrlP starting from a particular path, making it much

@@ -14,5 +14,8 @@ function! OpenNerdTree()
   endif
 endfunction
 
-" Mnemonic: *P*roject
-nnoremap <leader>p :call OpenNerdTree()<CR>
+" Mnemonic: *p*roject
+" Open or close a NERDTree window:
+nnoremap <leader>p :NERDTreeToggle<CR>
+" Open or close a NERDTree window in the current file node:
+nnoremap <leader>P :call OpenNerdTree()<CR>

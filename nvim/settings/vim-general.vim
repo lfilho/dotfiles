@@ -1,6 +1,3 @@
-set splitright " Vertical split on right
-set splitbelow " Horizontal split on below
-
 set relativenumber nonumber
 autocmd InsertEnter * :set norelativenumber number
 autocmd InsertLeave * :set relativenumber  nonumber
@@ -76,7 +73,6 @@ set sidescroll=1
 
 set ignorecase " Ignore case when searching...
 set smartcase  " ...unless we type a capital
-
 
 " ================ Formatting =======================
 set formatoptions+=j " Delete comment character when joining commented lines

@@ -31,3 +31,9 @@ nnoremap <S-Right> <C-w>>
 " this to vv and ss
 nnoremap <silent> vv <C-w>v
 nnoremap <silent> ss <C-w>s
+
+"""""""""""""""""""
+" Splits
+set splitright " Vertical split on right
+set splitbelow " Horizontal split on below
+

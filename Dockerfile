@@ -26,6 +26,7 @@ RUN localedef -i en_US -f UTF-8 en_US.UTF-8 && \
 RUN \
   add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe security" && \
   add-apt-repository ppa:aacebedo/fasd && \
+  add-apt-repository ppa:neovim-ppa/stable && \
   apt-get update && \
   apt-get -yqq install \
     autoconf \
@@ -34,6 +35,7 @@ RUN \
     fasd \
     fontconfig \
     git \
+    neovim \
     python \
     python-setuptools \
     python-dev \
