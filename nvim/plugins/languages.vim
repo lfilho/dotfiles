@@ -5,6 +5,6 @@ Plug 'josuesasilva/vim-spell-pt-br'
 Plug 'nelstrom/vim-markdown-preview'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'rstacruz/sparkup', {'rtp': 'vim'}
-Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
 Plug 'skwp/vim-html-escape'
