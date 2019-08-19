@@ -16,6 +16,7 @@ set hidden
 
 set noswapfile
 set nobackup
+set nowritebackup
 set nowb
 
 " ================ Persistent Undo ==================
@@ -75,3 +76,15 @@ set smartcase  " ...unless we type a capital
 
 " ================ Formatting =======================
 set formatoptions+=j " Delete comment character when joining commented lines
+
+
+" Better display for messages
+set cmdheight=2
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" Recently vim can merge signcolumn and number column into one
+set signcolumn=number
