@@ -642,6 +642,8 @@
 	<false/>
 	<key>FocusFollowsMouse</key>
 	<false/>
+	<key>FocusOnRightOrMiddleClick</key>
+	<true/>
 	<key>FsTabDelay</key>
 	<real>1</real>
 	<key>HapticFeedbackForEsc</key>
@@ -954,7 +956,7 @@
 				<real>0.7928692102432251</real>
 			</dict>
 			<key>Blend</key>
-			<real>0.30000001192092896</real>
+			<real>0.29408946411771925</real>
 			<key>Blink Allowed</key>
 			<false/>
 			<key>Blinking Cursor</key>
@@ -983,7 +985,7 @@
 			<key>Columns</key>
 			<integer>400</integer>
 			<key>Command</key>
-			<string></string>
+			<string>login -pfq lgonzaga /usr/local/bin/zsh -il</string>
 			<key>Cursor Boost</key>
 			<real>0.0</real>
 			<key>Cursor Color</key>
@@ -1028,7 +1030,7 @@
 			<key>Cursor Type</key>
 			<integer>2</integer>
 			<key>Custom Command</key>
-			<string>No</string>
+			<string>Yes</string>
 			<key>Custom Directory</key>
 			<string>Recycle</string>
 			<key>Default Bookmark</key>
@@ -1066,6 +1068,8 @@
 			<integer>0</integer>
 			<key>Initial Text</key>
 			<string></string>
+			<key>Initial Use Transparency</key>
+			<true/>
 			<key>Jobs to Ignore</key>
 			<array>
 				<string>rlogin</string>
@@ -1372,7 +1376,7 @@
 			<key>Log Directory</key>
 			<string></string>
 			<key>Minimum Contrast</key>
-			<real>0.0</real>
+			<real>0.21352814249909682</real>
 			<key>Mouse Reporting</key>
 			<true/>
 			<key>Name</key>
@@ -1388,7 +1392,7 @@
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
-			<integer>0</integer>
+			<integer>2</integer>
 			<key>Right Option Key Sends</key>
 			<integer>0</integer>
 			<key>Rows</key>
@@ -1548,16 +1552,9 @@
 			<key>Thin Strokes</key>
 			<integer>2</integer>
 			<key>Transparency</key>
-			<real>0.07151904585798817</real>
+			<real>0.0</real>
 			<key>Triggers</key>
-			<array>
-				<dict>
-					<key>action</key>
-					<string>SendTextTrigger</string>
-					<key>regex</key>
-					<string></string>
-				</dict>
-			</array>
+			<array/>
 			<key>Unlimited Scrollback</key>
 			<false/>
 			<key>Use Bold Font</key>
@@ -1577,7 +1574,7 @@
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
-			<integer>0</integer>
+			<integer>15</integer>
 			<key>Working Directory</key>
 			<string>~</string>
 		</dict>
@@ -1641,6 +1638,8 @@
 	<integer>3</integer>
 	<key>SavePasteHistory</key>
 	<false/>
+	<key>SeparateStatusBarsPerPane</key>
+	<false/>
 	<key>ShowBookmarkName</key>
 	<false/>
 	<key>ShowPaneTitles</key>
@@ -1650,15 +1649,21 @@
 	<key>SoundForEsc</key>
 	<false/>
 	<key>SplitPaneDimmingAmount</key>
-	<real>0.35378856765918243</real>
+	<real>0.29895741588100921</real>
 	<key>SwitchTabModifier</key>
 	<integer>4</integer>
 	<key>SwitchWindowModifier</key>
 	<integer>6</integer>
 	<key>TabStyle</key>
 	<integer>1</integer>
+	<key>TabStyleWithAutomaticOption</key>
+	<integer>5</integer>
 	<key>TabViewType</key>
 	<integer>0</integer>
+	<key>TerminalMargin</key>
+	<integer>10</integer>
+	<key>TerminalVMargin</key>
+	<integer>2</integer>
 	<key>ThreeFingerEmulates</key>
 	<false/>
 	<key>TmuxDashboardLimit</key>
@@ -1682,6 +1687,8 @@
 	<key>UseCompactLabel</key>
 	<true/>
 	<key>UseLionStyleFullscreen</key>
+	<false/>
+	<key>UseMetal</key>
 	<false/>
 	<key>VisualIndicatorForEsc</key>
 	<false/>

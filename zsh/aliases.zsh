@@ -33,9 +33,6 @@ elif [[ $platform == 'darwin' ]]; then
   alias ls='ls -Gh'
 fi
 
-# show me files matching "ls grep"
-alias lsg='ll | grep'
-
 # Alias Editing
 TRAPHUP() {
   source $yadr/zsh/aliases.zsh
@@ -129,6 +126,7 @@ alias l='less'
 alias lh='ls -alt | head' # see the last modified files
 alias screen='TERM=screen screen'
 alias cl='clear'
+alias cat='bat'
 
 # Zippin
 alias gz='tar -zcvf'
