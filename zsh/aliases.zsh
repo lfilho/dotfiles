@@ -14,8 +14,8 @@ fi
 
 # PS
 alias psa="ps aux"
-alias psg="ps aux | grep "
-alias psr='ps aux | grep ruby'
+alias psg="ps aux | rg "
+alias psr='ps aux | rg ruby'
 
 # Moving around
 alias cdb='cd -'
@@ -117,7 +117,7 @@ alias gsmu='git submodule update'
 alias gt='git t'
 alias gbg='git bisect good'
 alias gbb='git bisect bad'
-alias gdmb='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
+alias gdmb='git branch --merged | rg -v "\*" | xargs -n 1 git branch -d'
 
 # Common shell functions
 alias less='less -r'
@@ -183,7 +183,7 @@ alias srdmt='spring rake db:migrate db:test:prepare'
 # Sprintly - https://github.com/nextbigsoundinc/Sprintly-GitHub
 alias sp='sprintly'
 # spb = sprintly branch - create a branch automatically based on the bug you're working on
-alias spb="git checkout -b \`sp | tail -2 | grep '#' | sed 's/^ //' | sed 's/[^A-Za-z0-9 ]//g' | sed 's/ /-/g' | cut -d"-" -f1,2,3,4,5\`"
+alias spb="git checkout -b \`sp | tail -2 | rg '#' | sed 's/^ //' | sed 's/[^A-Za-z0-9 ]//g' | sed 's/ /-/g' | cut -d"-" -f1,2,3,4,5\`"
 
 alias hpr='hub pull-request'
 alias grb='git recent-branches'
@@ -209,3 +209,7 @@ alias drsa='docker stop $(docker ps -a -q)'
 alias drac='docker rm $(docker ps -a -q)'
 # Docker Remove All Images
 alias drai='docker rmi $(docker images -q)'
+
+# Ripgrep
+# Makes ripgrep use smart-case by default
+alias rg='rg -S'
