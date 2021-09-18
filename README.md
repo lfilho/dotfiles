@@ -55,13 +55,7 @@ sh -c "`curl -fsSL https://raw.githubusercontent.com/lfilho/dotfiles/master/inst
 
 *Please do help us improving Linux support in this repo ;-)*
 
-1. Make sure you have `zsh` installed on your machine (default location is `/bin/zsh`). Type `zsh --version` to see if you have it. If not, install it running the command `sudo apt-get install zsh`
-2. Make sure you have `vim` installed. If not, install it with `sudo apt-get install vim`
-3. Run the one liner installation script (see OSX section above)
-4. If asked, provide your superuser password
-5. Configure your terminal program to point the command to zsh (default `/bin/zsh`)
-6. Restart you Terminal
-7. You're done.
+Linux installation is finnicky and might require running some of the commands from `Rakefile` manually. PRs are welcome! :)
 
 *TIP*: You can check the [`Dockerfile`](./Dockerfile) to see what's need for a basic installation.
 
