@@ -155,5 +155,7 @@
   zero-style = syntax
 [interactive]
   diffFilter = delta --color-only
+[init]
+	defaultBranch = main
 [include]
   path = .gitconfig.user
