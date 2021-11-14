@@ -3,7 +3,9 @@
 "   mode (Vim's window will still be in "terminal" mode)
 " - Second <Esc> will exit "terminal" mode on that window and make the whole
 "   window into normal mode.
-tnoremap <Esc><Esc> <C-\><C-n>
+if has("nvim")
+  tnoremap <expr> <Esc> (&filetype == "fzf") ? "<ESC>" : "<C-\><C-n>"
+endif
 
 " Please also see the mappings for navigating out of a terminal window in
 " plugin-tmux-navigator.vim file

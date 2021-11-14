@@ -28,7 +28,6 @@ endfunction
 function! MyFilename()
   return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
         \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \  &ft == 'denite' ? denite#get_status('sources') :
         \  &ft == 'vimshell' ? vimshell#get_status_string() :
         \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
         \ ('' != MyModified() ? ' ' . MyModified() : '')
@@ -58,11 +57,5 @@ function! MyFileencoding()
 endfunction
 
 function! MyMode()
-  if &ft == 'denite'
-    let mode_str = substitute(denite#get_status('sources'), "-\\| ", "", "g")
-    call lightline#link(tolower(mode_str[0]))
-    return mode_str
-  else
-    return winwidth('.') > 60 ? lightline#mode() : ''
-  endif
+  return winwidth('.') > 60 ? lightline#mode() : ''
 endfunction

@@ -11,7 +11,7 @@ function! GetVisual()
 endfunction
 
 " File search mappings:
-" Please check plugin-denite.vim for file searching mappings
+" Please check plugin-fzf.vim for file searching mappings
 
 set wrapscan        " Search wrap the file
 set showmatch
