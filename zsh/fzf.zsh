@@ -4,7 +4,7 @@
 
 # Key bindings
 # ------------
-source "${HOMEBREW_PREFIX}/opt/fzf/shell/key-bindings.zsh"
+source "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
 
 # fasd & fzf change directory - jump using `fasd` if given argument, filter output of `fasd` using `fzf` else
 unalias z #removing fasd's alias for z first
