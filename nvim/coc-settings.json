@@ -12,5 +12,6 @@
     "graphql",
     "markdown"
   ],
-  "coc.source.file.trimSameExts": []
+  "coc.source.file.trimSameExts": [],
+  "eslint.alwaysShowStatus": true
 }
