@@ -9,7 +9,11 @@ Plug 'plasticboy/vim-markdown' " The version in vim-polyglot doesn't play nice s
 Plug 'sheerun/vim-polyglot' " syntax highlighting and indentation for many languages at once
 Plug 'skwp/vim-html-escape' " (un)escape of html entities
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-eslint', { 'do': 'npm install' }
-Plug 'neoclide/coc-html', { 'do': 'npm install' }
-Plug 'neoclide/coc-json', { 'do': 'npm install' }
-Plug 'neoclide/coc-css', { 'do': 'npm install' }
+Plug 'neoclide/coc-eslint', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-html', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-json', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-css', { 'do': 'yarn install --frozen-lockfil' }
+Plug 'neoclide/coc-prettier', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-snippets', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-tsserver', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-yaml', { 'do': 'yarn install --frozen-lockfile' }

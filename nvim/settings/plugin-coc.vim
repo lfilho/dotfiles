@@ -1,14 +1,3 @@
-let g:coc_global_extensions = [
-  \ 'coc-css',
-  \ 'coc-eslint',
-  \ 'coc-html',
-  \ 'coc-json',
-  \ 'coc-prettier',
-  \ 'coc-snippets',
-  \ 'coc-tsserver',
-  \ 'coc-yaml',
-  \ ]
-
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
