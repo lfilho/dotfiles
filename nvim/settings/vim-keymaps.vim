@@ -67,3 +67,6 @@ map <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 if has('macos')
   map <silent> <leader>hp :!open -a Safari %<CR><CR>
 endif
+
+" Switch buffers with Backspace key instead of C-^
+nnoremap <Backspace> <C-^>
