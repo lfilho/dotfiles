@@ -93,6 +93,29 @@ def number_of_cores
   cores.to_i
 end
 
+
+def linux_variant
+  r = { :distro => nil, :family => nil }
+
+  if File.exists?('/etc/lsb-release')
+    File.open('/etc/lsb-release', 'r').read.each_line do |line|
+      r = { :distro => $1 } if line =~ /^DISTRIB_ID=(.*)/
+    end
+  end
+
+  if File.exists?('/etc/debian_version')
+    r[:distro] = 'Debian' if r[:distro].nil?
+    r[:family] = 'Debian' if r[:variant].nil?
+  elsif File.exists?('/etc/redhat-release') or File.exists?('/etc/centos-release')
+    r[:family] = 'RedHat' if r[:family].nil?
+    r[:distro] = 'CentOS' if File.exists?('/etc/centos-release')
+  elsif File.exists?('/etc/SuSE-release')
+    r[:distro] = 'SLES' if r[:distro].nil?
+  end
+
+  return r
+end
+
 def install_homebrew
   run %{which brew}
   unless $?.success?
@@ -100,13 +123,31 @@ def install_homebrew
     puts "Installing Homebrew, the OSX package manager...If it's"
     puts "already installed, this will do nothing."
     puts "======================================================"
-    
+
     if $is_macos
       run %{bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"}
     else
+      puts "Running Homebrew 'install.sh' on Linux..."
       run %{yes | bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"}
-      run %{echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >> ${HOME}/.profile}
-      run %{eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)}
+      puts "Configuring 'shellenv' on Linux..."
+      # run %{echo $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)}
+
+      ENV['HOMEBREW_PREFIX'] = "/home/linuxbrew/.linuxbrew"
+      ENV['HOMEBREW_CELLAR'] = "/home/linuxbrew/.linuxbrew/Cellar"
+      ENV['HOMEBREW_REPOSITORY'] = "/home/linuxbrew/.linuxbrew/Homebrew"
+      ENV['PATH'] = "/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:" + ENV['PATH']
+      ENV['MANPATH'] = "/home/linuxbrew/.linuxbrew/share/man:" + ENV['MANPATH'].to_s
+      ENV['INFOPATH'] ="/home/linuxbrew/.linuxbrew/share/info:" + ENV['INFOPATH'].to_s
+
+      run %{which brew}
+      unless $?.success?
+        puts "'brew' is nto in the path!"
+        exit 0
+      end
+
+      if linux_variant[:distro] == 'Ubuntu' || linux_variant.distro == 'Debian'
+        run %{sudo apt-get install build-essential}
+      end
     end
   end
 
