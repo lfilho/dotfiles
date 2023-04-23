@@ -145,10 +145,13 @@ def install_homebrew
       end
 
       if linux_variant[:distro] == 'Ubuntu' || linux_variant.distro == 'Debian'
+        # Running on Debian/Ubuntu
         run %{sudo apt-get install build-essential}
       elsif linux_variant[:family] == 'Redhat'
         if linux_variant[:distro] == nil
+	  # Running on Redhat Linux
         elsif linux_variant[:distro] == 'Centos'
+	  # Running on Centos Linux
         end
       end
     end
