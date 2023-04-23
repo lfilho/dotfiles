@@ -129,9 +129,8 @@ def install_homebrew
     else
       puts "Running Homebrew 'install.sh' on Linux..."
       run %{yes | bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"}
-      puts "Configuring 'shellenv' on Linux..."
-      # run %{echo $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)}
 
+      puts "Configuring 'shellenv' on Linux..."
       ENV['HOMEBREW_PREFIX'] = "/home/linuxbrew/.linuxbrew"
       ENV['HOMEBREW_CELLAR'] = "/home/linuxbrew/.linuxbrew/Cellar"
       ENV['HOMEBREW_REPOSITORY'] = "/home/linuxbrew/.linuxbrew/Homebrew"
@@ -141,12 +140,16 @@ def install_homebrew
 
       run %{which brew}
       unless $?.success?
-        puts "'brew' is nto in the path!"
+        puts "'brew' is NOT in the path!"
         exit 0
       end
 
       if linux_variant[:distro] == 'Ubuntu' || linux_variant.distro == 'Debian'
         run %{sudo apt-get install build-essential}
+      elsif linux_variant[:family] == 'Redhat'
+        if linux_variant[:distro] == nil
+        elsif linux_variant[:distro] == 'Centos'
+        end
       end
     end
   end
