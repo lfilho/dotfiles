@@ -130,7 +130,7 @@ def install_homebrew
       puts "Running Homebrew 'install.sh' on Linux..."
       run %{yes | bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"}
 
-      puts "Configuring 'shellenv' on Linux..."
+      puts "Configuring 'brew shellenv' on Linux..."
       ENV['HOMEBREW_PREFIX'] = "/home/linuxbrew/.linuxbrew"
       ENV['HOMEBREW_CELLAR'] = "/home/linuxbrew/.linuxbrew/Cellar"
       ENV['HOMEBREW_REPOSITORY'] = "/home/linuxbrew/.linuxbrew/Homebrew"
@@ -149,9 +149,9 @@ def install_homebrew
         run %{sudo apt-get install build-essential}
       elsif linux_variant[:family] == 'Redhat'
         if linux_variant[:distro] == nil
-	  # Running on Redhat Linux
+          # Running on Redhat Linux
         elsif linux_variant[:distro] == 'Centos'
-	  # Running on Centos Linux
+          # Running on Centos Linux
         end
       end
     end
