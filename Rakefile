@@ -128,7 +128,10 @@ def install_homebrew
       run %{bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"}
     else
       puts "Running Homebrew 'install.sh' on Linux..."
-      run %{INTERACTIVE=1 yes | bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"}
+      run %{sudo mkdir -p /home/linuxbrew}
+      run %{sudo chmod 777 /home/linuxbrew}
+      
+      run %{yes | bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"}
 
       puts "Configuring 'brew shellenv' on Linux..."
       ENV['HOMEBREW_PREFIX'] = "/home/linuxbrew/.linuxbrew"
@@ -144,7 +147,7 @@ def install_homebrew
         exit 0
       end
 
-      if linux_variant[:distro] == 'Ubuntu' || linux_variant.distro == 'Debian'
+      if linux_variant[:distro] == 'Ubuntu' || linux_variant[:distro] == 'Debian'
         # Running on Debian/Ubuntu
         run %{sudo apt-get install build-essential}
       elsif linux_variant[:family] == 'Redhat'
