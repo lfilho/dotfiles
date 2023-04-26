@@ -128,7 +128,7 @@ def install_homebrew
       run %{bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"}
     else
       puts "Running Homebrew 'install.sh' on Linux..."
-      run %{sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"}
+      run %{INTERACTIVE=1 yes | bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"}
 
       puts "Configuring 'brew shellenv' on Linux..."
       ENV['HOMEBREW_PREFIX'] = "/home/linuxbrew/.linuxbrew"
