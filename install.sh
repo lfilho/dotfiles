@@ -9,3 +9,10 @@ if [ ! -d "$HOME/.yadr" ]; then
 else
     echo "YADR is already installed"
 fi
+
+
+
+
+
+
+
