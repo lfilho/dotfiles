@@ -2,6 +2,4 @@ source $HOME/.yadr/zsh/theme.zsh
 
 source $HOME/.zprezto/runcoms/zshrc
 
-[[ ! "$OSTYPE" == darwin* ]] && [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]] && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-
 for config_file ($HOME/.yadr/zsh/*.zsh) source $config_file
