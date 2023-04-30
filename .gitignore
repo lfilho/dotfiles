@@ -19,3 +19,4 @@ nvim/settings/before/*.vim
 !nvim/settings/before/main.vim
 nvim/settings/after/*.vim
 !nvim/settings/after/main.vim
+Brewfile.lock.json
