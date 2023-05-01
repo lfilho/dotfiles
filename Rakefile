@@ -22,7 +22,8 @@ task :install => [:submodule_init, :submodules] do
   install_files(Dir.glob('{vim,vimrc}'))
   install_files(Dir.glob('zsh/zshrc'))
 
-  run %{ ln -nfs ~/.yadr/nvim ~/.config/nvim }
+  run %{git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim}
+  run %{ln -nfs ~/.yadr/nvim-user-config ~/.config/nvim/lua/user}
 
   run %{ mkdir -p ~/.config/ranger }
   run %{ ln -nfs ~/.yadr/ranger ~/.config/ranger }
@@ -183,6 +184,7 @@ def install_homebrew
   run %{pip3 install --user neovim} # For NeoVim plugins
   run %{pip3 install --user pynvim} # For NeoVim plugins
   run %{gem install neovim} # For NeoVim plugins
+  run %{npm install -g tree-sitter-cli}
   puts
   puts
 end

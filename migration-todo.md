@@ -1,0 +1,3 @@
+- Get Colorizer to work
+- Surround
+- text object: entire doc
