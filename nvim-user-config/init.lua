@@ -1,5 +1,7 @@
+local map = vim.keymap.set
+
 return {
-  colorscheme = "tokyonight-night",
+  colorscheme = "sonokai",
 
   plugins = {
     {
@@ -7,20 +9,42 @@ return {
       dependencies = { 'nvim-treesitter' },
       event = { 'CursorHold', "CursorMoved", "InsertEnter" },
       config = function()
-        require('ts-node-action').setup()
-        vim.keymap.set({ "n" }, "<leader>j", require("ts-node-action").node_action, { desc = "Trigger join/split" })
-      end,
-      opts = function(_, opts)
+        -- TODO lookup if there's a short cut for defining the keyamp below
+        vim.keymap.set({ "n" }, "<leader>j", require("ts-node-action").node_action, { desc = "Trigger node action" })
         local null_ls = require("null-ls")
         null_ls.setup({
           sources = {
             null_ls.builtins.code_actions.ts_node_action,
           }
         })
-        return opts
+      end,
+    },
+
+    -- Colorscheme
+    { 'sainnhe/sonokai' },
+
+    -- local (per project) vim configs
+    { 'MarcWeber/vim-addon-local-vimrc', event = "VeryLazy" },
+
+    -- Commands for easily aligning tabular data
+    { 'godlygeek/tabular' , event = "InsertEnter" },
+    -- Seamless navigation between vim and tmux windows
+    { 'christoomey/vim-tmux-navigator', event = "VeryLazy" },
+
+    --VIM colon and semicolon insertion bliss Edit
+    {
+      'lfilho/cosco.vim',
+      ft = {'javascript', 'css'},
+      keys = {
+        { '<Plug>(cosco-commaOrSemiColon)', desc = 'Insert Comma or Semi Colon', mode = 'n'},
+        { '<Plug>(cosco-commaOrSemiColon)', desc = 'Insert Comma or Semi Colon', mode = 'i'},
+      },
+      config = function()
+        -- TODO add to which key
+        map("n", '<leader>;', '<Plug>(cosco-commaOrSemiColon)', {noremap = false})
+        map("i", '<leader>;', '<c-o><Plug>(cosco-commaOrSemiColon)', {noremap = false})
       end
     },
-    { 'folke/tokyonight.nvim' },
     {
       "goolord/alpha-nvim",
       opts = function()

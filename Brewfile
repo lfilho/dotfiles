@@ -9,7 +9,8 @@ if OS.linux?
 end
 
 cask 'firefox'
-cask 'font-fira-code'
+cask 'font-fira-code-nerd-font'
+cask 'font-jetbrains-mono-nerd-font'
 cask 'google-chrome'
 cask 'inkscape'
 if OS.mac?

@@ -1,3 +1,4 @@
 - Get Colorizer to work
 - Surround
 - text object: entire doc
+- close window/split with a keymap (before it was Q, space-c closes the buffer only, keeping the split)
