@@ -2,7 +2,6 @@ local map = vim.keymap.set
 
 return {
   colorscheme = "gruvbox-baby",
-
   highlights = {
     init = {
       VertSplit = { fg = '#777777' }
@@ -12,21 +11,60 @@ return {
   plugins = {
     -- Colorschemes:
     { 'sainnhe/sonokai' },
-    { 'savq/melange-nvim'},
+    { 'savq/melange-nvim' },
     { 'rmehri01/onenord.nvim' },
-    { 'luisiacc/gruvbox-baby'},
-    { 'jacoborus/tender.vim'},
+    { 'luisiacc/gruvbox-baby' },
+    { 'jacoborus/tender.vim' },
 
     {
+      'AstroNvim/astrocommunity',
+      { import = "astrocommunity.terminal-integration.vim-tmux-yank" },
+      { import = 'astrocommunity.pack.bash' },
+      { import = 'astrocommunity.pack.lua' },
+      { import = 'astrocommunity.pack.markdown' },
+      { import = 'astrocommunity.pack.python' },
+      { import = 'astrocommunity.pack.typescript-all-in-one' },
+      { import = 'astrocommunity.pack.yaml' },
+      -- { import = 'astrocommunity.' },
+    },
+    {
+      'gbprod/yanky.nvim',
+      event = { "VeryLazy" },
+      config = function()
+        require('yanky').setup()
+
+        map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
+        map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
+        map({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
+        map({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
+        map("n", "<c-p>", "<Plug>(YankyCycleForward)")
+        map("n", "<c-n>", "<Plug>(YankyCycleBackward)")
+        map("n", "<leader>P", function()
+          require("telescope").extensions.yank_history.yank_history({})
+        end, { desc = "Paste from Yanky" })
+      end
+    },
+    {
+      'chaoren/vim-wordmotion',
+      event = { "VeryLazy" },
+      init = function()
+        vim.g.wordmotion_prefix = ","
+      end
+    },
+    {
+      'adah1972/vim-copy-as-rtf',
+      event = { "User AstroFile" }
+    },
+    {
       'tommcdo/vim-abolish',
-      cmd = { 'Subvert',  'Abolish'},
+      cmd = { 'Subvert', 'Abolish' },
       keys = {
-        { 'crs', mode = 'n'},
-        { 'crm', mode = 'n'},
-        { 'crc', mode = 'n'},
-        { 'cru', mode = 'n'},
-        { 'cr-', mode = 'n'},
-        { 'cr.', mode = 'n'},
+        { 'crs', mode = 'n' },
+        { 'crm', mode = 'n' },
+        { 'crc', mode = 'n' },
+        { 'cru', mode = 'n' },
+        { 'cr-', mode = 'n' },
+        { 'cr.', mode = 'n' },
       },
     },
     {
@@ -35,7 +73,7 @@ return {
       event = { 'CursorHold', "CursorMoved", "InsertEnter" },
       config = function()
         -- TODO lookup if there's a short cut for defining the keyamp below
-        vim.keymap.set({ "n" }, "<leader>j", require("ts-node-action").node_action, { desc = "Trigger node action" })
+        map({ "n" }, "<leader>j", require("ts-node-action").node_action, { desc = "Trigger node action" })
         local null_ls = require("null-ls")
         null_ls.setup({
           sources = {
@@ -49,21 +87,21 @@ return {
     { 'MarcWeber/vim-addon-local-vimrc', event = "VeryLazy" },
 
     -- Commands for easily aligning tabular data
-    { 'godlygeek/tabular' , event = "InsertEnter" },
+    { 'godlygeek/tabular',               event = "InsertEnter" },
     -- Seamless navigation between vim and tmux windows
-    { 'christoomey/vim-tmux-navigator', event = "VeryLazy" },
+    { 'christoomey/vim-tmux-navigator',  event = "VeryLazy" },
 
     --VIM colon and semicolon insertion bliss Edit
     {
       'lfilho/cosco.vim',
-      ft = {'javascript', 'css', 'lua'},
+      ft = { 'javascript', 'css', 'lua' },
       keys = {
-        { '<Plug>(cosco-commaOrSemiColon)', mode = 'n'},
-        { '<Plug>(cosco-commaOrSemiColon)', mode = 'i'},
+        { '<Plug>(cosco-commaOrSemiColon)', mode = 'n' },
+        { '<Plug>(cosco-commaOrSemiColon)', mode = 'i' },
       },
       config = function()
-        map("n", '<leader>;', '<Plug>(cosco-commaOrSemiColon)', {noremap = false, desc = 'Insert , or ;'})
-        map("i", '<leader>;', '<c-o><Plug>(cosco-commaOrSemiColon)', {noremap = false, desc = 'Insert , or ;'})
+        map("n", ',;', { noremap = false, desc = 'Insert , or ;' })
+        map("i", ',;', { noremap = false, desc = 'Insert , or ;' })
       end
     },
     {
@@ -93,7 +131,8 @@ return {
 
         local width = 46
         local height = 25 -- two pixels per vertical space
-        dashboard.section.terminal.command = "cat | " .. os.getenv("HOME") .. "/.config/nvim/lua/user/art/this-is-fine.sh"
+        dashboard.section.terminal.command = "cat | " ..
+            os.getenv("HOME") .. "/.config/nvim/lua/user/art/this-is-fine.sh"
         dashboard.section.terminal.width = width
         dashboard.section.terminal.height = height
         dashboard.section.terminal.opts.redraw = true
