@@ -2,6 +2,16 @@ local map = vim.keymap.set
 
 return {
   colorscheme = "gruvbox-baby",
+
+  polish = function()
+    vim.cmd([[
+         augroup PortugueseSpell
+           autocmd!
+           autocmd FileType txt,markdown,rst setlocal spelllang=en,pt_br
+         augroup END
+       ]])
+  end,
+
   highlights = {
     init = {
       VertSplit = { fg = "#777777" },
