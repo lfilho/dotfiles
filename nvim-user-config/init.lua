@@ -19,6 +19,10 @@ return {
     { "nyngwang/nvimgelion" },
 
     {
+      "josuesasilva/vim-spell-pt-br",
+      event = "VeryLazy",
+    },
+    {
       "echasnovski/mini.nvim",
       version = "*",
       event = "VeryLazy",
@@ -84,19 +88,35 @@ return {
       -- { import = "astrocommunity.motion.mini-move" },
     },
     {
-      event = { "VeryLazy" },
-      "ggandor/leap.nvim",
-      -- keys = {
-      --   { "<Plug>(leap-forward-to)", mode = { "n", "x", "o" } },
-      --   { "<Plug>(leap-backward-to)", mode = { "n", "x", "o" } },
-      --   { "<Plug>(leap-from-window)", mode = { "n", "x", "o" } },
-      -- },
-      config = function()
-        require("leap").setup({})
-        map({ "n", "x", "o" }, ",s", "<Plug>(leap-forward-to)", { noremap = false, desc = "Leap forward" })
-        map({ "n", "x", "o" }, ",S", "<Plug>(leap-backward-to)", { noremap = false, desc = "Leap backward" })
-        map({ "n", "x", "o" }, "gs", "<Plug>(leap-from-window)", { noremap = false, desc = "Leap from window" })
+      "mattn/emmet-vim",
+      event = "InsertEnter",
+      ft = {
+        "html",
+        "css",
+        "javascript",
+        "javascriptreact",
+        "vue",
+        "typescript",
+        "typescriptreact",
+        "scss",
+        "sass",
+        "less",
+        "jade",
+        "haml",
+        "elm",
+      },
+      init = function()
+        vim.g.user_emmet_leader_key = ","
       end,
+    },
+    {
+      "phaazon/hop.nvim",
+      event = "VeryLazy",
+      cmd = "HopWord",
+      keys = { { ",s", "<cmd>HopWord<cr>", desc = "Jump to word" } },
+      opts = {
+        multi_windows = true,
+      },
     },
     {
       -- Yank Ring
@@ -215,8 +235,8 @@ return {
         local width = 46
         local height = 25 -- two pixels per vertical space
         dashboard.section.terminal.command = "cat | "
-          .. os.getenv("HOME")
-          .. "/.config/nvim/lua/user/art/this-is-fine.sh"
+            .. os.getenv("HOME")
+            .. "/.config/nvim/lua/user/art/this-is-fine.sh"
         dashboard.section.terminal.width = width
         dashboard.section.terminal.height = height
         dashboard.section.terminal.opts.redraw = true
