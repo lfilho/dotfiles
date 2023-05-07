@@ -1,9 +1,34 @@
 local map = vim.keymap.set
 
 return {
-  colorscheme = "sonokai",
+  colorscheme = "gruvbox-baby",
+
+  highlights = {
+    init = {
+      VertSplit = { fg = '#777777' }
+    }
+  },
 
   plugins = {
+    -- Colorschemes:
+    { 'sainnhe/sonokai' },
+    { 'savq/melange-nvim'},
+    { 'rmehri01/onenord.nvim' },
+    { 'luisiacc/gruvbox-baby'},
+    { 'jacoborus/tender.vim'},
+
+    {
+      'tommcdo/vim-abolish',
+      cmd = { 'Subvert',  'Abolish'},
+      keys = {
+        { 'crs', mode = 'n'},
+        { 'crm', mode = 'n'},
+        { 'crc', mode = 'n'},
+        { 'cru', mode = 'n'},
+        { 'cr-', mode = 'n'},
+        { 'cr.', mode = 'n'},
+      },
+    },
     {
       'ckolkey/ts-node-action',
       dependencies = { 'nvim-treesitter' },
@@ -20,9 +45,6 @@ return {
       end,
     },
 
-    -- Colorscheme
-    { 'sainnhe/sonokai' },
-
     -- local (per project) vim configs
     { 'MarcWeber/vim-addon-local-vimrc', event = "VeryLazy" },
 
@@ -34,15 +56,14 @@ return {
     --VIM colon and semicolon insertion bliss Edit
     {
       'lfilho/cosco.vim',
-      ft = {'javascript', 'css'},
+      ft = {'javascript', 'css', 'lua'},
       keys = {
-        { '<Plug>(cosco-commaOrSemiColon)', desc = 'Insert Comma or Semi Colon', mode = 'n'},
-        { '<Plug>(cosco-commaOrSemiColon)', desc = 'Insert Comma or Semi Colon', mode = 'i'},
+        { '<Plug>(cosco-commaOrSemiColon)', mode = 'n'},
+        { '<Plug>(cosco-commaOrSemiColon)', mode = 'i'},
       },
       config = function()
-        -- TODO add to which key
-        map("n", '<leader>;', '<Plug>(cosco-commaOrSemiColon)', {noremap = false})
-        map("i", '<leader>;', '<c-o><Plug>(cosco-commaOrSemiColon)', {noremap = false})
+        map("n", '<leader>;', '<Plug>(cosco-commaOrSemiColon)', {noremap = false, desc = 'Insert , or ;'})
+        map("i", '<leader>;', '<c-o><Plug>(cosco-commaOrSemiColon)', {noremap = false, desc = 'Insert , or ;'})
       end
     },
     {
@@ -52,13 +73,14 @@ return {
         require("alpha.term")
         local dashboard = require("alpha.themes.dashboard")
         dashboard.section.buttons.val = {
-          dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
-          dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
-          dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
-          dashboard.button("g", " " .. " Find text", ":Telescope live_grep <CR>"),
+          dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
+          dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
+          dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
+          dashboard.button("g", " " .. " Find text", ":Telescope live_grep <CR>"),
+          dashboard.button("m", " " .. " Bookmarks", ":Telescope marks <CR>"),
           dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
-          dashboard.button("s", "勒" .. " Restore Session", [[:lua require("persistence").load() <cr>]]),
-          dashboard.button("l", "鈴" .. " Lazy", ":Lazy<CR>"),
+          dashboard.button("s", " " .. " Restore Session", [[:lua require("persistence").load() <cr>]]),
+          dashboard.button("l", " " .. " Lazy", ":Lazy<CR>"),
           dashboard.button("q", " " .. " Quit", ":qa<CR>"),
         }
         for _, button in ipairs(dashboard.section.buttons.val) do

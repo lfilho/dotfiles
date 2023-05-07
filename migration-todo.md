@@ -2,3 +2,5 @@
 - Surround
 - text object: entire doc
 - close window/split with a keymap (before it was Q, space-c closes the buffer only, keeping the split)
+- window split lines are hard to see
+- session aint working. maybe the command in dashboard is wrongly pasted
