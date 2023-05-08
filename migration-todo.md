@@ -23,3 +23,5 @@ https://github.com/abecodes/tabout.nvim -- ver se nao conflita com algo
 https://github.com/drybalka/tree-climber.nvim
 https://github.com/ethanholz/nvim-lastplace
 https://github.com/folke/todo-comments.nvim
+
+make 0 go to first char

@@ -24,7 +24,18 @@ return {
     { "sainnhe/sonokai" },
     { "savq/melange-nvim" },
     { "rmehri01/onenord.nvim" },
-    { "luisiacc/gruvbox-baby" },
+    {
+      "luisiacc/gruvbox-baby",
+      init = function()
+        local c = require("gruvbox-baby.colors").config()
+        -- Customoizing Telescope
+        vim.g.gruvbox_baby_highlights = {
+          TelescopePreviewTitle = { fg = c.background, bg = c.forest_green },
+          TelescopePromptTitle = { fg = c.background, bg = c.soft_yellow },
+          TelescopeResultsTitle = { fg = c.background_dark, bg = c.milk },
+        }
+      end,
+    },
     { "jacoborus/tender.vim" },
     { "nyngwang/nvimgelion" },
 
@@ -245,8 +256,8 @@ return {
         local width = 46
         local height = 25 -- two pixels per vertical space
         dashboard.section.terminal.command = "cat | "
-            .. os.getenv("HOME")
-            .. "/.config/nvim/lua/user/art/this-is-fine.sh"
+          .. os.getenv("HOME")
+          .. "/.config/nvim/lua/user/art/this-is-fine.sh"
         dashboard.section.terminal.width = width
         dashboard.section.terminal.height = height
         dashboard.section.terminal.opts.redraw = true
