@@ -1,15 +1,20 @@
 local map = vim.keymap.set
+local map = vim.cmd
 
 return {
   colorscheme = "gruvbox-baby",
 
   polish = function()
-    vim.cmd([[
+    -- There's a more lua-ish to do this but i was lazy
+    cmd([[
          augroup PortugueseSpell
            autocmd!
            autocmd FileType txt,markdown,rst setlocal spelllang=en,pt_br
          augroup END
        ]])
+
+    map("n", "[ ", "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", { desc = "Put empty line above" })
+    map("n", "] ", "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", { desc = "Put empty line below" })
   end,
 
   highlights = {
@@ -52,6 +57,7 @@ return {
 
         require("mini.surround").setup()
         require("mini.move").setup()
+        require("mini.bracketed").setup()
         require("mini.ai").setup({
           custom_textobjects = {
             b = { { "%b()", "%b[]", "%b{}" }, "^.%s*().-()%s*.$" },
@@ -68,10 +74,10 @@ return {
               if vim.api.nvim_get_current_line() == "" then
                 return
               end
-              vim.cmd.normal({ type == "i" and "^" or "0", bang = true })
+              cmd.normal({ type == "i" and "^" or "0", bang = true })
               local from_line, from_col = table.unpack(vim.api.nvim_win_get_cursor(0))
               local from = { line = from_line, col = from_col + 1 }
-              vim.cmd.normal({ type == "i" and "g_" or "$", bang = true })
+              cmd.normal({ type == "i" and "g_" or "$", bang = true })
               local to_line, to_col = table.unpack(vim.api.nvim_win_get_cursor(0))
               local to = { line = to_line, col = to_col + 1 }
               return { from = from, to = to }
