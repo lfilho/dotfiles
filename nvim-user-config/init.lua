@@ -55,8 +55,6 @@ return {
     {
       "echasnovski/mini.nvim",
       version = "*",
-      --BUG:
-      --FIX:
       event = "VeryLazy",
       config = function()
         local ts_spec = require("mini.ai").gen_spec.treesitter
@@ -125,65 +123,61 @@ return {
       "folke/todo-comments.nvim",
       event = "VeryLazy",
       opts = {
-        highlight = {
-          pattern = [[.*<(KEYWORDS)\s*]],
-        },
-        search = {
-          pattern = [[\b(KEYWORDS)\b]],
-        },
+        highlight = { pattern = [[.*<(KEYWORDS)\s*]] },
+        search = { pattern = [[\b(KEYWORDS)\b]] },
       },
-    },
-    {
-      "tpope/vim-fugitive",
-      event = "User AstroGitFile",
-      dependencies = {
-        { "tpope/vim-rhubarb" },
-      },
-      config = function()
-        -- vim.api.nvim_create_autocmd("User", {
-        --   pattern = "AstroGitFile",
-        --   callback = function()
-        --     -- TODO needs testing
-        --     if string.match(vim.fn["fugitive#buffer"]().type(), "^\\%(tree\\|blob\\)$") then
-        --       vim.api.nvim_buf_set_keymap(0, "n", "..", ":edit %:h<CR>", { buffer = true })
-        --     end
-        --   end,
-        --   desc = "Go up one level on git repo",
-        -- })
-        vim.api.nvim_create_autocmd("BufReadPost", {
-          pattern = "fugitive://*",
-          callback = function()
-            vim.opt.bufhidden = "delete"
-
-            if string.match(vim.fn["fugitive#buffer"]().type(), "^\\%(tree\\|blob\\)$") then
-              vim.api.nvim_buf_set_keymap(0, "n", "..", ":edit %:h<CR>", { buffer = true, desc = "Go up one level" })
-            end
-          end,
-          desc = "Prevent Fugitive from creating too many buffers",
-        })
-
-        map("n", "<leader>Gd", ":Gdiffsplit<CR>", { desc = "Diff" })
-        map("n", "<leader>Gs", ":Git<CR>", { desc = "Status" })
-        map("n", "<leader>Gw", ":Gwrite<CR>", { desc = "Write and stage" })
-        map("n", "<leader>Gb", ":Git blame<CR>", { desc = "Blame" })
-        map("n", "<leader>Gco", ":Gcheckout<CR>", { desc = "Checkout" })
-        map("n", "<leader>Gci", ":Git commit<CR>", { desc = "Commit" })
-        map("n", "<leader>Gm", ":GMove", { desc = "Move file and rename buffer" })
-        map("n", "<leader>Gr", ":GRemove<CR>", { desc = "Remove" })
-
-        map("n", "<leader>dg", ":diffget<CR>", { desc = "Diff get" })
-        map("n", "<leader>dp", ":diffput<CR>", { desc = "Diff put" })
-      end,
     },
     -- {
-    --   "almo7aya/openingh.nvim",
+    --   "tpope/vim-fugitive",
     --   event = "User AstroGitFile",
+    --   dependencies = {
+    --     { "tpope/vim-rhubarb" },
+    --   },
     --   config = function()
-    --     map("n", "<Leader>gw", ":OpenInGHRepo <CR>", { silent = true })
-    --     map("n", "<Leader>gf", ":OpenInGHFile <CR>", { silent = true })
-    --     map("v", "<Leader>gf", ":OpenInGHFile <CR>", { silent = true })
+    --     -- vim.api.nvim_create_autocmd("User", {
+    --     --   pattern = "AstroGitFile",
+    --     --   callback = function()
+    --     --     -- TODO needs testing
+    --     --     if string.match(vim.fn["fugitive#buffer"]().type(), "^\\%(tree\\|blob\\)$") then
+    --     --       vim.api.nvim_buf_set_keymap(0, "n", "..", ":edit %:h<CR>", { buffer = true })
+    --     --     end
+    --     --   end,
+    --     --   desc = "Go up one level on git repo",
+    --     -- })
+    --     vim.api.nvim_create_autocmd("BufReadPost", {
+    --       pattern = "fugitive://*",
+    --       callback = function()
+    --         vim.opt.bufhidden = "delete"
+    --
+    --         if string.match(vim.fn["fugitive#buffer"]().type(), "^\\%(tree\\|blob\\)$") then
+    --           vim.api.nvim_buf_set_keymap(0, "n", "..", ":edit %:h<CR>", { buffer = true, desc = "Go up one level" })
+    --         end
+    --       end,
+    --       desc = "Prevent Fugitive from creating too many buffers",
+    --     })
+    --
+    --     map("n", "<leader>Gd", ":Gdiffsplit<CR>", { desc = "Diff" })
+    --     map("n", "<leader>Gs", ":Git<CR>", { desc = "Status" })
+    --     map("n", "<leader>Gw", ":Gwrite<CR>", { desc = "Write and stage" })
+    --     map("n", "<leader>Gb", ":Git blame<CR>", { desc = "Blame" })
+    --     map("n", "<leader>Gco", ":Gcheckout<CR>", { desc = "Checkout" })
+    --     map("n", "<leader>Gci", ":Git commit<CR>", { desc = "Commit" })
+    --     map("n", "<leader>Gm", ":GMove", { desc = "Move file and rename buffer" })
+    --     map("n", "<leader>Gr", ":GRemove<CR>", { desc = "Remove" })
+    --
+    --     map("n", "<leader>dg", ":diffget<CR>", { desc = "Diff get" })
+    --     map("n", "<leader>dp", ":diffput<CR>", { desc = "Diff put" })
     --   end,
     -- },
+    {
+      "almo7aya/openingh.nvim",
+      event = "User AstroGitFile",
+      config = function()
+        map("n", "<Leader>gw", ":OpenInGHRepo <CR>", { silent = true, desc = "Open Repo in GH" })
+        map("n", "<Leader>gf", ":OpenInGHFile <CR>", { silent = true, desc = "Open File in GH" })
+        map("v", "<Leader>gf", ":OpenInGHFile <CR>", { silent = true, desc = "Open File in GH" })
+      end,
+    },
     {
       "mattn/emmet-vim",
       event = "InsertEnter",

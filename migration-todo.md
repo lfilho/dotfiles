@@ -31,3 +31,9 @@ improve delta diff colors? check if they work well with lazygit
 remove fugitive?
 
 normalize keymaps for opening splits across neotree, telescope...
+
+command DiffOrig vert new | set buftype=nofile | read ++edit # | 0d\_
+\ | diffthis | wincmd p | diffthis
+
+Use ":DiffOrig" to see the differences
+between the current buffer and the file it was loaded from.
