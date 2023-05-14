@@ -4,7 +4,8 @@
 
 # Key bindings
 # ------------
-source "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
+# Commenting the below out so Atuin can use the same keybindings
+# source "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
 
 # fasd & fzf change directory - jump using `fasd` if given argument, filter output of `fasd` using `fzf` else
 unalias z #removing fasd's alias for z first

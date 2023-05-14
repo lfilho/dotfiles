@@ -2,7 +2,8 @@ local map = vim.keymap.set
 local cmd = vim.cmd
 
 return {
-  colorscheme = "gruvbox-baby",
+  -- colorscheme = "gruvbox-baby",
+  colorscheme = "github_dark",
 
   polish = function()
     -- There's a more lua-ish to do this but i was lazy
@@ -33,6 +34,7 @@ return {
     { "sainnhe/sonokai" },
     { "savq/melange-nvim" },
     { "rmehri01/onenord.nvim" },
+    { "projekt0n/github-nvim-theme" },
     {
       "luisiacc/gruvbox-baby",
       init = function()
@@ -48,6 +50,28 @@ return {
     { "jacoborus/tender.vim" },
     { "nyngwang/nvimgelion" },
 
+    {
+      "lukas-reineke/indent-blankline.nvim",
+      init = function()
+        cmd([[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]])
+        cmd([[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]])
+        cmd([[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]])
+        cmd([[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]])
+        cmd([[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]])
+        cmd([[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]])
+      end,
+      opts = {
+        show_current_context_start = true,
+        char_highlight_list = {
+          "IndentBlanklineIndent1",
+          "IndentBlanklineIndent2",
+          "IndentBlanklineIndent3",
+          "IndentBlanklineIndent4",
+          "IndentBlanklineIndent5",
+          "IndentBlanklineIndent6",
+        },
+      },
+    },
     {
       "josuesasilva/vim-spell-pt-br",
       event = "VeryLazy",
@@ -113,10 +137,11 @@ return {
       { import = "astrocommunity.pack.lua" },
       { import = "astrocommunity.pack.markdown" },
       { import = "astrocommunity.pack.python" },
-      { import = "astrocommunity.pack.typescript-all-in-one" },
+      { import = "astrocommunity.pack.typescript" },
       { import = "astrocommunity.pack.yaml" },
       { import = "astrocommunity.motion.vim-matchup" },
-      { import = "astrocommunity.git.openingh" },
+      { import = "astrocommunity.git.openingh-nvim" },
+      { import = "astrocommunity.completion.copilot-lua-cmp" },
       -- { import = "astrocommunity.motion.mini-move" },
     },
     {
@@ -306,9 +331,9 @@ return {
         local dashboard = require("alpha.themes.dashboard")
         dashboard.section.buttons.val = {
           dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
+          dashboard.button("w", " " .. " Find text", ":Telescope live_grep <CR>"),
           dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
           dashboard.button("o", " " .. " Recent files", ":Telescope oldfiles <CR>"),
-          dashboard.button("w", " " .. " Find text", ":Telescope live_grep <CR>"),
           dashboard.button("m", " " .. " Bookmarks", ":Telescope marks <CR>"),
           dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"), -- TODO this is just the index file, prob change to user/init lua?
           dashboard.button("s", " " .. " Load last session", ":SessionManager load_last_session<CR>"),

@@ -1,4 +1,3 @@
-tap 'cantino/mcfly'
 tap 'homebrew/bundle'
 tap 'homebrew/cask'
 tap 'homebrew/cask-fonts'
@@ -10,7 +9,7 @@ end
 
 cask 'firefox'
 cask 'font-fira-code-nerd-font'
-cask 'font-jetbrains-mono-nerd-font'
+cask 'font-caskaydia-cove-nerd-font'
 cask 'google-chrome'
 cask 'inkscape'
 if OS.mac?
@@ -24,6 +23,7 @@ end
 cask 'qlmarkdown'
 cask 'vlc'
 
+brew 'atuin'
 brew 'automake'
 brew 'bat'
 brew 'bottom'
@@ -41,7 +41,6 @@ brew 'git-extras'
 brew 'highlight'
 brew 'lame'
 brew 'jesseduffield/lazygit/lazygit'
-brew 'mcfly'
 brew 'neovim'
 brew 'openssl'
 brew 'podofo'
