@@ -16,8 +16,6 @@ is tpope/vim-repeat needed?
 --- https://github.com/Wansmer/binary-swap.nvim
 https://github.com/gbprod/substitute.nvim
 
-try conflict/merge tools: https://github.com/rockerBOO/awesome-neovim#git
-
 https://github.com/vuki656/package-info.nvim
 https://github.com/abecodes/tabout.nvim -- ver se nao conflita com algo
 https://github.com/drybalka/tree-climber.nvim
@@ -25,3 +23,7 @@ https://github.com/ethanholz/nvim-lastplace
 https://github.com/folke/todo-comments.nvim
 
 make 0 go to first char
+
+rethink the mnemonics. like maybe "<leader>n" for any Navigation plugins
+
+remap surround to old mappings?

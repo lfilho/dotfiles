@@ -1,17 +1,21 @@
 local map = vim.keymap.set
-local map = vim.cmd
+local cmd = vim.cmd
 
 return {
   colorscheme = "gruvbox-baby",
 
   polish = function()
     -- There's a more lua-ish to do this but i was lazy
-    cmd([[
-         augroup PortugueseSpell
-           autocmd!
-           autocmd FileType txt,markdown,rst setlocal spelllang=en,pt_br
-         augroup END
-       ]])
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = { "txt", "markdown", "rst", "text", "plaintex", "gitcommit" },
+      group = vim.api.nvim_create_augroup("PortugueseSpell", { clear = true }),
+
+      callback = function()
+        vim.opt_local.spell = true
+        vim.opt_local.spelllang = { "en", "pt_br" }
+      end,
+      desc = "Enable portuguese spell check for text files",
+    })
 
     map("n", "[ ", "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", { desc = "Put empty line above" })
     map("n", "] ", "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", { desc = "Put empty line below" })
@@ -112,8 +116,61 @@ return {
       { import = "astrocommunity.pack.typescript-all-in-one" },
       { import = "astrocommunity.pack.yaml" },
       { import = "astrocommunity.motion.vim-matchup" },
+      { import = "astrocommunity.git.openingh" },
+      { import = "astrocommunity.editing-support.todo-comments-nvim" },
       -- { import = "astrocommunity.motion.mini-move" },
     },
+    {
+      "tpope/vim-fugitive",
+      event = "User AstroGitFile",
+      dependencies = {
+        { "tpope/vim-rhubarb" },
+      },
+      config = function()
+        -- vim.api.nvim_create_autocmd("User", {
+        --   pattern = "AstroGitFile",
+        --   callback = function()
+        --     -- TODO needs testing
+        --     if string.match(vim.fn["fugitive#buffer"]().type(), "^\\%(tree\\|blob\\)$") then
+        --       vim.api.nvim_buf_set_keymap(0, "n", "..", ":edit %:h<CR>", { buffer = true })
+        --     end
+        --   end,
+        --   desc = "Go up one level on git repo",
+        -- })
+        vim.api.nvim_create_autocmd("BufReadPost", {
+          pattern = "fugitive://*",
+          callback = function()
+            vim.opt.bufhidden = "delete"
+
+            if string.match(vim.fn["fugitive#buffer"]().type(), "^\\%(tree\\|blob\\)$") then
+              vim.api.nvim_buf_set_keymap(0, "n", "..", ":edit %:h<CR>", { buffer = true, desc = "Go up one level" })
+            end
+          end,
+          desc = "Prevent Fugitive from creating too many buffers",
+        })
+
+        map("n", "<leader>Gd", ":Gdiffsplit<CR>", { desc = "Diff" })
+        map("n", "<leader>Gs", ":Git<CR>", { desc = "Status" })
+        map("n", "<leader>Gw", ":Gwrite<CR>", { desc = "Write and stage" })
+        map("n", "<leader>Gb", ":Git blame<CR>", { desc = "Blame" })
+        map("n", "<leader>Gco", ":Gcheckout<CR>", { desc = "Checkout" })
+        map("n", "<leader>Gci", ":Git commit<CR>", { desc = "Commit" })
+        map("n", "<leader>Gm", ":GMove", { desc = "Move file and rename buffer" })
+        map("n", "<leader>Gr", ":GRemove<CR>", { desc = "Remove" })
+
+        map("n", "<leader>dg", ":diffget<CR>", { desc = "Diff get" })
+        map("n", "<leader>dp", ":diffput<CR>", { desc = "Diff put" })
+      end,
+    },
+    -- {
+    --   "almo7aya/openingh.nvim",
+    --   event = "User AstroGitFile",
+    --   config = function()
+    --     map("n", "<Leader>gw", ":OpenInGHRepo <CR>", { silent = true })
+    --     map("n", "<Leader>gf", ":OpenInGHFile <CR>", { silent = true })
+    --     map("v", "<Leader>gf", ":OpenInGHFile <CR>", { silent = true })
+    --   end,
+    -- },
     {
       "mattn/emmet-vim",
       event = "InsertEnter",
@@ -196,7 +253,7 @@ return {
       event = { "CursorHold", "CursorMoved", "InsertEnter" },
       config = function()
         -- TODO lookup if there's a short cut for defining the keyamp below
-        map({ "n" }, "<leader>j", require("ts-node-action").node_action, { desc = "Trigger node action" })
+        map("n", "<leader>j", require("ts-node-action").node_action, { desc = "Trigger node action" })
         local null_ls = require("null-ls")
         null_ls.setup({
           sources = {

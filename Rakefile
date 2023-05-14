@@ -26,7 +26,9 @@ task :install => [:submodule_init, :submodules] do
   run %{ln -nfs ~/.yadr/nvim-user-config ~/.config/nvim/lua/user}
 
   run %{ mkdir -p ~/.config/ranger }
+  run %{ mkdir -p ~/.config/lazygit }
   run %{ ln -nfs ~/.yadr/ranger ~/.config/ranger }
+  run %{ ln -nfs ~/.yadr/lazygit ~/.config/lazygit }
 
   run %{ touch ~/.hushlogin }
 
