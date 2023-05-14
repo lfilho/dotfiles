@@ -55,6 +55,8 @@ return {
     {
       "echasnovski/mini.nvim",
       version = "*",
+      --BUG:
+      --FIX:
       event = "VeryLazy",
       config = function()
         local ts_spec = require("mini.ai").gen_spec.treesitter
@@ -117,8 +119,19 @@ return {
       { import = "astrocommunity.pack.yaml" },
       { import = "astrocommunity.motion.vim-matchup" },
       { import = "astrocommunity.git.openingh" },
-      { import = "astrocommunity.editing-support.todo-comments-nvim" },
       -- { import = "astrocommunity.motion.mini-move" },
+    },
+    {
+      "folke/todo-comments.nvim",
+      event = "VeryLazy",
+      opts = {
+        highlight = {
+          pattern = [[.*<(KEYWORDS)\s*]],
+        },
+        search = {
+          pattern = [[\b(KEYWORDS)\b]],
+        },
+      },
     },
     {
       "tpope/vim-fugitive",
@@ -300,10 +313,10 @@ return {
         dashboard.section.buttons.val = {
           dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
           dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
-          dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
-          dashboard.button("g", " " .. " Find text", ":Telescope live_grep <CR>"),
+          dashboard.button("o", " " .. " Recent files", ":Telescope oldfiles <CR>"),
+          dashboard.button("w", " " .. " Find text", ":Telescope live_grep <CR>"),
           dashboard.button("m", " " .. " Bookmarks", ":Telescope marks <CR>"),
-          dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
+          dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"), -- TODO this is just the index file, prob change to user/init lua?
           dashboard.button("s", " " .. " Load last session", ":SessionManager load_last_session<CR>"),
           dashboard.button("l", " " .. " Lazy", ":Lazy<CR>"),
           dashboard.button("q", " " .. " Quit", ":qa<CR>"),
