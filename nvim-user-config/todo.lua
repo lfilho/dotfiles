@@ -1,0 +1,23 @@
+-- TODO: Migration work:
+-- Go through /settings folder and move all settings to lua
+-- Plug 'skwp/greplace.vim' " skwp/greplace.vim TODO search better one... Maybe Plug 'brooth/far.vim' (waiting for native RipGrep support)
+-- Confirm and/or make the following text obejcts work:
+--     Plug 'austintaylor/vim-indentobject'
+--     Plug 'kana/vim-textobj-datetime'
+--     Plug 'kana/vim-textobj-entire'
+--     Plug 'kana/vim-textobj-function'
+--     Plug 'kana/vim-textobj-lastpat' " last searched pattern
+--     Plug 'kana/vim-textobj-user' " required by the some of the other textobjects above
+--     Plug 'lucapette/vim-textobj-underscore'
+--     Plug 'terryma/vim-expand-region' " allows you to visually select increasingly larger regions of text using the same key combination
+--     Plug 'thinca/vim-textobj-function-javascript'
+--     Plug 'wellle/targets.vim' " provides additional text objects (see their full description!)
+-- Update READMe
+--   after is done via polish
+--
+-- Setup auto wrap for this files:
+-- augroup AutoWrapFiles
+--     autocmd!
+--     autocmd FileType {tex,markdown,text} call SetupWrapping()
+-- augroup END
+-- test bamboo them for iterm

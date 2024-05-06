@@ -22,8 +22,7 @@ task :install => [:submodule_init, :submodules] do
   install_files(Dir.glob('{vim,vimrc}'))
   install_files(Dir.glob('zsh/zshrc'))
 
-  run %{git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim}
-  run %{ln -nfs ~/.yadr/nvim-user-config ~/.config/nvim/lua/user}
+  run %{ln -nfs ~/.yadr/nvim-user-config ~/.config/nvim}
 
   run %{ mkdir -p ~/.config/ranger }
   run %{ mkdir -p ~/.config/lazygit }
