@@ -18,6 +18,28 @@ vim.api.nvim_create_autocmd("FileType", {
 map("n", "[ ", "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", { desc = "Put empty line above" })
 map("n", "] ", "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", { desc = "Put empty line below" })
 
+--
+-- Auto Wrapping for certain file types:
+--
+-- Define the function to set up wrapping
+local function setup_wrapping()
+  vim.opt_local.wrap = true
+  vim.opt_local.linebreak = true
+  vim.opt_local.list = false
+  vim.opt_local.showbreak = "…"
+end
+
+-- Apply wrapping automatically to specific file types
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "tex", "markdown", "text" },
+  callback = function()
+    setup_wrapping()
+  end,
+})
+
+-- Create a command for manual wrapping
+vim.api.nvim_create_user_command("Wrap", setup_wrapping, { nargs = "*" })
+
 -- Set up custom filetypes
 -- vim.filetype.add {
 --   extension = {

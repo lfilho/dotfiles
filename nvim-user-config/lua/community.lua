@@ -9,19 +9,9 @@ return {
   { import = "astrocommunity.pack.bash" },
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.pack.python" },
-  {
-    import = "astrocommunity.pack.typescript",
-  },
-  {
-    import = "astrocommunity.pack.yaml",
-  },
-  {
-    import = "astrocommunity.motion.vim-matchup",
-  },
-  {
-    import = "astrocommunity.git.openingh-nvim",
-  },
-  {
-    import = "astrocommunity.completion.copilot-lua-cmp",
-  }, -- import/override with your plugins folder
+  { import = "astrocommunity.pack.typescript" },
+  { import = "astrocommunity.pack.yaml" },
+  { import = "astrocommunity.motion.vim-matchup" },
+  { import = "astrocommunity.git.openingh-nvim" },
+  { import = "astrocommunity.completion.copilot-lua-cmp" }, -- import/override with your plugins folder
 }

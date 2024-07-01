@@ -1725,7 +1725,7 @@
 			<key>Minimum Contrast</key>
 			<real>0.0</real>
 			<key>Mouse Reporting</key>
-			<true/>
+			<false/>
 			<key>Name</key>
 			<string>Default</string>
 			<key>Non Ascii Font</key>
@@ -1733,7 +1733,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>CaskaydiaCoveNFM-Regular 16</string>
+			<string>FiraCodeNFM-Reg 16</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<true/>
 			<key>Option Key Sends</key>

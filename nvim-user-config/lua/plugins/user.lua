@@ -326,7 +326,11 @@ return {
     keys = { { "J", "<cmd>TSJToggle<CR>", desc = "Split/Join" } },
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
-      require("treesj").setup()
+      require("treesj").setup({
+        on_error = function()
+          vim.cmd.join()
+        end,
+      })
     end,
   },
   {
