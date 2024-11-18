@@ -18,11 +18,13 @@ z() {
 
 if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'
-  # Colors below are gruvbox
-  export FZF_DEFAULT_OPTS='
-    -m --height 50% --border
-    --color fg:#ebdbb2,bg:#424242,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
-    --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54
-  '
+  # Colors below are catpucchin https://github.com/catppuccin/fzf
+  export FZF_DEFAULT_OPTS=" \
+    -m --height 50% --border \
+    --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+    --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+    --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+    --color=selected-bg:#45475a \
+    --multi"
 fi
 

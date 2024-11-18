@@ -420,5 +420,17 @@ return {
     end,
   },
   -- You can disable default plugins as follows:
-  { "max397574/better-escape.nvim", enabled = false },
+  {
+    "christoomey/vim-tmux-navigator",
+    cmd = {
+      "TmuxNavigateLeft",
+      "TmuxNavigateDown",
+      "TmuxNavigateUp",
+      "TmuxNavigateRight",
+      "TmuxNavigatePrevious",
+    },
+  },
+  { "max397574/better-escape.nvim" },
+  { "wuelnerdotexe/vim-astro" },
+  { "virchau13/tree-sitter-astro" },
 }

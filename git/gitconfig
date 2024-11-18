@@ -131,15 +131,17 @@
   show = "delta"
   reflog = "delta"
   show = "delta"
+[include]
+  path = ~/.yadr/git/catppuccin.gitconfig
 [delta]
-  syntax-theme = gruvbox-dark
+  features = catppuccin-mocha
   navigate = true
   side-by-side = true
   line-numbers = true
 
   # commit-decoration-style = blue ol
   # commit-style = raw
-  file-style = omit
+  # file-style = omit
   # hunk-header-decoration-style = blue box
   # hunk-header-file-style = red
   # hunk-header-line-number-style = "#067a00"
