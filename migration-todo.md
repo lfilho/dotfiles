@@ -14,21 +14,15 @@ is tpope/vim-repeat needed?
 
 --- https://github.com/Wansmer/sibling-swap.nvim
 --- https://github.com/Wansmer/binary-swap.nvim
-https://github.com/gbprod/substitute.nvim
 
 https://github.com/vuki656/package-info.nvim
 https://github.com/abecodes/tabout.nvim -- ver se nao conflita com algo
 https://github.com/drybalka/tree-climber.nvim
 https://github.com/ethanholz/nvim-lastplace
 
-make 0 go to first char
-
 rethink the mnemonics. like maybe "<leader>n" for any Navigation plugins
 
-remap surround to old mappings?
-
-improve delta diff colors? check if they work well with lazygit
-remove fugitive?
+remove fugitive? maybe neogit or lazygit?
 
 normalize keymaps for opening splits across neotree, telescope...
 
@@ -37,3 +31,11 @@ command DiffOrig vert new | set buftype=nofile | read ++edit # | 0d\_
 
 Use ":DiffOrig" to see the differences
 between the current buffer and the file it was loaded from.
+
+# TMUX
+
+- How to kickstart it? do i need to put it as a login shell or what?
+- will current .conf work with neovim? check smart-splits compared to vim tmux navigator for compat with neovim too
+- see if reattach to user space brew package is still needed
+- Config seems borked. seek another one on the web
+- install catpuccing

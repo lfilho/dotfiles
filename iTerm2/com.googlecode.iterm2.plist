@@ -7681,7 +7681,7 @@
 			<key>Hide After Opening</key>
 			<false/>
 			<key>Horizontal Spacing</key>
-			<real>0.80000000000000004</real>
+			<real>0.81000000000000005</real>
 			<key>Icon</key>
 			<integer>1</integer>
 			<key>Idle Code</key>
@@ -8284,6 +8284,8 @@
 			<real>0.0</real>
 			<key>Triggers</key>
 			<array/>
+			<key>Unicode Version</key>
+			<integer>9</integer>
 			<key>Unlimited Scrollback</key>
 			<false/>
 			<key>Use Bold Font</key>
@@ -8307,7 +8309,7 @@
 			<key>Use Underline Color</key>
 			<false/>
 			<key>Vertical Spacing</key>
-			<real>1.0600000000000001</real>
+			<real>1.1100000000000001</real>
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
