@@ -1,4 +1,3 @@
-tap 'cantino/mcfly'
 tap 'homebrew/bundle'
 
 if OS.linux?
