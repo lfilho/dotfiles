@@ -128,6 +128,7 @@ def install_homebrew
 
     if $is_macos
       run %{bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"}
+      run %{eval "$(/opt/homebrew/bin/brew shellenv)"}
     else
       puts "Running Homebrew 'install.sh' on Linux..."
       if ! File.exists?('/home/linuxbrew')
