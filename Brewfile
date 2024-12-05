@@ -1,8 +1,5 @@
 tap 'cantino/mcfly'
 tap 'homebrew/bundle'
-tap 'homebrew/cask'
-tap 'homebrew/cask-fonts'
-tap 'homebrew/core'
 
 if OS.linux?
    tap 'gromgit/fuse'
@@ -18,7 +15,7 @@ if OS.mac?
     brew 'reattach-to-user-namespace'
     cask 'iterm2'
     cask 'karabiner-elements'
-    cask 'osxfuse'
+    cask 'macfuse'
     cask 'steam'
 end
 cask 'qlmarkdown'
