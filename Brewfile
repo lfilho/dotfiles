@@ -9,6 +9,7 @@ cask 'font-fira-code-nerd-font'
 cask 'google-chrome'
 cask 'inkscape'
 if OS.mac?
+    brew 'alfred'
     brew 'ntfs-3g'
     brew 'reattach-to-user-namespace'
     cask 'iterm2'
