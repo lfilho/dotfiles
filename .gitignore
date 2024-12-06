@@ -20,3 +20,4 @@ nvim/settings/before/*.vim
 nvim/settings/after/*.vim
 !nvim/settings/after/main.vim
 Brewfile.lock.json
+nvim-user-config/lazy-lock.json
