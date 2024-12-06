@@ -1,23 +1,9 @@
 custom/zsh
 
-vim/backups
-vim/view
 *un~
-vim/.netrwhist
-vim/tmp
-vim/spell
-vim/after/.vimrc.after
-vim/.vundles.local
-vim/.vundles.local.bak
-vim/bundle
-vim/sessions
 .netrwhist
 bin/subl
 tags
 
-nvim/settings/before/*.vim
-!nvim/settings/before/main.vim
-nvim/settings/after/*.vim
-!nvim/settings/after/main.vim
 Brewfile.lock.json
 nvim-user-config/lazy-lock.json
