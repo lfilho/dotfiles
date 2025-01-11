@@ -1,0 +1,24 @@
+# Appearance
+
+window-width = 99999
+window-height = 99999
+theme = catppuccin-mocha
+font-family = FiraCode Nerd Font Mono
+font-size = 16
+unfocused-split-fill = 555
+
+# Keybindings
+
+keybind = super+k=goto_split:top
+keybind = super+l=goto_split:right
+keybind = super+j=goto_split:bottom
+keybind = super+h=goto_split:left
+
+keybind = left=resize_split:left,10
+keybind = right=resize_split:right,10
+keybind = up=resize_split:up,10
+keybind = down=resize_split:down,10
+
+# Other
+
+auto-update = check
