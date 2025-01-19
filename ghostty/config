@@ -1,5 +1,10 @@
 # Appearance
 
+macos-icon = custom-style
+macos-icon-ghost-color = #04B575
+macos-icon-screen-color = #04B575
+macos-icon-frame = beige
+
 window-width = 99999
 window-height = 99999
 theme = catppuccin-mocha
@@ -22,3 +27,4 @@ keybind = down=resize_split:down,10
 # Other
 
 auto-update = check
+mouse-hide-while-typing = true

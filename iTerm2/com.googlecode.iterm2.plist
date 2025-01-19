@@ -7413,9 +7413,9 @@
 			<key>Background Image Is Tiled</key>
 			<false/>
 			<key>Background Image Location</key>
-			<string>/Users/lgonzaga/Downloads/iterm bg.jpg</string>
+			<string>/Users/lgonzaga/.yadr/img/terminal-bg-fallout.jpg</string>
 			<key>Background Image Mode</key>
-			<integer>2</integer>
+			<integer>3</integer>
 			<key>Badge Color</key>
 			<dict>
 				<key>Alpha Component</key>
