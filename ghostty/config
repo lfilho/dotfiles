@@ -19,10 +19,10 @@ keybind = super+l=goto_split:right
 keybind = super+j=goto_split:bottom
 keybind = super+h=goto_split:left
 
-keybind = left=resize_split:left,10
-keybind = right=resize_split:right,10
-keybind = up=resize_split:up,10
-keybind = down=resize_split:down,10
+keybind = alt+left=resize_split:left,10
+keybind = alt+right=resize_split:right,10
+keybind = alt+up=resize_split:up,10
+keybind = alt+down=resize_split:down,10
 
 # Other
 

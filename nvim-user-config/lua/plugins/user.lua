@@ -7,6 +7,22 @@ local cmd = vim.cmd
 ---@type LazySpec
 return {
   {
+    -- For local development:
+    -- dir = "~/work/note2cal.nvim",
+    "lfilho/note2cal.nvim",
+    config = function()
+      require("note2cal").setup({
+        debug = false,
+        calendar_name = "Test",
+        highlights = {
+          at_symbol = "WarningMsg",
+          at_text = "Number",
+        },
+      })
+    end,
+    ft = "markdown",
+  },
+  {
     "lukas-reineke/indent-blankline.nvim",
     init = function()
       local highlight = {
