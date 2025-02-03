@@ -7,6 +7,36 @@ local cmd = vim.cmd
 ---@type LazySpec
 return {
   {
+    "mrjones2014/smart-splits.nvim",
+    lazy = false,
+    config = function()
+      local ss = require("smart-splits")
+      ss.setup({
+        -- the default number of lines/columns to resize by at a time
+        default_amount = 3,
+        at_edge = "wrap",
+      })
+
+      -- resizing splits
+      -- these keymaps will also accept a range,
+      map("n", "<A-h>", ss.resize_left)
+      map("n", "<A-j>", ss.resize_down)
+      map("n", "<A-k>", ss.resize_up)
+      map("n", "<A-l>", ss.resize_right)
+      -- moving between splits
+      map("n", "<C-h>", ss.move_cursor_left)
+      map("n", "<C-j>", ss.move_cursor_down)
+      map("n", "<C-k>", ss.move_cursor_up)
+      map("n", "<C-l>", ss.move_cursor_right)
+      map("n", "<C-\\>", ss.move_cursor_previous)
+      -- swapping buffers between windows
+      map("n", "<leader><leader>h", ss.swap_buf_left)
+      map("n", "<leader><leader>j", ss.swap_buf_down)
+      map("n", "<leader><leader>k", ss.swap_buf_up)
+      map("n", "<leader><leader>l", ss.swap_buf_right)
+    end,
+  },
+  {
     -- For local development:
     -- dir = "~/work/note2cal.nvim",
     "lfilho/note2cal.nvim",

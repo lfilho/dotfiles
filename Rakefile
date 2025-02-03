@@ -28,6 +28,7 @@ task :install => [:submodule_init, :submodules] do
   run %{ mkdir -p ~/.config/lazygit }
   run %{ ln -nfs ~/.yadr/ranger ~/.config/ranger }
   run %{ ln -nfs ~/.yadr/ghostty ~/.config/ghostty }
+  run %{ ln -nfs ~/.yadr/wezterm ~/.config/
   run %{ ln -nfs ~/.yadr/lazygit ~/.config/lazygit }
 
   run %{ touch ~/.hushlogin }

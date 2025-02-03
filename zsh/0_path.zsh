@@ -13,5 +13,6 @@ pathAppend() {
 [[ "$OSTYPE" == linux* ]] && [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]] && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 pathAppend "$HOME/.yadr/bin"
+pathAppend "/opt/homebrew/bin/wezterm"
 
 export XDG_CONFIG_HOME="$HOME/.config"
