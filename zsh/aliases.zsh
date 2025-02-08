@@ -46,6 +46,7 @@ alias gar="killall -HUP -u \"$USER\" zsh"  #global alias reload
 alias vim="nvim"
 alias v="nvim"
 alias vf='nvim $(fzf)'
+alias n="vim -c 'cd ~/Documents/notes' -c 'Neotree' -c 'Telescope oldfiles'"
 
 # mimic vim functions
 alias :q='exit'

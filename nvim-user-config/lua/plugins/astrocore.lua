@@ -12,14 +12,39 @@ return {
       large_buf = {
         size = 1024 * 500,
         lines = 10000,
-      }, -- set global limits for large files for disabling features like treesitter
-      autopairs = true, -- enable autopairs at start
-      cmp = true, -- enable completion at start
+      },                    -- set global limits for large files for disabling features like treesitter
+      autopairs = true,     -- enable autopairs at start
+      cmp = true,           -- enable completion at start
       diagnostics_mode = 3, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
-      highlighturl = true, -- highlight URLs at start
+      highlighturl = true,  -- highlight URLs at start
       notifications = true, -- enable notifications at start
     },
     commands = {
+      TeamMembers = {
+        function()
+          -- List of team members
+          local team_members = {
+            "'Tunji",
+            "Grace",
+            "Herman",
+            "James",
+            "Mark",
+            "Patrick",
+            "Sydney",
+            "William",
+          }
+
+          -- Insert team names into the buffer
+          local current_buf = vim.api.nvim_get_current_buf()
+          local line_count = vim.api.nvim_buf_line_count(current_buf)
+
+          -- Insert each name on a new line
+          for _, name in ipairs(team_members) do
+            vim.api.nvim_buf_set_lines(current_buf, line_count, line_count, false, { name })
+            line_count = line_count + 1 -- Update line count for the next insertion
+          end
+        end,
+      },
       -- Open a split for each dirty file in git
       OpenChangedFiles = {
         function()
@@ -196,7 +221,7 @@ return {
         ["'"] = { "`", desc = "Jump to mark" },
         ["`"] = { "'", desc = "Jump to mark" },
 
-        ["<Leader>c"] = false, -- Remaps AstrnoNvim's <Leader>c to <Leader>bc
+        ["<Leader>c"] = false,                                     -- Remaps AstrnoNvim's <Leader>c to <Leader>bc
         ["<Leader>bc"] = { "<cmd>bd<cr>", desc = "Close buffer" }, -- Remaps AstrnoNvim's <Leader>c to <Leader>bc
         ["<Leader>cf"] = {
           "<cmd>let @* = expand('%:~')<cr>",

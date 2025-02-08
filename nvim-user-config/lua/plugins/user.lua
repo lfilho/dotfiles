@@ -43,7 +43,7 @@ return {
     config = function()
       require("note2cal").setup({
         debug = false,
-        calendar_name = "Test",
+        calendar_name = "Work",
         highlights = {
           at_symbol = "WarningMsg",
           at_text = "Number",
@@ -82,7 +82,7 @@ return {
         scope = { enabled = true },
         indent = {
           highlight = highlight,
-          char = "▏",
+          char = "│",
         },
       })
 
