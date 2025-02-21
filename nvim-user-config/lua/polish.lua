@@ -54,19 +54,16 @@ vim.api.nvim_create_user_command("Wrap", setup_wrapping, { nargs = "*" })
 -- }
 
 -- 1-on-1s helper
-print("will load auto split")
-local folder = "~/Documents/Notes/1-on-1s"
+local folder = "~/Documents/Notes/One-on-ones"
 local group = vim.api.nvim_create_augroup("NotesAutoSplit", { clear = true })
 vim.api.nvim_create_autocmd("BufReadPost", {
   group = group,
-  pattern = "*/1-on-1s/*",
+  pattern = "*/One-on-ones/*",
   callback = function()
     local current_file = vim.fn.expand("%:p")
     local shared_file = vim.fn.expand(folder .. "/shared.md")
-    print("Current file: " .. current_file)
     if current_file ~= shared_file then
       vim.cmd("vsplit " .. shared_file)
     end
   end,
 })
-print("did load auto split")
