@@ -12,12 +12,12 @@ return {
     -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
     highlights = {
       init = { -- this table overrides highlights in all themes
-        VertSplit = { fg = "#cccccc" },
-        FloatBorder = { fg = "#cccccc" },
-        NormalFloat = { bg = "#333333" },
-        PMenu = { bg = "#333333" },
-        PMenuSel = { bg = "#999999", fg = "#000000" },
-        WinSeparator = { fg = "#666666" },
+        -- VertSplit = { fg = "#cccccc" },
+        -- FloatBorder = { fg = "#cccccc" },
+        -- NormalFloat = { bg = "#333333" },
+        -- PMenu = { bg = "#333333" },
+        -- PMenuSel = { bg = "#999999", fg = "#000000" },
+        -- WinSeparator = { fg = "#666666" },
       },
     },
     -- Icons can be configured throughout the interface

@@ -46,7 +46,7 @@ alias gar="killall -HUP -u \"$USER\" zsh"  #global alias reload
 alias vim="nvim"
 alias v="nvim"
 alias vf='nvim $(fzf)'
-alias n="vim -c 'cd ~/Documents/notes' -c 'Neotree' -c 'Telescope oldfiles'"
+alias n="vim -c 'cd ~/Documents/Notes' -c 'Neotree' -c 'Telescope oldfiles'"
 
 # mimic vim functions
 alias :q='exit'
@@ -214,3 +214,6 @@ alias drai='docker rmi $(docker images -q)'
 # Ripgrep
 # Makes ripgrep use smart-case by default
 alias rg='rg -S'
+
+# Unaliases -- Undefining aliases set by prezto elsewhere to fit my preferences :)
+unalias p

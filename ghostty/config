@@ -1,9 +1,18 @@
 # Appearance
 
-macos-icon = custom-style
-macos-icon-ghost-color = #04B575
-macos-icon-screen-color = #04B575
-macos-icon-frame = beige
+# macos-icon = custom-style
+# macos-icon-ghost-color = #04B575
+# macos-icon-screen-color = #04B575
+# macos-icon-frame = beige
+# macos-icon = official
+# macos-icon = blueprint
+# macos-icon = chalkboard
+# macos-icon = microchip
+# macos-icon = glass
+macos-icon = holographic
+# macos-icon = paper
+# macos-icon = retro
+# macos-icon = xray
 
 window-width = 99999
 window-height = 99999
@@ -14,15 +23,17 @@ unfocused-split-fill = 555
 
 # Keybindings
 
-keybind = super+k=goto_split:top
-keybind = super+l=goto_split:right
-keybind = super+j=goto_split:bottom
-keybind = super+h=goto_split:left
+keybind = cmd+k=goto_split:top
+keybind = cmd+l=goto_split:right
+keybind = cmd+j=goto_split:bottom
+keybind = cmd+h=goto_split:left
 
-keybind = alt+left=resize_split:left,10
-keybind = alt+right=resize_split:right,10
-keybind = alt+up=resize_split:up,10
-keybind = alt+down=resize_split:down,10
+keybind = opt+left=resize_split:left,10
+keybind = opt+right=resize_split:right,10
+keybind = opt+up=resize_split:up,10
+keybind = opt+down=resize_split:down,10
+
+keybind = global:cmd+opt+j=new_window
 
 # Other
 

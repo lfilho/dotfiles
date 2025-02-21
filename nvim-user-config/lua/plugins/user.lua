@@ -37,7 +37,7 @@ return {
     end,
   },
   {
-    -- For local development:
+    -- For local development use:
     -- dir = "~/work/note2cal.nvim",
     "lfilho/note2cal.nvim",
     config = function()
