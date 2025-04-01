@@ -16,8 +16,8 @@ task :install => [:submodule_init, :submodules] do
   # this has all the runcoms from this directory.
   install_files(Dir.glob('git/*')) if want_to_install?('git configs (color, aliases)')
   install_files(Dir.glob('ruby/*')) if want_to_install?('rubygems config (faster/no docs)')
-  install_files(Dir.glob('ctags/*')) if want_to_install?('ctags config (better js/ruby support)')
-  install_files(Dir.glob('tmux/*')) if want_to_install?('tmux config')
+  # install_files(Dir.glob('ctags/*')) if want_to_install?('ctags config (better js/ruby support)')
+  # install_files(Dir.glob('tmux/*')) if want_to_install?('tmux config')
   install_files(Dir.glob('vimify/*')) if want_to_install?('vimification of command line tools')
   install_files(Dir.glob('{vim,vimrc}'))
   install_files(Dir.glob('zsh/zshrc'))
@@ -28,9 +28,9 @@ task :install => [:submodule_init, :submodules] do
   run %{ mkdir -p ~/.config/lazygit }
   run %{ ln -nfs ~/.yadr/ranger ~/.config/ranger }
   run %{ ln -nfs ~/.yadr/ghostty ~/.config/ghostty }
-  run %{ ln -nfs ~/.yadr/wezterm ~/.config/
+  run %{ ln -nfs ~/.yadr/wezterm ~/.config/ }
   run %{ ln -nfs ~/.yadr/lazygit ~/.config/lazygit }
-
+  run %{ wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme }
   run %{ touch ~/.hushlogin }
 
   Rake::Task["install_prezto"].execute
