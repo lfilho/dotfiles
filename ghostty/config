@@ -17,7 +17,8 @@ macos-icon = holographic
 window-width = 99999
 window-height = 99999
 theme = catppuccin-mocha
-font-family = FiraCode Nerd Font Mono
+# font-family = FiraCode Nerd Font Mono
+font-family = CommitMono Nerd Font Mono
 font-size = 16
 unfocused-split-fill = 555
 

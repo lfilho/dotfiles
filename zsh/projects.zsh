@@ -6,6 +6,7 @@ p() {
     "Iniatitive Tracker"
     "Notes"
     "Scoreboard"
+    "Pipipitchu"
     "Work"
   )
 
@@ -36,6 +37,14 @@ p() {
         ;;
       "Iniatitive Tracker")
         cd $HOME/work/standalone/emscripts/initiative-tracker &&
+          v
+        ;;
+      "Scoreboard")
+        cd $HOME/work/nas/rpi/scoreboard &&
+          v
+        ;;
+      "Pipipitchu")
+        cd $HOME/work/nas/pipipitchu &&
           v
         ;;
     esac
