@@ -30,6 +30,7 @@ task :install => [:submodule_init, :submodules] do
   run %{ ln -nfs ~/.yadr/ghostty ~/.config/ghostty }
   run %{ ln -nfs ~/.yadr/wezterm ~/.config/ }
   run %{ ln -nfs ~/.yadr/lazygit ~/.config/lazygit }
+  run %{ mkdir -p "$(bat --config-dir)/themes" }
   run %{ wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme }
   run %{ touch ~/.hushlogin }
 
