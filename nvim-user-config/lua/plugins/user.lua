@@ -99,10 +99,6 @@ return {
     end,
   },
   {
-    "josuesasilva/vim-spell-pt-br",
-    event = "VeryLazy",
-  },
-  {
     "echasnovski/mini.nvim",
     version = "*",
     event = "VeryLazy",
@@ -399,7 +395,7 @@ return {
     event = "VeryLazy",
   },
   {
-    -- VIM colon and semicolon insertion bliss Edit
+    -- VIM colon and semicolon insertion bliss
     "lfilho/cosco.vim",
     ft = { "javascript", "css", "lua" },
     keys = { {
@@ -412,7 +408,8 @@ return {
         desc = "Insert , or ;",
       })
     end,
-  }, -- == Overriding Plugins ==
+  },
+  -- == Overriding Plugins ==
   -- customize alpha options
   {
     "goolord/alpha-nvim",

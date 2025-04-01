@@ -176,7 +176,7 @@ return {
         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
 
         -- Quickfix list
-        -- Just porte the below from the old config but right now leader - q quits the window. need to solve these conflicts
+        -- Just ported the below from the old config but right now leader - q quits the window. need to solve these conflicts
         --[[
         ["<Leader>q"] = {
           desc = "Quickfix",
