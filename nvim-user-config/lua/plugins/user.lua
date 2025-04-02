@@ -210,7 +210,7 @@ return {
     end,
   },
   {
-    "phaazon/hop.nvim",
+    "smoka7/hop.nvim",
     event = "VeryLazy",
     cmd = "HopWord",
     keys = {
@@ -319,4 +319,19 @@ return {
   },
   -- { "wuelnerdotexe/vim-astro" }, --  TODO: test if it works by default now, if not, remove this line
   -- { "virchau13/tree-sitter-astro" }, --  TODO: test if it works by default now, if not, remove this line
+  {
+    "HakonHarnes/img-clip.nvim",
+    event = "VeryLazy",
+    cmd = { "PasteImage", "ImgClipDebug", "ImgClipConfig" },
+    opts = {
+      prompt_for_file_name = false,
+      drag_and_drop = {
+        insert_mode = true,
+      },
+      relative_to_current_file = true,
+    },
+    keys = {
+      { "<leader>up", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
+    },
+  },
 }
