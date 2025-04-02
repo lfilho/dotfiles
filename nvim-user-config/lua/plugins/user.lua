@@ -234,7 +234,7 @@ return {
       map("n", "<c-p>", "<Plug>(YankyCycleForward)")
       map("n", "<c-n>", "<Plug>(YankyCycleBackward)")
       map("n", "<leader>P", function()
-        require("telescope").extensions.yank_history.yank_history({})
+        require("snacks").picker.yanky()
       end, {
         desc = "Paste from Yanky",
       })
