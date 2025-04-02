@@ -6,12 +6,5 @@ return {
   { "EdenEast/nightfox.nvim" },
   { "folke/tokyonight.nvim" },
   { "rebelot/kanagawa.nvim" },
-  {
-    "ribru17/bamboo.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("bamboo").setup({})
-    end,
-  },
+  { "ribru17/bamboo.nvim" },
 }

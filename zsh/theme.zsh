@@ -8,4 +8,4 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.yadr/theme-p10k.zsh ]] || source ~/.yadr/theme-p10k.zsh
+source ~/.yadr/zsh/theme-p10k.zsh

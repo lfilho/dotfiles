@@ -2,6 +2,7 @@
 -- Configuration documentation can be found with `:h astrocore`
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
 --       as this provides autocomplete and documentation while editing
+
 ---@type LazySpec
 return {
   "AstroNvim/astrocore",
@@ -9,16 +10,31 @@ return {
   opts = {
     -- Configure core features of AstroNvim
     features = {
-      large_buf = {
-        size = 1024 * 500,
-        lines = 10000,
-      },                    -- set global limits for large files for disabling features like treesitter
-      autopairs = true,     -- enable autopairs at start
-      cmp = true,           -- enable completion at start
-      diagnostics_mode = 3, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
-      highlighturl = true,  -- highlight URLs at start
+      large_buf = { size = 1024 * 256, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
+      autopairs = true, -- enable autopairs at start
+      cmp = true, -- enable completion at start
+      diagnostics = { virtual_text = true, virtual_lines = true }, -- diagnostic settings on startup
+      highlighturl = true, -- highlight URLs at start
       notifications = true, -- enable notifications at start
     },
+    -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
+    diagnostics = {
+      virtual_text = true,
+      underline = true,
+    },
+    -- passed to `vim.filetype.add`
+    -- filetypes = {
+    --   -- see `:h vim.filetype.add` for usage
+    --   extension = {
+    --     foo = "fooscript",
+    --   },
+    --   filename = {
+    --     [".foorc"] = "fooscript",
+    --   },
+    --   pattern = {
+    --     [".*/etc/foo/.*"] = "fooscript",
+    --   },
+    -- },
     commands = {
       TeamMembers = {
         function()
@@ -67,12 +83,6 @@ return {
         end,
       },
     },
-    autocmds = {},
-    -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
-    diagnostics = {
-      virtual_text = true,
-      underline = true,
-    },
     -- vim options can be configured here
     options = {
       opt = { -- vim.opt.<key>
@@ -111,40 +121,17 @@ return {
       g = { -- vim.g.<key>
         -- configure global vim variables (vim.g)
         -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
-        -- This can be found in the `lua/lazy_setup.lua` file indexed_search_count = 1,
-        -- Don't allow any default tmux key-mappings.
-        tmux_navigator_no_mappings = 1,
+        -- This can be found in the `lua/lazy_setup.lua` file
       },
     },
     -- Mappings can be configured through AstroCore as well.
-    -- setting a mapping to false will disable it
     -- NOTE: keycodes follow the casing in the vimdocs. For example, `<Leader>` must be capitalized
     mappings = {
       -- first key is the mode
-      -- second key is the lefthand side of the map
-
-      -- Normal mode mappings
       n = {
-        -- Re-enable tmux_navigator.vim default bindings
-        ["<C-h>"] = { "<cmd>TmuxNavigateLeft<cr>", desc = "Navigate left in tmux pane" },
-        ["<C-j>"] = { "<cmd>TmuxNavigateDown<cr>", desc = "Navigate down in tmux pane" },
-        ["<C-k>"] = { "<cmd>TmuxNavigateUp<cr>", desc = "Navigate up in tmux pane" },
-        ["<C-l>"] = { "<cmd>TmuxNavigateRight<cr>", desc = "Navigate right in tmux pane" },
+        -- second key is the lefthand side of the map
 
-        -- When jumping around, stay in the middle of the screen
-        ["g;"] = { "g;zz", desc = "Jump to previous position" },
-        ["g,"] = { "g,zz", desc = "Jump to next position" },
-        ["<C-o>"] = { "<C-o>zz", desc = "Jump to next position" },
-
-        -- Using Perl/Python regex style by default when searching
-        ["/"] = { "/\\v", desc = "Search forwards" },
-        ["?"] = { "?\\v", desc = "Search backwards" },
-
-        -- Make 0 go to the first character rather than the beginning of the line. When we're programming, we're almost always interested in working with text rather than empty space. If you want the traditional beginning of line, use ^
-        ["0"] = { "^", desc = "Go to first character" },
-        ["^"] = { "0", desc = "Go to beginning of line" },
-
-        -- navigate buffer tabs with `H` and `L`
+        -- navigate buffer tabs
         L = {
           function()
             require("astrocore.buffer").nav(vim.v.count1)
@@ -157,21 +144,41 @@ return {
           end,
           desc = "Previous buffer",
         },
+        ["]b"] = {
+          function()
+            require("astrocore.buffer").nav(vim.v.count1)
+          end,
+          desc = "Next buffer",
+        },
+        ["[b"] = {
+          function()
+            require("astrocore.buffer").nav(-vim.v.count1)
+          end,
+          desc = "Previous buffer",
+        },
 
         -- mappings seen under group name "Buffer"
-        ["<Leader>bD"] = {
+        ["<Leader>bd"] = {
           function()
             require("astroui.status.heirline").buffer_picker(function(bufnr)
               require("astrocore.buffer").close(bufnr)
             end)
           end,
-          desc = "Pick to close",
+          desc = "Close buffer from tabline",
         },
-        -- tables with just a `desc` key will be registered with which-key if it's installed
-        -- this is useful for naming menus
-        ["<Leader>b"] = {
-          desc = "Buffers",
-        },
+
+        ["g;"] = { "g;zz", desc = "Jump to previous position" },
+        ["g,"] = { "g,zz", desc = "Jump to next position" },
+        ["<C-o>"] = { "<C-o>zz", desc = "Jump to next position" },
+
+        -- Using Perl/Python regex style by default when searching
+        ["/"] = { "/\\v", desc = "Search forwards" },
+        ["?"] = { "?\\v", desc = "Search backwards" },
+
+        -- Make 0 go to the first character rather than the beginning of the line. When we're programming, we're almost always interested in working with text rather than empty space. If you want the traditional beginning of line, use ^
+        ["0"] = { "^", desc = "Go to first character" },
+        ["^"] = { "0", desc = "Go to beginning of line" },
+
         -- quick save
         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
 
@@ -221,17 +228,16 @@ return {
         ["'"] = { "`", desc = "Jump to mark" },
         ["`"] = { "'", desc = "Jump to mark" },
 
-        ["<Leader>c"] = false,                                     -- Remaps AstrnoNvim's <Leader>c to <Leader>bc
-        ["<Leader>bc"] = { "<cmd>bd<cr>", desc = "Close buffer" }, -- Remaps AstrnoNvim's <Leader>c to <Leader>bc
-        ["<Leader>cf"] = {
+        -- Copying (yanking) the path of the current file in different ways:
+        ["<Leader>yf"] = {
           "<cmd>let @* = expand('%:~')<cr>",
           desc = "Copy the Full path",
         },
-        ["<Leader>cr"] = {
+        ["<Leader>yr"] = {
           "<cmd>let @* = expand('%')<cr>",
           desc = "Copy the Relative path",
         },
-        ["<Leader>cn"] = {
+        ["<Leader>yn"] = {
           "<cmd>let @* = expand('%:t')<cr>",
           desc = "Copy the file Name",
         },
@@ -245,15 +251,16 @@ return {
       -- Insert mode mappings
       i = {
         -- Hashrocket
+        -- FIXME: This is not working as something else is overriding it, investigate
         ["<C-l>"] = { "<Space>=><Space>", desc = "Hashrocket" },
       },
 
-      -- Terminal mode mappings
+      -- Terminal mappings
       t = {
-        ["<C-h>"] = { "<C-\\><C-n><cmd>TmuxNavigateLeft<cr>", desc = "Navigate left in tmux pane from Terminal mode" },
-        ["<C-j>"] = { "<C-\\><C-n><cmd>TmuxNavigateDown<cr>", desc = "Navigate down in tmux pane from Terminal mode" },
-        ["<C-k>"] = { "<C-\\><C-n><cmd>TmuxNavigateUp<cr>", desc = "Navigate up in tmux pane from Terminal mode" },
-        ["<C-l>"] = { "<C-\\><C-n><cmd>TmuxNavigateRight<cr>", desc = "Navigate right in tmux pane from Terminal mode" },
+        -- ["<C-h>"] = { "<C-\\><C-n><cmd>TmuxNavigateLeft<cr>", desc = "Navigate left in tmux pane from Terminal mode" },
+        -- ["<C-j>"] = { "<C-\\><C-n><cmd>TmuxNavigateDown<cr>", desc = "Navigate down in tmux pane from Terminal mode" },
+        -- ["<C-k>"] = { "<C-\\><C-n><cmd>TmuxNavigateUp<cr>", desc = "Navigate up in tmux pane from Terminal mode" },
+        -- ["<C-l>"] = { "<C-\\><C-n><cmd>TmuxNavigateRight<cr>", desc = "Navigate right in tmux pane from Terminal mode" },
         ["<Esc>"] = {
           function()
             if vim.bo.filetype == "fzf" then

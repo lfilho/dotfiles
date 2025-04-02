@@ -1,11 +1,11 @@
 -- You can also add or configure plugins by creating files in this `plugins/` folder
--- Here are some examples:
---
+
 local map = vim.keymap.set
 local cmd = vim.cmd
 
 ---@type LazySpec
 return {
+
   {
     "MeanderingProgrammer/render-markdown.nvim",
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
@@ -13,38 +13,10 @@ return {
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
-    opts = {},
+    opts = {
+      latex = { enabled = false },
+    },
   },
-  -- {
-  --   "mrjones2014/smart-splits.nvim",
-  --   lazy = false,
-  --   config = function()
-  --     local ss = require("smart-splits")
-  --     ss.setup({
-  --       -- the default number of lines/columns to resize by at a time
-  --       default_amount = 3,
-  --       at_edge = "wrap",
-  --     })
-  --
-  --     -- resizing splits
-  --     -- these keymaps will also accept a range,
-  --     map("n", "<A-h>", ss.resize_left)
-  --     map("n", "<A-j>", ss.resize_down)
-  --     map("n", "<A-k>", ss.resize_up)
-  --     map("n", "<A-l>", ss.resize_right)
-  --     -- moving between splits
-  --     map("n", "<C-h>", ss.move_cursor_left)
-  --     map("n", "<C-j>", ss.move_cursor_down)
-  --     map("n", "<C-k>", ss.move_cursor_up)
-  --     map("n", "<C-l>", ss.move_cursor_right)
-  --     map("n", "<C-\\>", ss.move_cursor_previous)
-  --     -- swapping buffers between windows
-  --     map("n", "<leader><leader>h", ss.swap_buf_left)
-  --     map("n", "<leader><leader>j", ss.swap_buf_down)
-  --     map("n", "<leader><leader>k", ss.swap_buf_up)
-  --     map("n", "<leader><leader>l", ss.swap_buf_right)
-  --   end,
-  -- },
   {
     -- For local development use:
     -- dir = "~/work/note2cal.nvim",
@@ -215,65 +187,6 @@ return {
       })
     end,
   },
-  --   "tpope/vim-fugitive",
-  --   event = "User AstroGitFile",
-  --   dependencies = {
-  --     { "tpope/vim-rhubarb" },
-  --   },
-  --   config = function()
-  --     -- vim.api.nvim_create_autocmd("User", {
-  --     --   pattern = "AstroGitFile",
-  --     --   callback = function()
-  --     --     -- TODO needs testing
-  --     --     if string.match(vim.fn["fugitive#buffer"]().type(), "^\\%(tree\\|blob\\)$") then
-  --     --       vim.api.nvim_buf_set_keymap(0, "n", "..", ":edit %:h<CR>", { buffer = true })
-  --     --     end
-  --     --   end,
-  --     --   desc = "Go up one level on git repo",
-  --     -- })
-  --     vim.api.nvim_create_autocmd("BufReadPost", {
-  --       pattern = "fugitive://*",
-  --       callback = function()
-  --         vim.opt.bufhidden = "delete"
-  --
-  --         if string.match(vim.fn["fugitive#buffer"]().type(), "^\\%(tree\\|blob\\)$") then
-  --           vim.api.nvim_buf_set_keymap(0, "n", "..", ":edit %:h<CR>", { buffer = true, desc = "Go up one level" })
-  --         end
-  --       end,
-  --       desc = "Prevent Fugitive from creating too many buffers",
-  --     })
-  --
-  --     map("n", "<leader>Gd", ":Gdiffsplit<CR>", { desc = "Diff" })
-  --     map("n", "<leader>Gs", ":Git<CR>", { desc = "Status" })
-  --     map("n", "<leader>Gw", ":Gwrite<CR>", { desc = "Write and stage" })
-  --     map("n", "<leader>Gb", ":Git blame<CR>", { desc = "Blame" })
-  --     map("n", "<leader>Gco", ":Gcheckout<CR>", { desc = "Checkout" })
-  --     map("n", "<leader>Gci", ":Git commit<CR>", { desc = "Commit" })
-  --     map("n", "<leader>Gm", ":GMove", { desc = "Move file and rename buffer" })
-  --     map("n", "<leader>Gr", ":GRemove<CR>", { desc = "Remove" })
-  --
-  --     map("n", "<leader>dg", ":diffget<CR>", { desc = "Diff get" })
-  --     map("n", "<leader>dp", ":diffput<CR>", { desc = "Diff put" })
-  --   end,
-  -- },
-  {
-    "almo7aya/openingh.nvim",
-    event = "User AstroGitFile",
-    config = function()
-      map("n", "<Leader>gw", ":OpenInGHRepo <CR>", {
-        silent = true,
-        desc = "Open Repo in GH",
-      })
-      map("n", "<Leader>gf", ":OpenInGHFile <CR>", {
-        silent = true,
-        desc = "Open File in GH",
-      })
-      map("v", "<Leader>gf", ":OpenInGHFile <CR>", {
-        silent = true,
-        desc = "Open File in GH",
-      })
-    end,
-  },
   {
     "mattn/emmet-vim",
     event = "InsertEnter",
@@ -385,11 +298,6 @@ return {
     end,
   },
   {
-    -- local (per project) vim configs
-    "MarcWeber/vim-addon-local-vimrc",
-    event = "VeryLazy",
-  },
-  {
     -- Commands for easily aligning tabular data
     "godlygeek/tabular",
     event = "VeryLazy",
@@ -409,80 +317,6 @@ return {
       })
     end,
   },
-  -- == Overriding Plugins ==
-  -- customize alpha options
-  {
-    "goolord/alpha-nvim",
-    opts = function()
-      require("alpha")
-      require("alpha.term")
-      local dashboard = require("alpha.themes.dashboard")
-      dashboard.section.buttons.val = {
-        dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
-        dashboard.button("w", " " .. " Find text", ":Telescope live_grep <CR>"),
-        dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
-        dashboard.button("o", " " .. " Recent files", ":Telescope oldfiles <CR>"),
-        dashboard.button("m", " " .. " Bookmarks", ":Telescope marks <CR>"),
-        dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"), -- TODO this is just the index file, prob change to user/init lua?
-        dashboard.button("s", " " .. " Load last session", ':lua require("resession").load("Last Session")<CR>'),
-        dashboard.button("l", " " .. " Lazy", ":Lazy<CR>"),
-        dashboard.button("q", " " .. " Quit", ":qa<CR>"),
-      }
-      for _, button in ipairs(dashboard.section.buttons.val) do
-        button.opts.hl = "AlphaButtons"
-        button.opts.hl_shortcut = "AlphaShortcut"
-      end
-      dashboard.section.footer.opts.hl = "Type"
-      dashboard.section.header.opts.hl = "AlphaShortcut"
-      dashboard.section.buttons.opts.hl = "AlphaButtons"
-
-      local width = 46
-      local height = 25 -- two pixels per vertical space
-      dashboard.section.terminal.command = "cat | " .. os.getenv("HOME") .. "/.config/nvim/art/this-is-fine.sh"
-      dashboard.section.terminal.width = width
-      dashboard.section.terminal.height = height
-      dashboard.section.terminal.opts.redraw = true
-
-      dashboard.section.header.val = "🔥 Welcome back! This is gonna be fine! 🔥"
-
-      dashboard.config.layout = {
-        {
-          type = "padding",
-          val = 1,
-        },
-        dashboard.section.terminal,
-        {
-          type = "padding",
-          val = 8,
-        },
-        dashboard.section.header,
-        {
-          type = "padding",
-          val = 2,
-        },
-        dashboard.section.buttons,
-        {
-          type = "padding",
-          val = 1,
-        },
-        dashboard.section.footer,
-      }
-
-      return dashboard
-    end,
-  },
-  -- You can disable default plugins as follows:
-  {
-    "christoomey/vim-tmux-navigator",
-    cmd = {
-      "TmuxNavigateLeft",
-      "TmuxNavigateDown",
-      "TmuxNavigateUp",
-      "TmuxNavigateRight",
-      "TmuxNavigatePrevious",
-    },
-  },
-  { "max397574/better-escape.nvim" },
-  { "wuelnerdotexe/vim-astro" },
-  { "virchau13/tree-sitter-astro" },
+  -- { "wuelnerdotexe/vim-astro" }, --  TODO: test if it works by default now, if not, remove this line
+  -- { "virchau13/tree-sitter-astro" }, --  TODO: test if it works by default now, if not, remove this line
 }
