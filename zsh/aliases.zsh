@@ -25,7 +25,7 @@ alias cls='clear;ls'
 alias df='df -h'
 alias du='du -h -d 2'
 
-alias ll='eza -1 --long --icons=auto --color=auto --hyperlink --group --octal-permissions --all --group-directories-last'
+alias ll='eza -1 --long --header --icons=auto --color=auto --hyperlink --group --octal-permissions --all --group-directories-last'
 if [[ $platform == 'linux' ]]; then
   alias ls='ls --color=auto'
 elif [[ $platform == 'darwin' ]]; then
