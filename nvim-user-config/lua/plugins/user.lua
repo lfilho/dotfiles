@@ -324,11 +324,17 @@ return {
     event = "VeryLazy",
     cmd = { "PasteImage", "ImgClipDebug", "ImgClipConfig" },
     opts = {
-      prompt_for_file_name = false,
-      drag_and_drop = {
-        insert_mode = true,
+      default = {
+        dir_path = "images",
+        file_name = function()
+          return vim.fn.expand("%:t:r") .. "__" .. "%Y-%m-%d-%H-%M-%S"
+        end,
+        prompt_for_file_name = false,
+        drag_and_drop = {
+          insert_mode = true,
+        },
+        relative_to_current_file = true,
       },
-      relative_to_current_file = true,
     },
     keys = {
       { "<leader>up", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
