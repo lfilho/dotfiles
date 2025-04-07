@@ -25,6 +25,9 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     local shared_file = vim.fn.expand(folder .. "/shared.md")
     if current_file ~= shared_file then
       vim.cmd("vsplit " .. shared_file)
+      vim.defer_fn(function()
+        vim.cmd("setfiletype markdown")
+      end, 10)
     end
   end,
 })
