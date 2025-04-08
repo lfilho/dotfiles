@@ -46,6 +46,7 @@ alias vim="nvim"
 alias v="nvim"
 alias vf='nvim $(fzf)'
 alias n="vim -c 'cd ~/Documents/Notes' -c 'lua Snacks.picker.smart()'"
+alias vs="v -c \"let g:netrw_scp_cmd='scp -O'\""
 
 # mimic vim functions
 alias :q='exit'
