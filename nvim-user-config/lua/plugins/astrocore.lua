@@ -56,7 +56,7 @@ return {
 
           -- Insert each name on a new line
           for _, name in ipairs(team_members) do
-            vim.api.nvim_buf_set_lines(current_buf, line_count, line_count, false, { name })
+            vim.api.nvim_buf_set_lines(current_buf, line_count, line_count, false, { "- [ ] " .. name })
             line_count = line_count + 1 -- Update line count for the next insertion
           end
         end,
