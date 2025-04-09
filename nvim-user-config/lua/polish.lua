@@ -23,11 +23,11 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   callback = function()
     local current_file = vim.fn.expand("%:p")
     local shared_file = vim.fn.expand(folder .. "/shared.md")
-    
+
     if current_file == shared_file then
       return
     end
-    
+
     local shared_bufnr = vim.fn.bufnr(shared_file)
     if shared_bufnr == -1 then
       vim.cmd("vsplit " .. shared_file)
