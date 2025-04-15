@@ -59,13 +59,17 @@ return {
 
           -- Insert team names into the buffer
           local current_buf = vim.api.nvim_get_current_buf()
-          local line_count = vim.api.nvim_buf_line_count(current_buf)
+          local cursor_pos = vim.api.nvim_win_get_cursor(0)
+          local row = cursor_pos[1] -- Current line (1-indexed)
 
-          -- Insert each name on a new line
+          -- Prepare the lines to insert
+          local lines_to_insert = {}
           for _, name in ipairs(team_members) do
-            vim.api.nvim_buf_set_lines(current_buf, line_count, line_count, false, { "- [ ] " .. name })
-            line_count = line_count + 1 -- Update line count for the next insertion
+            table.insert(lines_to_insert, "- [ ] " .. name)
           end
+
+          -- Insert the lines at cursor position
+          vim.api.nvim_buf_set_lines(current_buf, row, row, false, lines_to_insert)
         end,
       },
       -- Open a split for each dirty file in git
