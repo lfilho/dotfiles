@@ -340,4 +340,22 @@ return {
       { "<leader>up", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
     },
   },
+  {
+    "bullets-vim/bullets.vim",
+    ft = { "markdown", "text", "gitcommit", "scratch" },
+    config = function()
+      -- Disable default key mappings
+      vim.g.bullets_enabled_file_types = { "markdown", "text", "gitcommit", "scratch" }
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "markdown",
+        callback = function()
+          vim.keymap.set("n", "<CR>", "<Plug>(bullets-toggle-checkbox)", {
+            buffer = true,
+            silent = true,
+          })
+        end,
+      })
+    end,
+  },
 }
