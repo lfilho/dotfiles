@@ -3,120 +3,157 @@
   "palettes": {
     "list": {
       "Frappe": {
-        "Base": "#303446",
-        "Blue": "#8caaee",
-        "Crust": "#232634",
-        "Flamingo": "#eebebe",
-        "Green": "#a6d189",
-        "Lavender": "#babbf1",
-        "Mantle": "#292c3c",
-        "Maroon": "#ea999c",
-        "Mauve": "#ca9ee6",
-        "Overlay0": "#737994",
-        "Overlay1": "#838ba7",
-        "Overlay2": "#949cbb",
-        "Peach": "#ef9f76",
-        "Pink": "#f4b8e4",
-        "Red": "#e78284",
-        "Rosewater": "#f2d5cf",
-        "Sapphire": "#85c1dc",
-        "Sky": "#99d1db",
-        "Subtext0": "#a5adce",
-        "Subtext1": "#b5bfe2",
-        "Surface0": "#414559",
-        "Surface1": "#51576d",
-        "Surface2": "#626880",
-        "Teal": "#81c8be",
-        "Text": "#c6d0f5",
-        "Yellow": "#e5c890"
+        "base": "#303446",
+        "blue": "#8caaee",
+        "crust": "#232634",
+        "flamingo": "#eebebe",
+        "green": "#a6d189",
+        "lavender": "#babbf1",
+        "mantle": "#292c3c",
+        "maroon": "#ea999c",
+        "mauve": "#ca9ee6",
+        "overlay0": "#737994",
+        "overlay1": "#838ba7",
+        "overlay2": "#949cbb",
+        "peach": "#ef9f76",
+        "pink": "#f4b8e4",
+        "red": "#e78284",
+        "rosewater": "#f2d5cf",
+        "sapphire": "#85c1dc",
+        "sky": "#99d1db",
+        "subtext0": "#a5adce",
+        "subtext1": "#b5bfe2",
+        "surface0": "#414559",
+        "surface1": "#51576d",
+        "surface2": "#626880",
+        "teal": "#81c8be",
+        "text": "#c6d0f5",
+        "yellow": "#e5c890"
       },
       "Latte": {
-        "Base": "#eff1f5",
-        "Blue": "#1e66f5",
-        "Crust": "#dce0e8",
-        "Flamingo": "#dd7878",
-        "Green": "#40a02b",
-        "Lavender": "#7287fd",
-        "Mantle": "#e6e9ef",
-        "Maroon": "#e64553",
-        "Mauve": "#8839ef",
-        "Overlay0": "#9ca0b0",
-        "Overlay1": "#8c8fa1",
-        "Overlay2": "#7c7f93",
-        "Peach": "#fe640b",
-        "Pink": "#ea76cb",
-        "Red": "#d20f39",
-        "Rosewater": "#dc8a78",
-        "Sapphire": "#209fb5",
-        "Sky": "#04a5e5",
-        "Subtext0": "#6c6f85",
-        "Subtext1": "#5c5f77",
-        "Surface0": "#ccd0da",
-        "Surface1": "#bcc0cc",
-        "Surface2": "#acb0be",
-        "Teal": "#179299",
-        "Text": "#4c4f69",
-        "Yellow": "#df8e1d"
+        "base": "#eff1f5",
+        "blue": "#1e66f5",
+        "crust": "#dce0e8",
+        "flamingo": "#dd7878",
+        "green": "#40a02b",
+        "lavender": "#7287fd",
+        "mantle": "#e6e9ef",
+        "maroon": "#e64553",
+        "mauve": "#8839ef",
+        "overlay0": "#9ca0b0",
+        "overlay1": "#8c8fa1",
+        "overlay2": "#7c7f93",
+        "peach": "#fe640b",
+        "pink": "#ea76cb",
+        "red": "#d20f39",
+        "rosewater": "#dc8a78",
+        "sapphire": "#209fb5",
+        "sky": "#04a5e5",
+        "subtext0": "#6c6f85",
+        "subtext1": "#5c5f77",
+        "surface0": "#ccd0da",
+        "surface1": "#bcc0cc",
+        "surface2": "#acb0be",
+        "teal": "#179299",
+        "text": "#4c4f69",
+        "yellow": "#df8e1d"
       },
       "Macchiato": {
-        "Base": "#24273a",
-        "Blue": "#8aadf4",
-        "Crust": "#181926",
-        "Flamingo": "#f0c6c6",
-        "Green": "#a6da95",
-        "Lavender": "#b7bdf8",
-        "Mantle": "#1e2030",
-        "Maroon": "#ee99a0",
-        "Mauve": "#c6a0f6",
-        "Overlay0": "#6e738d",
-        "Overlay1": "#8087a2",
-        "Overlay2": "#939ab7",
-        "Peach": "#f5a97f",
-        "Pink": "#f5bde6",
-        "Red": "#ed8796",
-        "Rosewater": "#f4dbd6",
-        "Sapphire": "#7dc4e4",
-        "Sky": "#91d7e3",
-        "Subtext0": "#a5adcb",
-        "Subtext1": "#b8c0e0",
-        "Surface0": "#363a4f",
-        "Surface1": "#494d64",
-        "Surface2": "#5b6078",
-        "Teal": "#8bd5ca",
-        "Text": "#cad3f5",
-        "Yellow": "#eed49f"
+        "base": "#24273a",
+        "blue": "#8aadf4",
+        "crust": "#181926",
+        "flamingo": "#f0c6c6",
+        "green": "#a6da95",
+        "lavender": "#b7bdf8",
+        "mantle": "#1e2030",
+        "maroon": "#ee99a0",
+        "mauve": "#c6a0f6",
+        "overlay0": "#6e738d",
+        "overlay1": "#8087a2",
+        "overlay2": "#939ab7",
+        "peach": "#f5a97f",
+        "pink": "#f5bde6",
+        "red": "#ed8796",
+        "rosewater": "#f4dbd6",
+        "sapphire": "#7dc4e4",
+        "sky": "#91d7e3",
+        "subtext0": "#a5adcb",
+        "subtext1": "#b8c0e0",
+        "surface0": "#363a4f",
+        "surface1": "#494d64",
+        "surface2": "#5b6078",
+        "teal": "#8bd5ca",
+        "text": "#cad3f5",
+        "yellow": "#eed49f"
       },
       "Mocha": {
-        "Base": "#1e1e2e",
-        "Blue": "#89b4fa",
-        "Crust": "#11111b",
-        "Flamingo": "#f2cdcd",
-        "Green": "#a6e3a1",
-        "Lavender": "#b4befe",
-        "Mantle": "#181825",
-        "Maroon": "#eba0ac",
-        "Mauve": "#cba6f7",
-        "Overlay0": "#6c7086",
-        "Overlay1": "#7f849c",
-        "Overlay2": "#9399b2",
-        "Peach": "#fab387",
-        "Pink": "#f5c2e7",
-        "Red": "#f38ba8",
-        "Rosewater": "#f5e0dc",
-        "Sapphire": "#74c7ec",
-        "Sky": "#89dceb",
-        "Subtext0": "#a6adc8",
-        "Subtext1": "#bac2de",
-        "Surface0": "#313244",
-        "Surface1": "#45475a",
-        "Surface2": "#585b70",
-        "Teal": "#94e2d5",
-        "Text": "#cdd6f4",
-        "Yellow": "#f9e2af"
+        "base": "#1e1e2e",
+        "blue": "#89b4fa",
+        "crust": "#11111b",
+        "flamingo": "#f2cdcd",
+        "green": "#a6e3a1",
+        "lavender": "#b4befe",
+        "mantle": "#181825",
+        "maroon": "#eba0ac",
+        "mauve": "#cba6f7",
+        "overlay0": "#6c7086",
+        "overlay1": "#7f849c",
+        "overlay2": "#9399b2",
+        "peach": "#fab387",
+        "pink": "#f5c2e7",
+        "red": "#f38ba8",
+        "rosewater": "#f5e0dc",
+        "sapphire": "#74c7ec",
+        "sky": "#89dceb",
+        "subtext0": "#a6adc8",
+        "subtext1": "#bac2de",
+        "surface0": "#313244",
+        "surface1": "#45475a",
+        "surface2": "#585b70",
+        "teal": "#94e2d5",
+        "text": "#cdd6f4",
+        "yellow": "#f9e2af"
       }
     },
     "template": "Mocha"
   },
+  "secondary_prompt": {
+    "template": "<p:yellow,transparent>\ue0b6</><,p:yellow>→ </><p:yellow,transparent>\ue0b0</> ",
+    "foreground": "p:base",
+    "background": "transparent"
+  },
+  "tooltips": [
+    {
+      "properties": {
+        "display_default": true
+      },
+      "leading_diamond": "\ue0b0",
+      "trailing_diamond": "\ue0b4",
+      "template": " \ue7ad {{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }} ",
+      "foreground": "p:text",
+      "background": "p:peach",
+      "type": "aws",
+      "style": "diamond",
+      "tips": [
+        "aws"
+      ]
+    },
+    {
+      "properties": {
+        "display_default": true
+      },
+      "leading_diamond": "\ue0b0",
+      "trailing_diamond": "\ue0b4",
+      "template": " \uebd8 {{ .Name }} ",
+      "foreground": "p:text",
+      "background": "p:sapphire",
+      "type": "az",
+      "style": "diamond",
+      "tips": [
+        "az"
+      ]
+    }
+  ],
   "blocks": [
     {
       "type": "prompt",
@@ -124,83 +161,98 @@
       "segments": [
         {
           "properties": {
-            "cache_duration": "none"
-          },
-          "template": " {{ if .WSL }}WSL in {{ end }}{{.Icon}} ",
-          "foreground": "p:Lavender",
-          "background": "p:Crust",
-          "type": "os",
-          "style": "powerline",
-          "foreground_templates": [
-            "{{ if .Root }}p:Pink{{ end }}"
-          ]
-        },
-        {
-          "properties": {
             "cache_duration": "none",
-            "max_depth": 2,
-            "style": "agnoster_short"
+            "style": "folder"
           },
-          "template": " {{ .Path }} ",
-          "foreground": "p:Crust",
-          "powerline_symbol": "\ue0b4",
-          "background": "p:Lavender",
+          "template": " \uea83 {{ path .Path .Location }} ",
+          "foreground": "p:base",
+          "background": "p:sapphire",
           "type": "path",
           "style": "powerline"
         },
         {
           "properties": {
-            "cache_duration": "none"
-          },
-          "template": " ",
-          "type": "project",
-          "style": "plain"
-        },
-        {
-          "properties": {
-            "cache_duration": "none"
-          },
-          "template": " {{ if .Segments.Project.Name }}{{ .Segments.Project.Name }}{{ else }}{{ .Segments.Git.RepoName }}{{ end }}",
-          "foreground": "p:Crust",
-          "powerline_symbol": "\ue0b4",
-          "background": "p:Flamingo",
-          "type": "text",
-          "style": "powerline"
-        },
-        {
-          "properties": {
+            "branch_max_length": 25,
             "cache_duration": "none",
-            "fetch_stash_count": true,
             "fetch_status": true,
-            "fetch_working_count": true
+            "fetch_upstream_icon": true
           },
-          "foreground": "p:Crust",
-          "powerline_symbol": "\ue0b4",
-          "background": "p:Rosewater",
+          "template": " {{ if .UpstreamURL }}{{ url .UpstreamIcon .UpstreamURL }} {{ end }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }} ",
+          "foreground": "p:base",
+          "powerline_symbol": "\ue0b0",
+          "background": "p:green",
           "type": "git",
           "style": "powerline",
-          "background_templates": [
-            "{{ if or (.Working.Changed) (.Staging.Changed) }}p:Yellow{{ end }}",
-            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:Maroon{{ end }}",
-            "{{ if gt .Ahead 0 }}p:Peach{{ end }}",
-            "{{ if gt .Behind 0 }}p:Peach{{ end }}"
+          "foreground_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}p:base{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:base{{ end }}",
+            "{{ if gt .Ahead 0 }}p:base{{ end }}"
           ],
-          "templates": [
-            " {{ .HEAD }}",
-            "{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}",
-            "{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}",
-            "{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}",
-            "{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}",
-            "{{ if gt .StashCount 0 }} \uf692 {{ .StashCount }}{{ end }}",
-            "{{ if gt .WorktreeCount 0 }} \uf1bb {{ .WorktreeCount }}{{ end }}"
+          "background_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}p:flamingo{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:red{{ end }}",
+            "{{ if gt .Ahead 0 }}p:lavender{{ end }}",
+            "{{ if gt .Behind 0 }}p:maroon{{ end }}"
           ]
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": " \uf0e7 ",
+          "foreground": "p:red",
+          "powerline_symbol": "\ue0b0",
+          "background": "p:surface1",
+          "type": "root",
+          "style": "powerline"
         }
       ],
       "newline": true
     },
     {
       "type": "prompt",
+      "alignment": "left",
+      "leading_diamond": "<transparent,background>\ue0b0</>",
+      "trailing_diamond": "\ue0b4",
+      "segments": [
+        {
+          "properties": {
+            "cache_duration": "none",
+            "style": "round",
+            "threshold": 1500
+          },
+          "trailing_diamond": "\ue0b0",
+          "foreground": "p:sapphire",
+          "background": "p:surface1",
+          "type": "executiontime",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "always_enabled": true,
+            "cache_duration": "none"
+          },
+          "template": " {{ if gt .Code 0 }}\uf00d{{ else }}\uf00c{{ end }} ",
+          "foreground": "p:base",
+          "background": "p:teal",
+          "type": "status",
+          "style": "diamond",
+          "background_templates": [
+            "{{ if gt .Code 0 }}p:red{{ end }}"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "prompt",
       "alignment": "right",
+      "filler": "—",
+      "foreground_templates": [
+        "{{ if gt .Code 0 }}p:red{{ end }}"
+      ],
+      "background_template": [
+        "{{ if gt .Code 0 }}p:red{{ end }}"
+      ],
       "segments": [
         {
           "properties": {
@@ -208,13 +260,14 @@
             "cache_duration": "none",
             "style": "austin"
           },
-          "foreground": "p:Crust",
+          "foreground": "p:crust",
           "powerline_symbol": "\ue0b6",
-          "background": "p:Pink",
+          "trailing_diamond": "\ue0b1",
+          "background": "p:teal",
           "type": "executiontime",
           "style": "powerline",
           "background_templates": [
-            "{{ if gt .Code 0 }}p:Red{{ end }}"
+            "{{ if gt .Code 0 }}p:red{{ end }}"
           ],
           "invert_powerline": true
         },
@@ -224,9 +277,9 @@
             "time_format": "15:04:05"
           },
           "template": " {{ .CurrentDate | date .Format }} ",
-          "foreground": "p:Crust",
+          "foreground": "p:crust",
           "powerline_symbol": "\ue0b6",
-          "background": "p:Mauve",
+          "background": "p:mauve",
           "type": "time",
           "style": "diamond",
           "invert_powerline": true
@@ -242,17 +295,18 @@
             "always_enabled": true,
             "cache_duration": "none"
           },
-          "template": "❯ ",
-          "foreground": "p:Green",
-          "type": "exit",
+          "template": "❯",
+          "foreground": "p:green",
+          "type": "status",
           "style": "plain",
           "foreground_templates": [
-            "{{ if gt .Code 0 }}p:Red{{ end }}"
+            "{{ if gt .Code 0 }}p:red{{ end }}"
           ]
         }
       ],
       "newline": true
     }
   ],
-  "version": 3
+  "version": 3,
+  "final_space": true
 }
