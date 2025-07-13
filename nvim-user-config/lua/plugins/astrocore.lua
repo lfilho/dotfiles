@@ -47,14 +47,16 @@ return {
         function()
           -- List of team members
           local team_members = {
-            "'Tunji",
-            "Grace",
-            "Herman",
-            "James",
-            "Mark",
-            "Patrick",
-            "Sydney",
-            "William",
+            "Kishor",
+            "Frederik",
+            "Lutfi",
+            "Mark A",
+            "Mark K",
+            "Orchid",
+            "Orest",
+            "Pranav",
+            "Priya",
+            "Suhas",
           }
 
           -- Insert team names into the buffer
