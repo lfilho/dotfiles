@@ -241,7 +241,7 @@
     {
       "type": "prompt",
       "alignment": "right",
-      "filler": "—",
+      "filler": "─",
       "foreground_templates": ["{{ if gt .Code 0 }}p:red{{ end }}"],
       "background_template": ["{{ if gt .Code 0 }}p:red{{ end }}"],
       "segments": [
