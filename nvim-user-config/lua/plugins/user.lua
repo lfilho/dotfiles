@@ -5,6 +5,14 @@ local cmd = vim.cmd
 
 ---@type LazySpec
 return {
+  {
+    "rareitems/printer.nvim",
+    config = function()
+      require("printer").setup({
+        keymap = "gcl", -- Plugin doesn't have any keymaps by default
+      })
+    end,
+  },
 
   {
     "MeanderingProgrammer/render-markdown.nvim",
