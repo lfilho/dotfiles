@@ -41,3 +41,4 @@ keybind = global:cmd+opt+j=new_window
 
 auto-update = check
 mouse-hide-while-typing = true
+keybind = shift+enter=text:\n
