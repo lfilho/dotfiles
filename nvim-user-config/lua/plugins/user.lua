@@ -6,10 +6,27 @@ local cmd = vim.cmd
 ---@type LazySpec
 return {
   {
+    "greggh/claude-code.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim", -- Required for git operations
+    },
+    config = function()
+      require("claude-code").setup({
+        git = {
+          use_git_root = false,                       -- Set CWD to git root when opening Claude Code (if in git project)
+        },
+        command = "CLAUDE_CODE_USE_BEDROCK=1 claude", -- Command used to launch Claude Code
+        window = {
+          position = "vertical",
+        },
+      })
+    end,
+  },
+  {
     "rareitems/printer.nvim",
     config = function()
       require("printer").setup({
-        keymap = "gcl", -- Plugin doesn't have any keymaps by default
+        keymap = "gcl",
       })
     end,
   },
