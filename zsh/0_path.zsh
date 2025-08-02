@@ -5,7 +5,7 @@
 
 pathAppend() {
   # Only adds to the path if it's not already there
-  if ! echo $PATH | egrep -q "(^|:)$1($|:)" ; then
+  if ! echo "$PATH" | egrep -q "(^|:)$1($|:)"; then
     PATH=$PATH:$1
   fi
 }
@@ -13,6 +13,7 @@ pathAppend() {
 [[ "$OSTYPE" == linux* ]] && [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]] && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 pathAppend "$HOME/.yadr/bin"
-pathAppend "/opt/homebrew/bin/wezterm"
+pathAppend "$HOME/.lmstudio/bin"
+pathAppend "$HOME/.claude/local"
 
 export XDG_CONFIG_HOME="$HOME/.config"

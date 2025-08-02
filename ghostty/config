@@ -22,6 +22,7 @@ theme = catppuccin-mocha
 font-family = Maple Mono
 font-size = 16
 unfocused-split-fill = 555
+cursor-invert-fg-bg = true
 
 # Keybindings
 

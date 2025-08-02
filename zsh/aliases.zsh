@@ -34,12 +34,12 @@ fi
 
 # Alias Editing
 TRAPHUP() {
-  source $yadr/zsh/aliases.zsh
+  source "$yadr"/zsh/aliases.zsh
 }
 
-alias ae='vim $yadr/zsh/aliases.zsh' #alias edit
-alias ar='source $yadr/zsh/aliases.zsh'  #alias reload
-alias gar="killall -HUP -u \"$USER\" zsh"  #global alias reload
+alias ae='vim $yadr/zsh/aliases.zsh'      #alias edit
+alias ar='source $yadr/zsh/aliases.zsh'   #alias reload
+alias gar="killall -HUP -u \"$USER\" zsh" #global alias reload
 
 # nvim using
 alias vim="nvim"
@@ -133,7 +133,7 @@ alias cat='bat'
 alias gz='tar -zcvf'
 
 # Ruby
-alias c='rails c' # Rails 3
+alias c='rails c'         # Rails 3
 alias co='script/console' # Rails 2
 alias cod='script/console --debugger'
 
@@ -180,7 +180,6 @@ alias srdm='spring rake db:migrate'
 alias srdt='spring rake db:migrate'
 alias srdmt='spring rake db:migrate db:test:prepare'
 
-
 # Sprintly - https://github.com/nextbigsoundinc/Sprintly-GitHub
 alias sp='sprintly'
 # spb = sprintly branch - create a branch automatically based on the bug you're working on
@@ -217,3 +216,5 @@ alias rg='rg -S'
 
 # Unaliases -- Undefining aliases set by prezto elsewhere to fit my preferences :)
 unalias p
+
+alias claude="CLAUDE_CODE_USE_BEDROCK=1 claude"
