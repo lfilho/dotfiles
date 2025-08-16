@@ -24,6 +24,17 @@ font-size = 16
 unfocused-split-fill = 555
 cursor-invert-fg-bg = true
 
+# Shaders
+# custom-shader = ./shaders/cursor_blaze.glsl
+# custom-shader = ./shaders/cursor_blaze_no_trail.glsl
+custom-shader = ./shaders/cursor_blaze_tapered.glsl
+# custom-shader = ./shaders/cursor_frozen.glsl
+# custom-shader = ./shaders/cursor_smear.glsl
+# custom-shader = ./shaders/cursor_smear_fade.glsl
+# custom-shader = ./shaders/debug_cursor_animated.glsl
+# custom-shader = ./shaders/debug_cursor_static.glsl
+# custom-shader = ./shaders/manga_slash.glsl
+
 # Keybindings
 
 keybind = cmd+k=goto_split:top
@@ -43,3 +54,5 @@ keybind = global:cmd+opt+j=new_window
 auto-update = check
 mouse-hide-while-typing = true
 keybind = shift+enter=text:\n
+cursor-click-to-move = true
+

@@ -14,8 +14,8 @@ return {
           enabled = true,
           inline = false,
           float = true,
-          max_width = 60,
-          max_height = 30,
+          -- max_width = 60,
+          -- max_height = 30,
         },
       },
       dashboard = {
