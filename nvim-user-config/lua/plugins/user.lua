@@ -430,6 +430,7 @@ return {
     config = function()
       -- Disable default key mappings
       vim.g.bullets_enabled_file_types = { "markdown", "text", "gitcommit", "scratch" }
+      vim.g.bullets_checkbox_markers = " .oOx"
 
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "markdown",
