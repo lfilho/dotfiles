@@ -216,5 +216,3 @@ alias rg='rg -S'
 
 # Unaliases -- Undefining aliases set by prezto elsewhere to fit my preferences :)
 unalias p
-
-alias claude="CLAUDE_CODE_USE_BEDROCK=1 claude"
