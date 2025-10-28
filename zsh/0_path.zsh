@@ -14,6 +14,6 @@ pathAppend() {
 
 pathAppend "$HOME/.yadr/bin"
 pathAppend "$HOME/.lmstudio/bin"
-pathAppend "$HOME/.claude/local"
+pathAppend "$HOME/.local/bin"
 
 export XDG_CONFIG_HOME="$HOME/.config"

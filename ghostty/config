@@ -16,13 +16,16 @@ macos-icon = holographic
 
 window-width = 99999
 window-height = 99999
-theme = catppuccin-mocha
+theme = catppuccin-mocha.conf
 # font-family = FiraCode Nerd Font Mono
 # font-family = CommitMono Nerd Font Mono
 font-family = Maple Mono
 font-size = 16
 unfocused-split-fill = 555
 cursor-invert-fg-bg = true
+
+quick-terminal-size = 60%,60%
+quick-terminal-position = center
 
 # Shaders
 # custom-shader = ./shaders/cursor_blaze.glsl
@@ -48,6 +51,7 @@ keybind = opt+up=resize_split:up,10
 keybind = opt+down=resize_split:down,10
 
 keybind = global:cmd+opt+j=new_window
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
 
 # Other
 
