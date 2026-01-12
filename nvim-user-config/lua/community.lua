@@ -8,6 +8,7 @@ return {
   { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.editing-support.codecompanion-nvim" },
   { import = "astrocommunity.editing-support.conform-nvim" },
+  { import = "astrocommunity.git.codediff-nvim" },
   { import = "astrocommunity.git.openingh-nvim" },
   { import = "astrocommunity.motion.vim-matchup" },
   { import = "astrocommunity.pack.astro" },
