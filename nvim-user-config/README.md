@@ -1,86 +1,467 @@
-# What's included, How to learn? etc
+# NeoVim Configuration (AstroNvim)
 
-Browse the `plugins/*.vim` files to see which plugins we have.
+This is a modern NeoVim configuration based on [AstroNvim](https://astronvim.com/) v4+, using Lua and the Lazy.nvim plugin manager.
 
-Files in `nvim/settings` are our configurations or customizations.
+## Table of Contents
 
-- `nvim/settings/plugin-*.vim` are configs for a specific plugin.
-- `nvim/settings/vim-*.vim` are general vim configs.
-- Whatever you **don't** see in the above files (or if a plugin doesn't have a correspondent file in there) means that we use that plugin's (or vim's) defaults.
+- [Structure](#structure)
+- [How to Customize](#how-to-customize)
+- [Plugin Management](#plugin-management)
+- [Key Mappings](#key-mappings)
+- [LSP & Language Support](#lsp--language-support)
+- [Useful Commands](#useful-commands)
 
-If you are having an unexpected behavior, wondering why a particular key works the way it does, use: `:map [keycombo]` (e.g. `:map <C-\>`) to see what the key is mapped to. For bonus points, you can see where the mapping was set by using `:verbose map [keycombo]`. If you omit the key combo, you'll get a list of all the maps. You can do the same thing with `nmap`, `imap`, `vmap`, etc.
+---
 
-## How to customize
+## Structure
 
-You can place any number of `*.vim` files inside the folders `before` and `after` in the `settings` dir. They'll be loaded, accordingly, before or after the main installation and configuration steps.
-If you think something could benefit everybody, feel free to open a Pull Request.
+### Directory Layout
 
-## Search/Code Navigation
+```
+nvim-user-config/
+├── init.lua                    # Bootstrap entry point
+├── lua/
+│   ├── lazy_setup.lua         # Lazy.nvim plugin manager setup
+│   ├── polish.lua             # Final configuration polish
+│   ├── community.lua          # AstroNvim community plugin configs
+│   └── plugins/
+│       ├── astrocore.lua      # Core options, mappings, autocmds
+│       ├── astrolsp.lua       # LSP configuration
+│       ├── astroui.lua        # UI components, icons, themes
+│       ├── colorschemes.lua   # Color scheme setup
+│       ├── treesitter.lua     # Syntax highlighting
+│       ├── mason.lua          # LSP/tool auto-installer
+│       ├── none-ls.lua        # Linting & formatting
+│       ├── snacks.lua         # UI enhancements (notifications, picker)
+│       └── user.lua           # YOUR custom plugins go here
+├── spell/                      # Custom spell dictionaries
+├── art/                        # ASCII art
+└── lazy-lock.json             # Plugin version lockfile
+```
 
-- <kbd>,</kbd><kbd>f</kbd> - instantly Find definition of class (must have exuberant ctags installed)
-- <kbd>,</kbd><kbd>F</kbd> - same as <kbd>,</kbd><kbd>f</kbd> but in a vertical split
-- <kbd>,</kbd><kbd>g</kbd><kbd>f</kbd> or <kbd>Ctrl</kbd>-<kbd>f</kbd> - same as vim normal gf (go to file), but in a vertical split (works with file.rb:123 line numbers also)
-- <kbd>g</kbd><kbd>F</kbd> - standard vim mapping, here for completeness (go to file at line number)
-- <kbd>K</kbd> - Search the current word under the cursor and show results in quickfix window
-- <kbd>,</kbd><kbd>K</kbd> - Grep the current word up to next exclamation point (useful for ruby foo! methods)
-- <kbd>Cmd</kbd>-<kbd>\*</kbd> - highlight all occurrences of current word (similar to regular <kbd>\*</kbd> except doesn't move)
-- <kbd>,</kbd><kbd>h</kbd><kbd>l</kbd> - toggle search highlight on and off
-- <kbd>,</kbd><kbd>g</kbd><kbd>g</kbd> or <kbd>,</kbd><kbd>r</kbd><kbd>g</kbd> - Grep command line, type between quotes. Uses RipGrep.
-- After searching with <kbd>,</kbd><kbd>g</kbd><kbd>g</kbd> you can navigate the results with <kbd>Ctrl</kbd>-<kbd>x</kbd> <kbd>a</kbd>nd <kbd>Ctrl</kbd>-<kbd>z</kbd> (or standard vim `:cn` and `:cp`)
-- <kbd>,</kbd><kbd>g</kbd><kbd>d</kbd> - Grep def (greps for 'def [function name]') when cursor is over the function name
-- <kbd>,</kbd><kbd>g</kbd><kbd>c</kbd><kbd>f</kbd> - Grep Current File to find references to the current file
-- <kbd>/</kbd><kbd>/</kbd> - clear the search
-- <kbd>,</kbd><kbd>,</kbd><kbd>w</kbd> (alias <kbd>,</kbd><kbd>esc</kbd>) or <kbd>,</kbd><kbd>,</kbd><kbd>b</kbd> (alias <kbd>,</kbd><kbd>shift</kbd><kbd>esc</kbd>) - EasyMotion, a vimium/vimperator style tool that highlights jump-points on the screen and lets you type to get there.
-- <kbd>,</kbd><kbd>m</kbd><kbd>c</kbd> - mark this word for MultiCursor (like sublime). Use Ctrl-n (next), Ctrl-p (prev), Ctrl-x(skip) to add more cursors, then do normal vim things like edit the word.
-- <kbd>g</kbd><kbd>K</kbd> - Opens the documentation for the word under the cursor.
-- <kbd>Space</kbd> - Sneak - type two characters to move there in a line. Kind of like vim's <kbd>f</kbd> <kbd>b</kbd>ut more accurate.
-- `:Gsearch foo` - global search, then do your normal `%s/search/replace/g` and follow up with `:Greplace` to replace across all files. When done use `:wall` to write all the files.
+### Key Files
 
-## Better keystrokes for common editing commands
+| File | Purpose |
+|------|---------|
+| `init.lua` | Bootstraps Lazy.nvim and loads configuration |
+| `lua/plugins/astrocore.lua` | **Main configuration** - options, keymaps, commands |
+| `lua/plugins/astrolsp.lua` | LSP settings (servers, formatting, diagnostics) |
+| `lua/plugins/user.lua` | **Add your custom plugins here** |
+| `lua/polish.lua` | Final tweaks after all plugins load |
+| `lazy-lock.json` | Locks plugin versions for reproducibility |
 
-- <kbd>Tab</kbd> for snipmate snippets.
-- <kbd>,</kbd><kbd>#</kbd>,<kbd>,</kbd><kbd>"</kbd>,<kbd>,</kbd><kbd>'</kbd>,<kbd>,</kbd><kbd>]</kbd>,<kbd>,</kbd><kbd>)</kbd>,<kbd>,</kbd><kbd>}</kbd> to surround a word in these common wrappers. the <kbd>#</kbd> does `#{ruby interpolation}`. works in visual mode (thanks @cj). Normally these are done with something like <kbd>y</kbd><kbd>s</kbd><kbd>w</kbd><kbd>#</kbd>
-- <kbd>Cmd</kbd>-<kbd>'</kbd>, <kbd>Cmd</kbd>-<kbd>"</kbd>, <kbd>Cmd</kbd>-<kbd>]</kbd>, <kbd>Cmd</kbd>-<kbd>)</kbd>, etc to change content inside those surrounding marks. You don't have to be inside them (<kbd>Alt</kbd> in Linux)
-- <kbd>,</kbd><kbd>.</kbd> to go to last edit location (same as <kbd>'</kbd><kbd>.</kbd>) because the apostrophe is hard on the pinky
-- <kbd>,</kbd><kbd>c</kbd><kbd>i</kbd> to change inside any set of quotes/brackets/etc
+---
 
-## Tabs, Windows, Splits
+## How to Customize
 
-- Use <kbd>Cmd</kbd>-<kbd>1</kbd> thru <kbd>Cmd</kbd>-<kbd>9</kbd> to switch to a specific tab number (like iTerm and Chrome) - and tabs have been set up to show numbers (<kbd>Alt</kbd> in Linux)
-- <kbd>Ctrl</kbd>-<kbd>h,l,j,k</kbd> - to move left, right, down, up between splits. This also works between vim and tmux splits thanks to `vim-tmux-navigator`.
-- <kbd>Q</kbd> - Intelligent Window Killer. Close window `wincmd c` if there are multiple windows to same buffer, or kill the buffer `bwipeout` if this is the last window into it.
-- <kbd>v</kbd><kbd>v</kbd> - vertical split (<kbd>Ctrl</kbd>-<kbd>w</kbd>,<kbd>v</kbd>)
-- <kbd>s</kbd><kbd>s</kbd> - horizontal split (<kbd>Ctrl</kbd>-<kbd>w</kbd>,<kbd>s</kbd>)
-- <kbd>,</kbd><kbd>q</kbd><kbd>o</kbd> - open quickfix window (this is where output from Grep goes)
-- <kbd>,</kbd><kbd>q</kbd><kbd>c</kbd> - close quickfix
+### Adding Custom Options
 
-## Utility
+Edit `lua/plugins/astrocore.lua` in the `options` section:
 
-- <kbd>Ctrl</kbd>-<kbd>p</kbd> after pasting - Use <kbd>p</kbd> to paste and <kbd>Ctrl</kbd>-<kbd>p</kbd> to cycle through previous pastes. Provided by YankRing.
-- <kbd>,</kbd><kbd>y</kbd><kbd>r</kbd> - view the yankring - a list of your previous copy commands. also you can paste and hit <kbd>ctrl</kbd>-<kbd>p</kbd> for cycling through previous copy commands
-- <kbd>c</kbd><kbd>r</kbd><kbd>s</kbd>, <kbd>c</kbd><kbd>r</kbd><kbd>c</kbd>, <kbd>c</kbd><kbd>r</kbd><kbd>u</kbd> via abolish.vim, coerce to snake_case, camelCase, and UPPERCASE. There are more `:help abolish`
-- <kbd>,</kbd><kbd>i</kbd><kbd>g</kbd> - toggle visual indentation guides
-- <kbd>,</kbd><kbd>c</kbd><kbd>f</kbd> - Copy Filename of current file (full path) into system (not vi) paste buffer
-- <kbd>,</kbd><kbd>c</kbd><kbd>n</kbd> - Copy Filename of current file (name only, no path)
-- <kbd>,</kbd><kbd>y</kbd><kbd>w</kbd> - yank a word from anywhere within the word (so you don't have to go to the beginning of it)
-- <kbd>,</kbd><kbd>o</kbd><kbd>w</kbd> - overwrite a word with whatever is in your yank buffer - you can be anywhere on the word. saves having to visually select it
-- <kbd>,</kbd><kbd>o</kbd><kbd>c</kbd><kbd>f</kbd> - open changed files (stolen from @garybernhardt). open all files with git changes in splits
-- <kbd>,</kbd><kbd>w</kbd> - strip trailing whitespaces
-- <kbd>s</kbd><kbd>j</kbd> - split a line such as a hash {:foo => {:bar => :baz}} into a multiline hash (j = down)
-- <kbd>s</kbd><kbd>k</kbd> - unsplit a link (k = up)
-- <kbd>,</kbd><kbd>h</kbd><kbd>e</kbd> - Html Escape
-- <kbd>,</kbd><kbd>h</kbd><kbd>u</kbd> - Html Unescape
-- <kbd>,</kbd><kbd>h</kbd><kbd>p</kbd> - Html Preview (open in Safari)
-- <kbd>Cmd</kbd>-<kbd>Shift</kbd>-<kbd>A</kbd> - align things (type a character/expression to align by, works in visual mode or by itself) (<kbd>Alt</kbd> in Linux)
-- `:ColorToggle` - turn on #abc123 color highlighting (useful for css)
-- `:Gitv` - Git log browsers
-- <kbd>,</kbd><kbd>h</kbd><kbd>i</kbd> - show current Highlight group. if you don't like the color of something, use this, then use `hi! link [groupname] [anothergroupname]` in your vimrc.after to remap the color. You can see available colors using `:hi`
-- <kbd>,</kbd><kbd>g</kbd><kbd>t</kbd> - Go Tidy - tidy up your html code (works on a visual selection)
-- `:Wrap` - wrap long lines (e.g. when editing markdown files)
-- <kbd>Cmd</kbd>-<kbd>/</kbd> - toggle comments (usually gcc from tComment) (`Alt` in Linux)
-- <kbd>g</kbd><kbd>c</kbd><kbd>p</kbd> (comment a paragraph)
+```lua
+options = {
+  opt = {
+    relativenumber = true,  -- Show relative line numbers
+    wrap = false,           -- Don't wrap lines
+    tabstop = 4,           -- Tab width
+    -- Add your options here
+  },
+}
+```
 
-## Vim Dev
+### Adding Custom Keymaps
 
-- <kbd>,</kbd><kbd>v</kbd><kbd>c</kbd> - (Vim Command) copies the command under your cursor and executes it in vim. Great for testing single line changes to vimrc.
-- <kbd>,</kbd><kbd>v</kbd><kbd>r</kbd> - (Vim Reload) source current file as a vim file
+Edit `lua/plugins/astrocore.lua` in the `mappings` section:
+
+```lua
+mappings = {
+  n = {  -- Normal mode
+    ["<Leader>w"] = { ":w<CR>", desc = "Save file" },
+    -- Add your mappings here
+  },
+  i = {  -- Insert mode
+    -- ...
+  },
+  v = {  -- Visual mode
+    -- ...
+  },
+}
+```
+
+**Note**: `<Leader>` is set to `,` (comma)
+
+### Adding Custom Commands
+
+Edit `lua/plugins/astrocore.lua` in the `commands` section:
+
+```lua
+commands = {
+  MyCommand = {
+    function()
+      -- Your command logic here
+      vim.notify("Hello from MyCommand!")
+    end,
+  },
+}
+```
+
+---
+
+## Plugin Management
+
+### Lazy.nvim Plugin Manager
+
+This configuration uses [Lazy.nvim](https://github.com/folke/lazy.nvim) for plugin management. It's fast, lazy-loads plugins, and has a great UI.
+
+### Adding a Plugin
+
+Edit `lua/plugins/user.lua` and add a plugin spec:
+
+```lua
+return {
+  -- Example: Add a new plugin
+  {
+    "author/plugin-name",
+    lazy = false,  -- Load immediately (or true to lazy-load)
+    config = function()
+      require("plugin-name").setup({
+        -- Plugin configuration here
+      })
+    end,
+  },
+
+  -- Example: Plugin with dependencies
+  {
+    "another/plugin",
+    dependencies = {
+      "dependency/plugin",
+    },
+    event = "VeryLazy",  -- Lazy-load on VeryLazy event
+  },
+}
+```
+
+### Plugin Commands
+
+Open NeoVim and use these commands:
+
+- `:Lazy` - Open Lazy.nvim UI
+- `:Lazy sync` - Update all plugins
+- `:Lazy clean` - Remove unused plugins
+- `:Lazy restore` - Restore plugins from lazy-lock.json
+- `:Lazy profile` - View plugin loading times
+
+### Updating Plugins
+
+```vim
+:Lazy sync
+```
+
+This will update all plugins to their latest versions and update `lazy-lock.json`.
+
+---
+
+## Key Mappings
+
+**Leader key**: `,` (comma)
+
+### Navigation & Movement
+
+| Keymap | Mode | Description |
+|--------|------|-------------|
+| `H` | Normal | Previous buffer |
+| `L` | Normal | Next buffer |
+| `[b` / `]b` | Normal | Previous/Next buffer (alternative) |
+| `Ctrl-h/j/k/l` | Normal | Navigate splits (also works with tmux) |
+| `vv` | Normal | Split vertically |
+| `ss` | Normal | Split horizontally |
+| `'` | Normal | Jump to mark (line and column) |
+| `` ` `` | Normal | Jump to mark (line only) |
+| `0` | Normal | Go to first character (not whitespace) |
+| `^` | Normal | Go to beginning of line (with whitespace) |
+| `g;` | Normal | Jump to previous position (centered) |
+| `g,` | Normal | Jump to next position (centered) |
+
+### Buffer Management
+
+| Keymap | Mode | Description |
+|--------|------|-------------|
+| `<Leader>bd` | Normal | Close buffer (interactive picker) |
+| `<Leader>c` | Normal | Close current buffer |
+
+### Search & Replace
+
+| Keymap | Mode | Description |
+|--------|------|-------------|
+| `/` | Normal | Search forward (with regex mode `\v`) |
+| `?` | Normal | Search backward (with regex mode `\v`) |
+
+**Note**: Searches use Perl/Python style regex by default (`\v` mode)
+
+### File Operations
+
+| Keymap | Mode | Description |
+|--------|------|-------------|
+| `<Leader>yf` | Normal | Copy full file path to clipboard |
+
+### Window Resizing
+
+| Keymap | Mode | Description |
+|--------|------|-------------|
+| `Shift-Up` | Normal | Increase window height |
+| `Shift-Down` | Normal | Decrease window height |
+| `Shift-Left` | Normal | Decrease window width |
+| `Shift-Right` | Normal | Increase window width |
+
+### AstroNvim Default Mappings
+
+AstroNvim provides many built-in keymaps. Some important ones:
+
+| Keymap | Description |
+|--------|-------------|
+| `<Leader>f` | Find (Telescope file picker) |
+| `<Leader>fo` | Find old files (recent files) |
+| `<Leader>fw` | Find word (grep) |
+| `<Leader>fb` | Find buffers |
+| `<Leader>e` | Toggle file explorer (Neo-tree) |
+| `<Leader>o` | Toggle outline (symbols) |
+| `<Leader>u` | Toggle UI elements |
+| `<Leader>l` | LSP actions |
+| `<Leader>g` | Git actions |
+| `<Space>` | Open command palette |
+
+For a complete list, run `:Telescope keymaps` or press `<Leader>fk`
+
+---
+
+## LSP & Language Support
+
+### Mason - Automatic Language Server Installation
+
+This configuration uses [Mason](https://github.com/williamboman/mason.nvim) to automatically install language servers, formatters, and linters.
+
+### Installing Language Servers
+
+Open NeoVim and run:
+
+```vim
+:Mason
+```
+
+This opens the Mason UI where you can:
+- Browse available tools
+- Install/uninstall language servers
+- View installed tools
+
+Common language servers:
+- `lua_ls` - Lua (recommended for editing this config)
+- `ts_ls` - TypeScript/JavaScript
+- `pyright` - Python
+- `rust_analyzer` - Rust
+- `gopls` - Go
+- `clangd` - C/C++
+
+### Auto-Installation
+
+Edit `lua/plugins/mason.lua` to configure which servers to install automatically:
+
+```lua
+ensure_installed = {
+  "lua_ls",
+  "ts_ls",
+  -- Add more servers here
+}
+```
+
+### LSP Keymaps
+
+When in a file with an active LSP server:
+
+| Keymap | Description |
+|--------|-------------|
+| `gd` | Go to definition |
+| `gD` | Go to declaration |
+| `gr` | Show references |
+| `gI` | Go to implementation |
+| `K` | Show hover documentation |
+| `<Leader>lh` | Signature help |
+| `<Leader>lr` | Rename symbol |
+| `<Leader>la` | Code actions |
+| `<Leader>lf` | Format buffer |
+| `<Leader>ld` | Show diagnostics |
+| `]d` / `[d` | Next/previous diagnostic |
+
+### Formatting
+
+Formatting is configured in `lua/plugins/none-ls.lua` using [none-ls](https://github.com/nvimtools/none-ls.nvim) (successor to null-ls).
+
+To format the current buffer:
+```vim
+:Format
+" or
+<Leader>lf
+```
+
+---
+
+## Useful Commands
+
+### Built-in Commands
+
+| Command | Description |
+|---------|-------------|
+| `:AstroUpdate` | Update AstroNvim core |
+| `:AstroUpdatePackages` | Update Mason packages |
+| `:Lazy` | Open plugin manager UI |
+| `:Mason` | Open LSP installer UI |
+| `:Telescope` | Open Telescope fuzzy finder |
+| `:checkhealth` | Check NeoVim configuration health |
+
+### Custom Commands (from astrocore.lua)
+
+| Command | Description |
+|---------|-------------|
+| `:DiffOrig` | Show diff between current buffer and saved file |
+| `:OpenChangedFiles` | Open all git-changed files in splits |
+| `:TeamMembers` | Insert team member checklist (custom) |
+
+### Treesitter Commands
+
+Treesitter provides better syntax highlighting:
+
+| Command | Description |
+|---------|-------------|
+| `:TSInstall <language>` | Install language parser |
+| `:TSUpdate` | Update all parsers |
+| `:TSModuleInfo` | Show installed modules |
+
+---
+
+## Plugins Overview
+
+### Core AstroNvim Plugins
+
+- **astrocore** - Core configuration (options, mappings, commands)
+- **astrolsp** - LSP integration
+- **astroui** - UI components and icons
+- **astrotheme** - Default color schemes
+
+### Essential Plugins (Included)
+
+- **Lazy.nvim** - Plugin manager
+- **Mason** - LSP/tool installer
+- **Treesitter** - Better syntax highlighting
+- **Telescope** - Fuzzy finder for files, buffers, grep, etc.
+- **Neo-tree** - File explorer
+- **none-ls** - Formatting and linting
+- **snacks.nvim** - UI enhancements (notifications, picker, dashboard)
+- **gitsigns** - Git integration in sign column
+- **which-key** - Show keybindings as you type
+- **Comment.nvim** - Easy commenting
+- **nvim-autopairs** - Auto-close brackets/quotes
+
+### Adding More Plugins
+
+Check [AstroNvim Community Plugins](https://github.com/AstroNvim/astrocommunity) for pre-configured plugin specs.
+
+To use a community plugin, edit `lua/community.lua`:
+
+```lua
+return {
+  "AstroNvim/astrocommunity",
+  { import = "astrocommunity.pack.typescript" },  -- TypeScript pack
+  { import = "astrocommunity.colorscheme.catppuccin" },  -- Catppuccin theme
+}
+```
+
+---
+
+## Troubleshooting
+
+### Health Check
+
+Run NeoVim's health check to diagnose issues:
+
+```vim
+:checkhealth
+```
+
+This will check:
+- NeoVim version
+- Python/Ruby provider setup
+- Clipboard support
+- LSP servers
+- Plugin health
+
+### Common Issues
+
+#### Plugins Not Loading
+
+1. Run `:Lazy sync` to update plugins
+2. Check `:Lazy` UI for errors
+3. Restart NeoVim
+
+#### LSP Not Working
+
+1. Install language server via `:Mason`
+2. Check `:LspInfo` to see if server is attached
+3. Run `:checkhealth lsp`
+
+#### Slow Startup
+
+1. Run `:Lazy profile` to see plugin loading times
+2. Consider lazy-loading more plugins
+3. Check for slow autocmds in `astrocore.lua`
+
+#### Syntax Highlighting Issues
+
+1. Install Treesitter parser: `:TSInstall <language>`
+2. Update parsers: `:TSUpdate`
+3. Check `:TSModuleInfo`
+
+---
+
+## Tips & Tricks
+
+1. **Explore Keymaps**: Press `<Leader>fk` to search all keybindings with Telescope
+
+2. **Learn Lua**: Install the Lua language server for better editing:
+   ```vim
+   :LspInstall lua_ls
+   ```
+
+3. **Use Which-Key**: Start typing a keymap (like `<Leader>`) and wait - Which-Key will show available options
+
+4. **Check Plugin Docs**: Most plugins have `:help <plugin-name>` documentation
+
+5. **Telescope Everything**: Telescope can search files, buffers, help tags, commands, keymaps, and more. Press `<Leader>f` and explore!
+
+6. **Git Integration**: Use `<Leader>g` for git commands, or use `:LazyGit` (if installed) for a full git TUI
+
+---
+
+## Resources
+
+- [AstroNvim Documentation](https://docs.astronvim.com/)
+- [Lazy.nvim Documentation](https://github.com/folke/lazy.nvim)
+- [Telescope Documentation](https://github.com/nvim-telescope/telescope.nvim)
+- [Mason Documentation](https://github.com/williamboman/mason.nvim)
+- [NeoVim Documentation](https://neovim.io/doc/)
+- [Learn Lua in Y Minutes](https://learnxinyminutes.com/docs/lua/)
+
+---
+
+## Quick Start Checklist
+
+After installation:
+
+1. [ ] Install Lua language server: `:LspInstall lua_ls`
+2. [ ] Run health check: `:checkhealth`
+3. [ ] Update plugins: `:Lazy sync`
+4. [ ] Install language servers for your languages: `:Mason`
+5. [ ] Explore keymaps: `<Leader>fk`
+6. [ ] Read `:help astronvim`
+7. [ ] Customize `lua/plugins/user.lua` with your plugins
+8. [ ] Customize `lua/plugins/astrocore.lua` with your keymaps
+
+Happy editing! 🚀

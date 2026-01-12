@@ -110,6 +110,9 @@ Here are the differences in a nutshell (also make sure you read the [What's incl
 - Couple of new aliases for command line and also git
 - Different file and folder organization and conventions for vim plugins and configurations (all contained to installation folder)
 - Automated iTerm2 configuration (including themes and colors)
+- Ghostty terminal emulator support with custom shader effects (Tesla coil, glow, blaze cursor animations)
+- Enhanced shell completion with fzf-tab for fuzzy tab completion
+- Faster shell syntax highlighting via fast-syntax-highlighting (replaces zsh-syntax-highlighting)
 - Brew packages. I have added a [`Brewfile`](./Brewfile) which makes easier to mantain and more flexible for the community to customize (you can point `brew` to different Brewfiles whenever you need; also easier to customize in your own fork)
 - Docker. Means you can test this repo in a Docker container without messing with your host environment until you're sure. More on that in the [Docker Support](#docker-support) section below.
 - Linux support. It's still very far from ideal, but it's my intention to leave the repo working for both MacOS and Linux as well as we can. The initial effort is done via the Docker support. The community can take it from there and help improve things.
@@ -117,7 +120,9 @@ Here are the differences in a nutshell (also make sure you read the [What's incl
 
 ## What's included, how to learn, how to customize?
 
-The best way to learn the answer the the above questions is to browse the README files in each directory (starting with this one). For example, if you're insterested in seeing which vim plugins are there, as well their keymaps, head to [nvim/README.md](./nvim/README.md) and start from there, proceeding to its subfolders' README and finally to each configuration file (there will be more specific comments inside each file).
+The best way to learn the answer the the above questions is to browse the README files in each directory (starting with this one). For example, if you're interested in seeing which vim plugins are there, as well their keymaps, head to [nvim-user-config/README.md](./nvim-user-config/README.md) and start from there, proceeding to its subfolders' README and finally to each configuration file (there will be more specific comments inside each file).
+
+For AI tools and agents, see [AGENTS.md](./AGENTS.md) for a comprehensive guide to the repository structure.
 
 ## Docker Support
 
