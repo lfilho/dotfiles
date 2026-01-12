@@ -75,7 +75,8 @@ brew 'neovim'                  # Modern vim
 brew 'ctags'                   # Code navigation
 brew 'python3'                 # Python interpreter
 brew 'ranger'                  # Terminal file manager
-brew 'bottom'                  # System monitor
+brew 'btop'                    # System monitor
+brew 'jq'                      # JSON manipulation tool
 
 # --- Media & Documentation ---
 brew 'ffmpeg'                  # Video processing
