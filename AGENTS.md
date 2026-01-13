@@ -125,11 +125,11 @@ Git Clone → Rake Automation → Homebrew Packages → Symlink Configs → Prez
 | `zsh/zshrc` | Zsh entry point | Never (use customization hooks) |
 | `zsh/aliases.zsh` | Shell aliases | Adding new command aliases |
 | `nvim-user-config/init.lua` | NeoVim bootstrap | Rarely (prefer lua/plugins/) |
-| `nvim-user-config/lua/plugins/user.lua` | User plugins | Adding new vim plugins |
+| `nvim-user-config/lua/plugins/user.lua` | User plugins | Adding new vim plugins (ALWAYS update README) |
 | `git/gitconfig` | Git aliases/settings | Adding git customizations |
 | `ghostty/config` | Ghostty terminal config | Terminal appearance changes |
 | `README.md` | Main documentation | Feature additions, major changes |
-| `nvim-user-config/README.md` | NeoVim guide | NeoVim customization changes |
+| `nvim-user-config/README.md` | NeoVim guide | NeoVim customization changes, plugin list updates |
 | `ghostty/README.md` | Ghostty guide | Ghostty shader/config changes |
 
 ---
@@ -401,6 +401,8 @@ alias myalias='my command'
 
 #### Adding a NeoVim Plugin
 
+**IMPORTANT**: When adding, removing, or modifying plugins in `user.lua`, ALWAYS update the plugin list in `nvim-user-config/README.md` under "Custom User Plugins" section.
+
 Edit `nvim-user-config/lua/plugins/user.lua`:
 
 ```lua
@@ -414,6 +416,15 @@ return {
     end,
   },
 }
+```
+
+Then update `nvim-user-config/README.md` to document the plugin:
+
+```markdown
+### Custom User Plugins (lua/plugins/user.lua)
+
+- **plugin-name** - Brief description
+  - Key mappings if any
 ```
 
 #### Modifying Git Configuration
@@ -575,6 +586,7 @@ When modifying configs, update:
 2. Relevant README.md files
 3. This AGENTS.md file
 4. Main README.md (if user-facing)
+5. **CRITICAL**: When adding/removing/modifying NeoVim plugins in `lua/plugins/user.lua`, ALWAYS update the plugin list in `nvim-user-config/README.md` under "Custom User Plugins" section
 
 #### 5. Follow Existing Patterns
 

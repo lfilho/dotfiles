@@ -360,7 +360,59 @@ Treesitter provides better syntax highlighting:
 - **Comment.nvim** - Easy commenting
 - **nvim-autopairs** - Auto-close brackets/quotes
 
+### Custom User Plugins (lua/plugins/user.lua)
+
+These are custom plugins configured in this dotfiles repo:
+
+- **claude-code.nvim** - Claude Code integration for AI-assisted development in vertical split
+- **agentic.nvim** - AI agent sidebar with context management
+  - `<Leader>at` - Toggle agent sidebar
+  - `<Leader>aa` - Add selection/file to agent context
+  - `<Leader>an` - New agent chat session
+  - `<Leader>as` - Stop agent generation
+- **printer.nvim** - Debug print helper with `gcl` keymap
+- **render-markdown.nvim** - Beautiful markdown rendering with custom heading styles and code blocks
+- **note2cal.nvim** - Create calendar events from markdown notes
+- **indent-blankline.nvim** - Rainbow indent guides
+- **mini.nvim** - Collection of mini modules:
+  - `mini.surround` - Surround text objects (ys/ds/cs mappings)
+  - `mini.move` - Move lines and blocks
+  - `mini.bracketed` - Navigate with brackets
+  - `mini.ai` - Extended text objects (functions, classes, comments, etc.)
+- **emmet-vim** - HTML/CSS abbreviation expansion with `,` leader
+- **hop.nvim** - Jump to any word with `,s`
+- **yanky.nvim** - Yank ring with `<Ctrl-p>/<Ctrl-n>` to cycle through yanks
+- **vim-wordmotion** - CamelCase word motion with `,` prefix
+- **vim-copy-as-rtf** - Copy code as rich text format
+- **vim-abolish** - Case conversion (crs, crc, cru, etc.) and smart search/replace
+- **treesj** - Split/join code blocks with `J`
+- **tabular** - Align text in tabular format
+- **cosco.vim** - Smart comma/semicolon insertion with `,;`
+- **img-clip.nvim** - Paste images from clipboard with `<Leader>up`
+- **bullets.vim** - Auto-format markdown lists and checkboxes
+
 ### Adding More Plugins
+
+You have two options for adding plugins:
+
+**Option 1: Add custom plugins to `lua/plugins/user.lua`** (recommended for personal plugins):
+
+```lua
+return {
+  -- Add new plugin spec
+  {
+    "author/plugin-name",
+    lazy = false,  -- Load immediately (or true to lazy-load)
+    config = function()
+      require("plugin-name").setup({
+        -- Plugin configuration here
+      })
+    end,
+  },
+}
+```
+
+**Option 2: Use AstroNvim Community Plugins** (recommended for common plugins):
 
 Check [AstroNvim Community Plugins](https://github.com/AstroNvim/astrocommunity) for pre-configured plugin specs.
 
