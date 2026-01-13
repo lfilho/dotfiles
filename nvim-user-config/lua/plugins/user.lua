@@ -23,6 +23,54 @@ return {
     end,
   },
   {
+    "carlos-algms/agentic.nvim",
+    opts = {
+      provider = "claude-acp", -- Uses existing Claude CLI credentials
+      keymaps = {
+        prompt = {
+          submit = {
+            "<CR>", -- Normal mode, just Enter
+            {
+              "<C-CR>",
+              mode = { "n", "v", "i" },
+            },
+          },
+        },
+      },
+    },
+    keys = {
+      {
+        "<leader>at",
+        function()
+          require("agentic").toggle()
+        end,
+        desc = "Toggle agent sidebar",
+      },
+      {
+        "<leader>aa",
+        function()
+          require("agentic").add_selection_or_file_to_context()
+        end,
+        mode = { "n", "v" },
+        desc = "Add selection/file to agent",
+      },
+      {
+        "<leader>an",
+        function()
+          require("agentic").new_session()
+        end,
+        desc = "New agent chat",
+      },
+      {
+        "<leader>as",
+        function()
+          require("agentic").stop_generation()
+        end,
+        desc = "Stop agent generation",
+      },
+    },
+  },
+  {
     "rareitems/printer.nvim",
     config = function()
       require("printer").setup({
