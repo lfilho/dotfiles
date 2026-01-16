@@ -34,6 +34,11 @@ task :install => [:submodule_init, :submodules] do
   run %{ ln -nfs ~/.yadr/bat ~/.config/bat }
   run %{ touch ~/.hushlogin }
 
+  if $is_macos
+    run %{ mkdir -p ~/.config/yabai }
+    run %{ ln -nfs ~/.yadr/yabai/yabairc ~/.config/yabai/yabairc }
+  end
+
   Rake::Task["install_prezto"].execute
 
   install_fonts

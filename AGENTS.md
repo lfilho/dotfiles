@@ -81,6 +81,7 @@ Git Clone → Rake Automation → Homebrew Packages → Symlink Configs → Prez
 | `~/.yadr/eza` | `~/.config/eza` | Eza (modern ls) |
 | `~/.yadr/bat` | `~/.config/bat` | Bat syntax highlighter |
 | `~/.yadr/lazygit` | `~/.config/lazygit` | LazyGit TUI |
+| `~/.yadr/yabai/yabairc` | `~/.config/yabai/yabairc` | Yabai window manager (macOS) |
 | `~/.yadr/zsh/prezto` | `~/.zprezto` | Prezto framework |
 | `~/.yadr/git/*` | `~/.gitconfig`, etc. | Git configuration |
 
@@ -102,6 +103,7 @@ Git Clone → Rake Automation → Homebrew Packages → Symlink Configs → Prez
 ├── ranger/                 # Ranger file manager
 ├── bat/                    # Bat syntax themes
 ├── eza/                    # Eza configuration
+├── yabai/                  # Yabai window manager (macOS)
 ├── vimify/                 # Vim keybindings for CLI tools
 ├── ctags/                  # CTags for code navigation
 ├── ruby/                   # Ruby gem config
@@ -274,6 +276,20 @@ git/
 - 15+ color schemes (Catppuccin variants, Gruvbox, GitHub Dark, etc.)
 - `bootstrap-iterm2.sh` - Auto-configuration script
 
+### Window Management
+
+**Yabai** (yabai/) - macOS only:
+- Binary Space Partitioning (BSP) tiling window manager
+- Configuration: `yabai/yabairc` - main config with window rules and appearance
+- Helper scripts: `yabai/layouts.sh` - custom layout functions
+- Zsh integration: `zsh/yabai.zsh` - aliases for common operations
+- Features:
+  - Display pinning rules (Zoom, Firefox → laptop display)
+  - Custom layouts (e.g., Zoom + Ghostty split layout)
+  - Window maximize toggle
+  - Service management aliases (`ystart`, `ystop`, `yrestart`, `ystatus`)
+- See `yabai/README.md` for complete setup and usage guide
+
 ---
 
 ## Customization Points
@@ -332,6 +348,7 @@ Edit `nvim-user-config/lua/plugins/user.lua` and add to the return array.
 | **Ghostty** | Terminal emulator | `ghostty/config` | GPU-accelerated |
 | **WezTerm** | Terminal emulator | `wezterm/wezterm.lua` | Alternative terminal |
 | **iTerm2** | Terminal (macOS) | `iTerm2/` | Automated setup |
+| **yabai** | Window manager (macOS) | `yabai/yabairc` | Tiling window manager |
 
 ### Editor & Development
 
@@ -371,21 +388,49 @@ Edit `nvim-user-config/lua/plugins/user.lua` and add to the return array.
 
 #### Adding a New Tool/Package
 
-1. Add to `Brewfile` (if it's a Homebrew package) - place in appropriate category
-2. Create config directory if needed (e.g., `newtool/`)
-3. Update `Rakefile` to create symlink (if XDG config)
-4. Add documentation to main README.md
-5. Update this AGENTS.md file
+**The YADR Tool Configuration Pattern:**
 
-**Example**: Adding tool "foo"
+1. **Create config directory** in `~/.yadr/[tool-name]/` with config files
+2. **Make scripts executable** before committing: `chmod +x ~/.yadr/[tool-name]/script.sh`
+3. **Add to Brewfile** (if it needs installation) - place in appropriate category
+4. **Update Rakefile** to create symlink in `:install` task (do NOT chmod - already executable in repo)
+5. **Add zsh integration** (optional) in `~/.yadr/zsh/[tool-name].zsh` for aliases/environment
+6. **Document** in README.md and this AGENTS.md file
+
+**Key Insight**: Executable permissions are stored in git and should be set before committing, NOT during installation via Rakefile.
+
+**Example**: Adding tool "yabai"
+
+```bash
+# 1. Create config directory with files
+mkdir ~/.yadr/yabai
+# Create yabai/yabairc, yabai/scripts.sh, etc.
+
+# 2. Make scripts executable (commit these permissions to repo)
+chmod +x ~/.yadr/yabai/yabairc
+chmod +x ~/.yadr/yabai/scripts.sh
+```
 
 ```ruby
-# In Brewfile - add under appropriate category section
-# --- Development Tools ---
-brew 'foo'                     # Brief description
+# 3. In Brewfile - add under appropriate category section
+if OS.mac?
+    brew 'koekeishiya/formulae/yabai'  # Window manager
+end
 
-# In Rakefile, in :install task
-run %{ ln -nfs ~/.yadr/foo ~/.config/foo }
+# 4. In Rakefile, in :install task (around line 35)
+# Add after other config symlinks, use platform guards if needed
+if $is_macos
+  run %{ mkdir -p ~/.config/yabai }
+  run %{ ln -nfs ~/.yadr/yabai/yabairc ~/.config/yabai/yabairc }
+end
+# NOTE: No chmod here - files are already executable in repo
+```
+
+```bash
+# 5. Optional: Create zsh integration
+# In zsh/yabai.zsh
+alias ystart="yabai --start-service"
+alias ystop="yabai --stop-service"
 ```
 
 #### Adding a Zsh Alias

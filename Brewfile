@@ -3,6 +3,7 @@
 # ============================================================================
 tap 'homebrew/bundle'
 tap 'jandedobbeleer/oh-my-posh'
+tap 'koekeishiya/formulae'
 
 if OS.linux?
    tap 'gromgit/fuse'
@@ -28,6 +29,7 @@ if OS.mac?
     cask 'alfred'              # Productivity launcher
     cask 'karabiner-elements'  # Keyboard customization
     cask 'steam'               # Gaming
+    brew 'koekeishiya/formulae/yabai'  # Window manager
 end
 
 # --- Utilities ---

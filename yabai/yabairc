@@ -1,0 +1,60 @@
+#!/usr/bin/env sh
+
+# ============================================================================
+# Yabai Window Manager Configuration
+# ============================================================================
+
+# ============================================================================
+# Global Settings
+# ============================================================================
+
+# Tiling behavior
+yabai -m config layout stack
+
+# Window padding and gaps
+yabai -m config top_padding 5
+yabai -m config bottom_padding 5
+yabai -m config left_padding 5
+yabai -m config right_padding 5
+yabai -m config window_gap 5
+
+# Mouse settings
+yabai -m config mouse_follows_focus off
+yabai -m config focus_follows_mouse off
+
+# NOTE: Window opacity and borders require disabling SIP
+# These features are commented out to keep the system secure
+# Uncomment if you've disabled SIP and understand the risks
+# yabai -m config window_opacity on
+# yabai -m config active_window_opacity 1.0
+# yabai -m config normal_window_opacity 0.95
+# yabai -m config window_border on
+# yabai -m config window_border_width 2
+# yabai -m config active_window_border_color 0xff81a1c1
+# yabai -m config normal_window_border_color 0xff3b4252
+
+# ============================================================================
+# Application-Specific Rules
+# ============================================================================
+
+# Pin Zoom Workspace to laptop display (built-in display)
+# Display 2 is the built-in laptop display (2624x1696)
+# Display 1 is the external monitor (2560x1440)
+yabai -m rule --add app="^zoom.us$" display=2
+yabai -m rule --add app="^Zoom$" display=2
+yabai -m rule --add app="^Zoom Workplace$" display=2
+yabai -m rule --add app="^Zoom Meeting$" display=1
+
+# Pin Firefox to laptop display
+yabai -m rule --add app="^Firefox$" display=2
+
+# Floating windows for common system apps
+yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^System Preferences$" manage=off
+yabai -m rule --add app="^Archive Utility$" manage=off
+yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^Alfred$" manage=off
+yabai -m rule --add app="^Activity Monitor$" manage=off
+yabai -m rule --add app="^Calculator$" manage=off
+
+echo "yabai configuration loaded"
