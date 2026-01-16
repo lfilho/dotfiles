@@ -15,23 +15,28 @@ maximize_window() {
 # If no external display exists, both stay on laptop display
 zoom_ghostty_layout() {
   # Query all displays and windows once
-  local displays=$(yabai -m query --displays)
-  local windows=$(yabai -m query --windows)
+  local displays
+  local windows
+  displays=$(yabai -m query --displays)
+  windows=$(yabai -m query --windows)
   
   # Parse display info efficiently
-  local external_display_index=$(echo "$displays" | jq -r '.[] | select(.index == 1) | .index')
-  local laptop_display_index=$(echo "$displays" | jq -r '.[] | select(.index == 2) | .index')
+  local external_display_index
+  local laptop_display_index
+  external_display_index=$(jq -r '.[] | select(.index == 1) | .index' <<< "$displays")
+  laptop_display_index=$(jq -r '.[] | select(.index == 2) | .index' <<< "$displays")
 
   # Determine target display
   local target_display_index
-  if [ -n "$external_display_index" ]; then
+  if [[ -n "$external_display_index" ]]; then
     target_display_index="$external_display_index"
   else
     target_display_index="$laptop_display_index"
   fi
 
   # Get target display dimensions in one jq call, convert to integers
-  local target_info=$(echo "$displays" | jq -r ".[] | select(.index == $target_display_index) | .frame | \"\(.x | floor) \(.y | floor) \(.w | floor) \(.h | floor)\"")
+  local target_info
+  target_info=$(jq -r ".[] | select(.index == $target_display_index) | .frame | \"\(.x | floor) \(.y | floor) \(.w | floor) \(.h | floor)\"" <<< "$displays")
   read -r target_x target_y target_width target_height <<< "$target_info"
 
   # Calculate all dimensions using bash arithmetic (faster than bc)
@@ -46,17 +51,21 @@ zoom_ghostty_layout() {
   local ghostty_y=$((target_y + target_height - ghostty_height))
 
   # Find window IDs - only Zoom Meeting window (not other Zoom windows)
-  local zoom_id=$(echo "$windows" | jq -r '.[] | select(.title == "Zoom Meeting") | .id' | head -n 1)
-  local ghostty_id=$(echo "$windows" | jq -r '.[] | select(.app == "Ghostty") | .id' | head -n 1)
+  local zoom_id
+  local ghostty_id
+  zoom_id=$(jq -r '.[] | select(.title == "Zoom Meeting") | .id' <<< "$windows" | head -n 1)
+  ghostty_id=$(jq -r '.[] | select(.app == "Ghostty") | .id' <<< "$windows" | head -n 1)
 
   # Get floating status for both windows at once
-  local zoom_floating=$(echo "$windows" | jq -r ".[] | select(.id == $zoom_id) | .\"is-floating\"")
-  local ghostty_floating=$(echo "$windows" | jq -r ".[] | select(.id == $ghostty_id) | .\"is-floating\"")
+  local zoom_floating
+  local ghostty_floating
+  zoom_floating=$(jq -r ".[] | select(.id == $zoom_id) | .\"is-floating\"" <<< "$windows")
+  ghostty_floating=$(jq -r ".[] | select(.id == $ghostty_id) | .\"is-floating\"" <<< "$windows")
 
   # Position Zoom window
-  if [ -n "$zoom_id" ]; then
+  if [[ -n "$zoom_id" ]]; then
     # Ensure window is floating (unmanaged) - only toggle if NOT already floating
-    if [ "$zoom_floating" != "true" ]; then
+    if [[ "$zoom_floating" != "true" ]]; then
       yabai -m window "$zoom_id" --toggle float
     fi
     # Move to target display first
@@ -69,9 +78,9 @@ zoom_ghostty_layout() {
   fi
 
   # Position Ghostty window
-  if [ -n "$ghostty_id" ]; then
+  if [[ -n "$ghostty_id" ]]; then
     # Ensure window is floating (unmanaged) - only toggle if NOT already floating
-    if [ "$ghostty_floating" != "true" ]; then
+    if [[ "$ghostty_floating" != "true" ]]; then
       yabai -m window "$ghostty_id" --toggle float
     fi
     # Move to target display first
