@@ -31,7 +31,7 @@ return {
           submit = {
             "<CR>", -- Normal mode, just Enter
             {
-              "<C-CR>",
+              "<CR>",
               mode = { "n", "v", "i" },
             },
           },
