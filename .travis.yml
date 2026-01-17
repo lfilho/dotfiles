@@ -9,10 +9,10 @@ git:
 matrix:
   include:
     - os: osx
-      osx_image: xcode10.1
+      osx_image: xcode14.2
     - os: linux
       sudo: required
-      dist: focal
+      dist: jammy
 
 before_install: ./test/travis-before-install.sh
 

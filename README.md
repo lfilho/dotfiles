@@ -56,7 +56,7 @@ sh -c "`curl -fsSL https://raw.githubusercontent.com/lfilho/dotfiles/main/instal
 
 _Please do help us improving Linux support in this repo ;-)_
 
-Linux installation is finnicky and might require running some of the commands from `Rakefile` manually. PRs are welcome! :)
+Linux installation is finnicky and might require running some of the commands manually. PRs are welcome! :)
 
 _TIP_: You can check the [`Dockerfile`](./Dockerfile) to see what's need for a basic installation.
 
@@ -79,7 +79,7 @@ Upgrading is easy.
 ```bash
 cd ~/.yadr
 git pull --rebase
-rake update
+./install.sh
 ```
 
 ## What is YADR?

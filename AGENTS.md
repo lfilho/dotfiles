@@ -60,7 +60,7 @@ YADR is an **opinionated, production-ready dotfiles repository** optimized for s
 ### Installation Model
 
 ```
-Git Clone → Rake Automation → Homebrew Packages → Symlink Configs → Prezto Setup → Font Installation
+Git Clone → Automated Install → Homebrew Packages → Symlink Configs → Prezto Setup → Font Installation
 ```
 
 **Key Concepts:**
@@ -111,7 +111,9 @@ Git Clone → Rake Automation → Homebrew Packages → Symlink Configs → Prez
 ├── bin/                    # Custom scripts
 ├── doc/                    # Documentation
 ├── test/                   # CI/CD testing
-├── Rakefile                # Installation automation (312 lines)
+├── lib/                    # Installation system
+│   ├── install.sh          # All installation functions (619 lines)
+│   └── main.sh             # Main orchestrator (52 lines)
 ├── install.sh              # Entry point script
 ├── Brewfile                # Package dependencies (categorized)
 ├── migration-todo.md       # Pending NeoVim migration tasks
@@ -122,7 +124,8 @@ Git Clone → Rake Automation → Homebrew Packages → Symlink Configs → Prez
 
 | File | Purpose | When to Modify |
 |------|---------|----------------|
-| `Rakefile` | Installation logic | Adding new symlinks, install steps |
+| `lib/install.sh` | Installation functions | Adding new installation logic |
+| `lib/main.sh` | Installation orchestrator | Changing installation flow/order |
 | `Brewfile` | Package dependencies (well-categorized) | Adding new tools/dependencies |
 | `zsh/zshrc` | Zsh entry point | Never (use customization hooks) |
 | `zsh/aliases.zsh` | Shell aliases | Adding new command aliases |
@@ -138,25 +141,43 @@ Git Clone → Rake Automation → Homebrew Packages → Symlink Configs → Prez
 
 ## Installation System
 
-### How Installation Works (Rakefile)
+### How Installation Works
 
-**Tasks:**
+YADR uses an automated installation system split into two files for simplicity:
 
-1. `:install` (default) - Full installation
-   - Updates git submodules
-   - Installs Homebrew (macOS/Linux)
-   - Runs `brew bundle install` from Brewfile
-   - Creates symlinks for all config files
-   - Installs Prezto and creates customization directories
-   - Installs fonts
-   - Bootstraps iTerm2 (macOS only)
-   - Installs Python/Ruby/npm packages for NeoVim
+**Architecture:**
 
-2. `:update` - Re-runs installation (same as `:install`)
+1. **`lib/install.sh`** (619 lines) - All installation functions organized by category:
+   - Logging functions (colored output, banners)
+   - Platform detection (macOS/Linux)
+   - User prompts (interactive mode)
+   - File operations (backup, symlinks)
+   - Git operations (submodules)
+   - Homebrew installation (platform-aware)
+   - Package installation (pip, gem, npm)
+   - Symlink creation (modern configs)
+   - Prezto installation (shell switching)
+   - Font installation
+   - iTerm2 bootstrap (macOS only)
+   - Validation (prerequisites, symlinks, packages)
 
-3. `:submodule_init` - Initialize git submodules
+2. **`lib/main.sh`** (52 lines) - Main orchestrator that:
+   - Sources all installation functions
+   - Calls installers in the correct order
+   - Handles overall installation flow
 
-4. `:install_prezto` - Set up Prezto framework
+**Installation Flow:**
+
+1. Check prerequisites (git, curl, YADR directory)
+2. Initialize and update git submodules
+3. Install Homebrew and packages (via Brewfile)
+4. Install Python/Ruby/npm packages for NeoVim
+5. Create symlinks for config files (git, ruby, vimify, vim, zsh)
+6. Create modern config symlinks (nvim, ranger, ghostty, etc.)
+7. Install Prezto framework and switch shell to zsh
+8. Install fonts
+9. Bootstrap iTerm2 (macOS only)
+10. Validate installation
 
 **Interactive Mode:**
 
@@ -164,14 +185,28 @@ Git Clone → Rake Automation → Homebrew Packages → Symlink Configs → Prez
 sh -c "`curl -fsSL https://raw.githubusercontent.com/lfilho/dotfiles/main/install.sh`" -s ask
 ```
 
+Or locally:
+```bash
+cd ~/.yadr
+ASK=true ./install.sh
+```
+
 This prompts before installing each component.
 
 **Environment Variables:**
 
-- `ASK=true` - Interactive mode
-- `DEBUG=true` - Dry run (don't execute commands)
-- `SKIP_SUBMODULES=true` - Skip submodule updates
-- `CI=true` - Use minimal Brewfile for CI
+- `ASK=true` - Interactive mode (prompts before each section)
+- `DEBUG=true` - Dry run (shows what would be done, doesn't execute)
+- `SKIP_SUBMODULES=true` - Skip git submodule operations
+- `CI=true` - Use minimal Brewfile for CI testing
+
+**Key Features:**
+
+- **Platform-aware**: Automatically handles macOS/Linux differences
+- **Strict error handling**: Uses `set -euo pipefail` for immediate error detection
+- **Colored logging**: Clear visual feedback with log levels
+- **Idempotent**: Safe to run multiple times
+- **Shellcheck validated**: Zero warnings, follows best practices
 
 ---
 
@@ -393,11 +428,11 @@ Edit `nvim-user-config/lua/plugins/user.lua` and add to the return array.
 1. **Create config directory** in `~/.yadr/[tool-name]/` with config files
 2. **Make scripts executable** before committing: `chmod +x ~/.yadr/[tool-name]/script.sh`
 3. **Add to Brewfile** (if it needs installation) - place in appropriate category
-4. **Update Rakefile** to create symlink in `:install` task (do NOT chmod - already executable in repo)
+4. **Update `lib/install.sh`** to create symlink in `create_config_symlinks()` function
 5. **Add zsh integration** (optional) in `~/.yadr/zsh/[tool-name].zsh` for aliases/environment
 6. **Document** in README.md and this AGENTS.md file
 
-**Key Insight**: Executable permissions are stored in git and should be set before committing, NOT during installation via Rakefile.
+**Key Insight**: Executable permissions are stored in git and should be set before committing, NOT during installation.
 
 **Example**: Adding tool "yabai"
 
@@ -416,17 +451,19 @@ chmod +x ~/.yadr/yabai/scripts.sh
 if OS.mac?
     brew 'koekeishiya/formulae/yabai'  # Window manager
 end
-
-# 4. In Rakefile, in :install task (around line 35)
-# Add after other config symlinks, use platform guards if needed
-if $is_macos
-  run %{ mkdir -p ~/.config/yabai }
-  run %{ ln -nfs ~/.yadr/yabai/yabairc ~/.config/yabai/yabairc }
-end
-# NOTE: No chmod here - files are already executable in repo
 ```
 
 ```bash
+# 4. In lib/install.sh, in create_config_symlinks() function
+# Add after other symlinks, use platform guards if needed
+if is_macos; then
+    echo "mkdir -p ${HOME}/.config/yabai"
+    mkdir -p "${HOME}/.config/yabai"
+
+    echo "ln -nfs ${HOME}/.yadr/yabai/yabairc ${HOME}/.config/yabai/yabairc"
+    ln -nfs "${HOME}/.yadr/yabai/yabairc" "${HOME}/.config/yabai/yabairc"
+fi
+
 # 5. Optional: Create zsh integration
 # In zsh/yabai.zsh
 alias ystart="yabai --start-service"
@@ -516,11 +553,11 @@ echo "prompt mytheme" > ~/.zsh.after/prompt.zsh
 #### Symlinks Not Working
 
 **Problem**: Config files not loading
-**Solution**: Run `rake install` to recreate symlinks
+**Solution**: Run the installer to recreate symlinks
 
 ```bash
 cd ~/.yadr
-rake install
+./install.sh
 ```
 
 #### Prezto Not Loading
@@ -597,13 +634,13 @@ git submodule update --init --recursive
 
 Use platform detection:
 
-```ruby
-# Rakefile
-if $is_macos
+```bash
+# Installation scripts (lib/install.sh)
+if is_macos; then
   # macOS-specific
 else
   # Linux-specific
-end
+fi
 ```
 
 ```lua
@@ -670,7 +707,7 @@ git submodule update --init --recursive
 - `~/.gitconfig.user`
 - `~/.tmux.conf.user`
 
-The `Rakefile` already handles this with backup logic.
+The installer already handles this with backup logic.
 
 #### 9. Version Pinning
 
@@ -750,11 +787,13 @@ The repository has pending NeoVim migration tasks:
 
 ```bash
 # Installation/Update
-cd ~/.yadr && rake install
-cd ~/.yadr && rake update
+cd ~/.yadr && ./install.sh
 
 # Interactive installation
-cd ~/.yadr && ASK=true rake install
+cd ~/.yadr && ASK=true ./install.sh
+
+# Dry run (see what would be done)
+cd ~/.yadr && DEBUG=true ./install.sh
 
 # Update submodules
 cd ~/.yadr && git submodule update --init --recursive
@@ -842,25 +881,6 @@ When assisting with this repository:
 
 ---
 
-**Last Updated**: 2026-01-11
+**Last Updated**: 2026-01-16
 **Maintained By**: @lfilho
-**AI Agent Guide Version**: 1.1
-
----
-
-## Recent Changes
-
-### Version 1.1
-
-**Documentation Improvements:**
-- Updated `nvim-user-config/README.md` - Complete rewrite for Lua/AstroNvim structure
-- Created `ghostty/README.md` - Comprehensive Ghostty terminal guide with 13 shader effects
-- Updated main `README.md` - Added Ghostty, fzf-tab, and fast-syntax-highlighting
-- Categorized `Brewfile` - Organized into logical sections with descriptions
-- Fixed documentation path references in main README
-- Updated AGENTS.md to reflect all recent changes
-
-**Key Additions:**
-- Ghostty terminal emulator with custom cursor shaders
-- fzf-tab for enhanced shell tab completion
-- fast-syntax-highlighting for faster shell syntax highlighting
+**AI Agent Guide Version**: 1.2

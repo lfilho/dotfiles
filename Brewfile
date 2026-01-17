@@ -1,9 +1,9 @@
 # ============================================================================
 # Homebrew Taps
 # ============================================================================
-tap 'homebrew/bundle'
 tap 'jandedobbeleer/oh-my-posh'
 tap 'koekeishiya/formulae'
+tap 'jesseduffield/lazygit'
 
 if OS.linux?
    tap 'gromgit/fuse'
@@ -61,7 +61,6 @@ brew 'eza'                     # Modern ls replacement
 brew 'fd'                      # Modern find replacement
 brew 'ripgrep'                 # Fast grep replacement
 brew 'tree'                    # Directory tree viewer
-brew 'rename'                  # Perl rename utility
 brew 'highlight'               # Syntax highlighter
 
 # --- Git & Version Control ---
@@ -84,10 +83,12 @@ brew 'jq'                      # JSON manipulation tool
 brew 'ffmpeg'                  # Video processing
 brew 'imagemagick'             # Image processing
 brew 'lame'                    # MP3 encoder
-brew 'pngpaste'                # Paste images from clipboard
 brew 'podofo'                  # PDF toolkit
+
+if OS.mac?
+    brew 'pngpaste'            # Paste images from clipboard (macOS only)
+end
 brew 'mermaid-cli'             # Diagram generation
-brew 'tidy-html5'              # HTML tidy tool
 
 # --- Utilities ---
 brew 'wget'                    # File downloader

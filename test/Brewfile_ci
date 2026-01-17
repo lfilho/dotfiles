@@ -1,11 +1,11 @@
-tap 'homebrew/bundle'
-tap 'homebrew/completions'
-tap 'homebrew/core'
+# Minimal Brewfile for CI/testing
+# Only essential packages for fast CI builds
 
-brew 'fasd'
 brew 'gh'
 brew 'neovim'
 brew 'python3'
 brew 'ripgrep'
 brew 'zsh'
-brew 'reattach-to-user-namespace'
+brew 'git'
+brew 'fzf'
+brew 'bat'

@@ -3,21 +3,26 @@
 # meant for smoke testing the installation process in a CI environment
 
 # Sanity test for ZSH:
-running_shell=`ps -p $$ -ocomm= | tail -1 | awk '{print $NF}'`
+running_shell=$(ps -p $$ -ocomm= | tail -1 | awk '{print $NF}')
 if [[ ! "$running_shell" =~ "zsh" ]]; then
   echo "Your shell seems not to have changed to zsh."
   exit 1
 fi
 
-# Testing the existance of a few packages we install
-# (via Brew on OSX, apt-get on Linux)
-if [[ "`type fasd`" =~ "not found" ]]; then
-  echo "FASD not found. Looks like the default packages were not installed."
+# Testing the existence of essential packages we install
+# (via Homebrew)
+if [[ "$(type nvim)" =~ "not found" ]]; then
+  echo "NeoVim (nvim) not found. Looks like the default packages were not installed."
   exit 1
 fi
 
-if [[ "`type nvim`" =~ "not found" ]]; then
-  echo "NeoVim (nvim) not found. Looks like the default packages were not installed."
+if [[ "$(type git)" =~ "not found" ]]; then
+  echo "Git not found. Looks like the default packages were not installed."
+  exit 1
+fi
+
+if [[ "$(type fzf)" =~ "not found" ]]; then
+  echo "fzf not found. Looks like the default packages were not installed."
   exit 1
 fi
 

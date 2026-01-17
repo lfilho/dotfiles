@@ -1,17 +1,54 @@
 # Tests
 
-Right now we have Travis configured to do some basic testing:
+Travis CI is configured for automated testing on multiple platforms:
 
-- It runs the installation for the following OSes:
-  - MacOS El Capitan (XCode 8)
-  - MacOS Sierra (XCode 8.3.3)
-  - Ubuntu 16.04 (via Docker)
-- And afterwards it does some smoke testing to see if installation did what's expected of it.
+## Test Matrix
 
-See [.travis.yml](../.travis.yml) and the other files in this folder for details.
+The installation is tested on:
+- **macOS**: Xcode 14.2 (macOS 12 Monterey)
+- **Linux**: Ubuntu 22.04 Jammy (via Docker)
 
-It's a very basic testing and we could definetely use some help to improve it ;-)
+## Test Flow
 
-**IDEA:**
+1. **before_install** (`travis-before-install.sh`): Prepares the environment
+   - macOS: Moves the build directory to `~/.yadr`
+   - Linux: Installs Docker Compose
 
-- Maybe we could add a step with https://github.com/koalaman/shellcheck ?
+2. **install** (`travis-install.sh`): Runs the installation
+   - macOS: Executes `./install.sh` directly
+   - Linux: Builds Docker image with `docker build -t yadr .`
+
+3. **script** (`travis-test-script.sh`): Runs smoke tests
+   - Executes `install-smoke-test.sh` which verifies:
+     - Shell changed to zsh
+     - Essential packages installed (nvim, git, fzf)
+
+## Files
+
+- **Brewfile_ci**: Minimal package list for faster CI builds (used when `CI=true`)
+- **install-smoke-test.sh**: Basic smoke tests to verify successful installation
+- **travis-*.sh**: Travis CI lifecycle scripts
+
+## Local Testing
+
+You can simulate CI builds locally:
+
+```bash
+# Test with minimal Brewfile
+CI=true ./install.sh
+
+# Test with Docker (Linux)
+docker build -t yadr-test .
+docker run -it yadr-test
+
+# Run smoke tests
+./test/install-smoke-test.sh
+```
+
+## Future Improvements
+
+- Add shellcheck validation for all bash scripts
+- Test on more OS versions
+- Add integration tests for key features
+- Test prezto module loading
+- Verify neovim plugin installation
