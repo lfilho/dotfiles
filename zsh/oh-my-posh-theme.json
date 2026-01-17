@@ -163,6 +163,7 @@
           "template": " \uea83 {{ path .Path .Location }} ",
           "foreground": "p:base",
           "background": "p:sapphire",
+          "powerline_symbol": "\ue0b0",
           "type": "path",
           "style": "powerline"
         },
