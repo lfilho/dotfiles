@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test-macos:
+    name: Test on macOS
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 1
+
+      - name: Install YADR
+        env:
+          CI: true
+        run: |
+          mv "$GITHUB_WORKSPACE" ~/.yadr
+          cd ~/.yadr
+          ./install.sh
+
+      - name: Run smoke tests
+        run: ~/.yadr/test/install-smoke-test.sh
+
+  test-linux:
+    name: Test on Linux (Docker)
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 1
+
+      - name: Build Docker image
+        run: docker build --build-arg CI=true -t yadr .
+
+      - name: Run smoke tests in container
+        run: docker run yadr bash -c "~/.yadr/test/install-smoke-test.sh"
