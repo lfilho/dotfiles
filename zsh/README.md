@@ -9,7 +9,6 @@ We've also provided lots of enhancements:
 * Fuzzy matching - if you mistype a directory name, tab completion will fix it
 * [fasd](https://github.com/clvv/fasd) integration - hit <kbd>z</kbd> and partial match for recently used directory. Tab completion enabled.
 * [Prezto - the power behind YADR's zsh](http://github.com/sorin-ionescu/prezto)
-* [How to add your own ZSH theme](doc/zsh/themes.md)
 
 ## Customizing ZSH with ~/.zsh.after/ and ~/.zsh.before/
 
