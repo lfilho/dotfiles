@@ -13,29 +13,6 @@ sh -c "`curl -fsSL https://raw.githubusercontent.com/lfilho/dotfiles/main/instal
 
 ---
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-Table of Contents:
-
-- [Installation](#installation)
-  - [One liner for OSX](#one-liner-for-osx)
-  - [Instructions for Linux](#instructions-for-linux)
-  - [Wait, you're not done!](#wait-youre-not-done)
-- [Upgrading](#upgrading)
-- [What is YADR?](#what-is-yadr)
-- [What is (this fork's version of) YADR?](#what-is-this-forks-version-of-yadr)
-- [What's included, how to learn, how to customize?](#whats-included-how-to-learn-how-to-customize)
-- [Docker Support](#docker-support)
-- [Testing](#testing)
-- [Screenshot](#screenshot)
-- [Vimization of everything](#vimization-of-everything)
-- [OSX](#osx)
-- [Credits](#credits)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
----
-
 ## Installation
 
 ### One liner for OSX
@@ -56,7 +33,7 @@ sh -c "`curl -fsSL https://raw.githubusercontent.com/lfilho/dotfiles/main/instal
 
 _Please do help us improving Linux support in this repo ;-)_
 
-Linux installation is finnicky and might require running some of the commands manually. PRs are welcome! :)
+Linux installation is finicky and might require running some of the commands manually. PRs are welcome! :)
 
 _TIP_: You can check the [`Dockerfile`](./Dockerfile) to see what's need for a basic installation.
 
@@ -95,19 +72,19 @@ git pull --rebase
 
 This is @lfilho's fork of the great work done by Yan (@skwp), [Yadr](https://github.com/skwp/dotfiles).
 
-I've been using Yadr since 2013 but since a couple of years ago my preferences and configurations started to diverge too much from upstream. So now my repo is barely mergeable with the original one. Although I'm still a contributor there, my main focus should on my fork (unless we converge again in the future of course :-)).
+I've been using Yadr since 2013 but after a while my preferences and configurations started to diverge too much from upstream. So now my fork has deviated quite a bit and pretty unmergeable with the upstream one. Although I'm still a contributor there, my main focus should on my fork (unless we converge again in the future of course :-)).
 
 Here are the differences in a nutshell (also make sure you read the [What's included, how to learn, how to customize?](#whats-included-how-to-learn-how-to-customize) section):
 
 - NeoVim in Terminal rather than GUI MacVim
 - Generally faster vim experience (mostly because of RipGrep and NeoVim's async stuff, but we also use less plugins)
 - Keymaps that don't rely on MacOS's <kbd>Cmd</kbd> key, so keymaps would stay cohesive in both TUI vim, GUI vim and Linux environments.
-- Testing. We have basic CI testing. See more about it in the [Testing](#testing) section.
+- Testing. We have basic CI testing for both Linux and Mac. See more about it in the [Testing](#testing) section.
 - Different set of VIM plugins. That's too big of a list to keep up to date here in README so if you're interested you're better off comparing the two repo's plugins. What I can say is:
   - We focus less on Ruby, since it's not my most used language
   - We focus a little more on Javascript/Node
   - We focus on plugins that work better with NeoVim's better features and architecture
-- Couple of new aliases for command line and also git
+- Couple of new aliases
 - Different file and folder organization and conventions for vim plugins and configurations (all contained to installation folder)
 - Automated iTerm2 configuration (including themes and colors)
 - Ghostty terminal emulator support with custom shader effects (Tesla coil, glow, blaze cursor animations)
@@ -116,7 +93,8 @@ Here are the differences in a nutshell (also make sure you read the [What's incl
 - Brew packages. I have added a [`Brewfile`](./Brewfile) which makes easier to mantain and more flexible for the community to customize (you can point `brew` to different Brewfiles whenever you need; also easier to customize in your own fork)
 - Docker. Means you can test this repo in a Docker container without messing with your host environment until you're sure. More on that in the [Docker Support](#docker-support) section below.
 - Linux support. It's still very far from ideal, but it's my intention to leave the repo working for both MacOS and Linux as well as we can. The initial effort is done via the Docker support. The community can take it from there and help improve things.
-- Themes and colors. I'm not a fan of Solarized so I removed it and so far I'm enjoying Gruvbox theme (both for Vim and the terminal). I have also created my own zsh prompt. There are some screenshots in the [Screenshots](#screenshots) section below.
+- Themes and colors, but defaulting to Catppuccin everywhere possible.
+- Moder tools like bat, delta, eza, atuin, etc
 
 ## What's included, how to learn, how to customize?
 
@@ -144,15 +122,9 @@ Head to [test/README.md](./test/README.md) for more details.
 
 ## Screenshot
 
-Here's how my zsh prompt looks like on iTerm:
+Here's how it looks like on Ghostty (one neovim pane + 2 different zsh panes):
 
-![](./doc/screenshot-iterm-gruvbox.png)
-
-And here's another example inside a tmux's pane with tmux's statusline (powerline style):
-
-![](./doc/screenshot-tmux-gruvbox.png)
-
-It's using Gruvbox colors. For screenshots on how Vim looks with Gruvbox, you can check [their gallery](https://github.com/morhetz/gruvbox/wiki/Gallery) out.
+![](https://github.com/user-attachments/assets/7898891f-bf1a-4f96-9b88-805861488b1d)
 
 ## Vimization of everything
 
