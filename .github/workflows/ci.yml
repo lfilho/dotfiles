@@ -23,12 +23,14 @@ jobs:
         env:
           CI: true
         run: |
-          mv "$GITHUB_WORKSPACE" ~/.yadr
+          cp -R "$GITHUB_WORKSPACE" ~/.yadr
           cd ~/.yadr
           ./install.sh
 
       - name: Run smoke tests
-        run: ~/.yadr/test/install-smoke-test.sh
+        run: |
+          cd ~/.yadr
+          ./test/install-smoke-test.sh
 
   test-linux:
     name: Test on Linux (Docker)
@@ -45,4 +47,4 @@ jobs:
         run: docker build --build-arg CI=true -t yadr .
 
       - name: Run smoke tests in container
-        run: docker run yadr bash -c "~/.yadr/test/install-smoke-test.sh"
+        run: docker run yadr zsh -c "source ~/.zshrc && ~/.yadr/test/install-smoke-test.sh"
