@@ -8,9 +8,13 @@
 # source "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
 
 # fasd & fzf change directory - jump using `fasd` if given argument, filter output of `fasd` using `fzf` else
-unalias z #removing fasd's alias for z first
-
+# Initialize fasd on first use if it's lazy-loaded
 z() {
+  # Initialize fasd if it's lazy-loaded
+  if typeset -f _fasd_lazy_init >/dev/null; then
+    _fasd_lazy_init
+  fi
+
   [ $# -gt 0 ] && fasd_cd -d "$*" && return
   local dir
   dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
