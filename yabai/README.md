@@ -57,6 +57,10 @@ Once zsh integration is loaded, you can use these commands:
 - `ymax` - Toggle maximize (fullscreen) for the currently focused window
 - `ylayout-zoom` - Set up the Zoom + Ghostty layout (see below)
 
+### Window Resizing (via Floating)
+- `yfloat` - Toggle floating mode for focused window (enables mouse resizing)
+- `yfloat-center` - Toggle floating and center window at 50% size
+
 ### Service Management
 - `ystart` - Start yabai service
 - `ystop` - Stop yabai service
@@ -90,12 +94,45 @@ This layout is perfect for:
 ylayout-zoom
 ```
 
+## Resizing Windows
+
+Since this configuration uses **stack layout** by default, windows cannot be resized while tiled. To resize a window:
+
+### Option 1: Toggle Floating Mode (Recommended)
+1. Focus the window you want to resize
+2. In Alfred (or terminal), run: `yfloat`
+3. The window becomes floating - resize it with your mouse
+4. When done, run `yfloat` again to tile it back
+
+### Option 2: Float and Center
+1. Focus the window you want to resize
+2. Run: `yfloat-center`
+3. Window floats and centers at 50% screen size
+4. Resize with mouse, run `yfloat-center` again to tile back
+
+### Using with Alfred
+
+You can trigger these commands in Alfred:
+
+1. **Alfred Terminal Command**: Just type `yfloat` or `yfloat-center` in Alfred
+2. **Alfred Workflow**: Create a custom workflow that runs these shell commands
+3. **Existing yabai Alfred Workflow**: Add these as new workflow actions
+
+**Typical workflow:**
+```
+1. Focus window → 2. Open Alfred → 3. Type "yfloat" → 4. Resize with mouse → 5. "yfloat" to tile back
+```
+
 ## Keyboard Shortcuts
 
 You can add keyboard shortcuts using skhd (not included) or Karabiner-Elements. Example shortcuts:
 
 - `Cmd + Shift + F` → Maximize window: `~/.yadr/yabai/layouts.sh maximize`
 - `Cmd + Shift + Z` → Zoom layout: `~/.yadr/yabai/layouts.sh zoom-ghostty`
+- `Cmd + Shift + T` → Toggle floating: `~/.yadr/yabai/layouts.sh float`
+- `Cmd + Shift + C` → Float centered: `~/.yadr/yabai/layouts.sh float-center`
+
+Or use Alfred workflows to trigger these commands without keyboard shortcuts.
 
 ## Troubleshooting
 

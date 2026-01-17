@@ -93,6 +93,16 @@ zoom_ghostty_layout() {
   fi
 }
 
+# Function to toggle floating mode for the focused window
+toggle_float() {
+  yabai -m window --toggle float
+}
+
+# Function to toggle floating mode and center the window at 50% size
+float_centered() {
+  yabai -m window --toggle float --grid 4:4:1:1:2:2
+}
+
 # Parse command line arguments
 case "$1" in
 maximize)
@@ -101,12 +111,20 @@ maximize)
 zoom-ghostty)
   zoom_ghostty_layout
   ;;
+float)
+  toggle_float
+  ;;
+float-center)
+  float_centered
+  ;;
 *)
-  echo "Usage: $0 {maximize|zoom-ghostty}"
+  echo "Usage: $0 {maximize|zoom-ghostty|float|float-center}"
   echo ""
   echo "Commands:"
   echo "  maximize      - Toggle fullscreen for the focused window"
   echo "  zoom-ghostty  - Layout Zoom (25% top) and Ghostty (75% bottom)"
+  echo "  float         - Toggle floating mode for focused window"
+  echo "  float-center  - Toggle float and center window at 50% size"
   exit 1
   ;;
 esac
