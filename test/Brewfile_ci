@@ -1,11 +1,22 @@
 # Minimal Brewfile for CI/testing
 # Only essential packages for fast CI builds
 
-brew 'gh'
+# Taps
+tap 'jandedobbeleer/oh-my-posh'
+
+# Core tools
+brew 'git'
 brew 'neovim'
 brew 'python3'
-brew 'ripgrep'
 brew 'zsh'
-brew 'git'
+
+# Shell enhancements
+brew 'atuin'
 brew 'fzf'
+brew 'zsh-vi-mode'
+brew 'oh-my-posh'
+
+# Essential utilities
 brew 'bat'
+brew 'gh'
+brew 'ripgrep'
