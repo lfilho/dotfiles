@@ -21,7 +21,8 @@ theme = catppuccin-mocha.conf
 # font-family = CommitMono Nerd Font Mono
 font-family = Maple Mono
 font-size = 16
-unfocused-split-fill = 555
+unfocused-split-fill = #555
+split-divider-color = #888888
 cursor-invert-fg-bg = true
 
 quick-terminal-size = 60%,60%
@@ -62,4 +63,4 @@ auto-update = check
 mouse-hide-while-typing = true
 keybind = shift+enter=text:\n
 cursor-click-to-move = true
-
+shell-integration-features = sudo, title, ssh-env, ssh-terminfo
