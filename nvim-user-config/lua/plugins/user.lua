@@ -87,7 +87,7 @@ return {
     ---@type render.md.UserConfig
     opts = {
       latex = { enabled = false },
-      file_types = { "markdown", "md", "codecompanion" },
+      file_types = { "markdown", "md", "codecompanion", "AgenticChat", "AgenticInput", "AgenticCode", "AgenticFiles" },
       render_modes = { "n", "no", "c", "t", "i", "ic" },
       checkbox = {
         enable = true,
@@ -146,6 +146,9 @@ return {
         --   "█████ ",
         --   "██████ ",
         -- },
+      },
+      bullet = {
+        icons = { "•", "◦", "⬩", "◇" },
       },
     },
   },
