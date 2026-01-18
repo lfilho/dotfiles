@@ -37,6 +37,67 @@ float)
 float-center)
   yabai -m window "$window_id" --toggle float --grid 4:4:1:1:2:2
   ;;
+left-50)
+  # Ensure window is floating first
+  is_floating=$(yabai -m query --windows --window "$window_id" | jq -r '."is-floating"')
+  [[ "$is_floating" != "true" ]] && yabai -m window "$window_id" --toggle float
+  yabai -m window "$window_id" --grid 1:2:0:0:1:1
+  ;;
+right-50)
+  is_floating=$(yabai -m query --windows --window "$window_id" | jq -r '."is-floating"')
+  [[ "$is_floating" != "true" ]] && yabai -m window "$window_id" --toggle float
+  yabai -m window "$window_id" --grid 1:2:1:0:1:1
+  ;;
+left-30)
+  is_floating=$(yabai -m query --windows --window "$window_id" | jq -r '."is-floating"')
+  [[ "$is_floating" != "true" ]] && yabai -m window "$window_id" --toggle float
+  yabai -m window "$window_id" --grid 10:10:0:0:3:10
+  ;;
+right-30)
+  is_floating=$(yabai -m query --windows --window "$window_id" | jq -r '."is-floating"')
+  [[ "$is_floating" != "true" ]] && yabai -m window "$window_id" --toggle float
+  yabai -m window "$window_id" --grid 10:10:7:0:3:10
+  ;;
+left-70)
+  is_floating=$(yabai -m query --windows --window "$window_id" | jq -r '."is-floating"')
+  [[ "$is_floating" != "true" ]] && yabai -m window "$window_id" --toggle float
+  yabai -m window "$window_id" --grid 10:10:0:0:7:10
+  ;;
+right-70)
+  is_floating=$(yabai -m query --windows --window "$window_id" | jq -r '."is-floating"')
+  [[ "$is_floating" != "true" ]] && yabai -m window "$window_id" --toggle float
+  yabai -m window "$window_id" --grid 10:10:3:0:7:10
+  ;;
+top-50)
+  is_floating=$(yabai -m query --windows --window "$window_id" | jq -r '."is-floating"')
+  [[ "$is_floating" != "true" ]] && yabai -m window "$window_id" --toggle float
+  yabai -m window "$window_id" --grid 2:1:0:0:1:1
+  ;;
+bottom-50)
+  is_floating=$(yabai -m query --windows --window "$window_id" | jq -r '."is-floating"')
+  [[ "$is_floating" != "true" ]] && yabai -m window "$window_id" --toggle float
+  yabai -m window "$window_id" --grid 2:1:0:1:1:1
+  ;;
+top-30)
+  is_floating=$(yabai -m query --windows --window "$window_id" | jq -r '."is-floating"')
+  [[ "$is_floating" != "true" ]] && yabai -m window "$window_id" --toggle float
+  yabai -m window "$window_id" --grid 10:10:0:0:10:3
+  ;;
+bottom-30)
+  is_floating=$(yabai -m query --windows --window "$window_id" | jq -r '."is-floating"')
+  [[ "$is_floating" != "true" ]] && yabai -m window "$window_id" --toggle float
+  yabai -m window "$window_id" --grid 10:10:0:7:10:3
+  ;;
+top-70)
+  is_floating=$(yabai -m query --windows --window "$window_id" | jq -r '."is-floating"')
+  [[ "$is_floating" != "true" ]] && yabai -m window "$window_id" --toggle float
+  yabai -m window "$window_id" --grid 10:10:0:0:10:7
+  ;;
+bottom-70)
+  is_floating=$(yabai -m query --windows --window "$window_id" | jq -r '."is-floating"')
+  [[ "$is_floating" != "true" ]] && yabai -m window "$window_id" --toggle float
+  yabai -m window "$window_id" --grid 10:10:0:3:10:7
+  ;;
 *)
   # Fall back to original script
   ~/.yadr/yabai/layouts.sh "$command"

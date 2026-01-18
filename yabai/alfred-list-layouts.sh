@@ -12,7 +12,7 @@ layouts_file="$HOME/.yadr/yabai/layouts.sh"
 previous_window=$(yabai -m query --windows | jq -r '[.[] | select(.app != "Alfred") | select(.app != "Alfred Preferences")] | sort_by(.["has-focus"], .["focus-history"]) | reverse | .[0].id')
 
 # Parse the case statement to find all command options
-commands=$(grep -A 100 "case \"\$1\" in" "$layouts_file" | grep -E "^[a-z-]+\)" | sed 's/)$//' | grep -v "^\*")
+commands=$(grep -A 100 "case \"\$1\" in" "$layouts_file" | grep -E "^[a-z0-9-]+\)" | sed 's/)$//' | grep -v "^\*")
 
 # Build JSON for Alfred
 echo '{"items":['
@@ -20,8 +20,9 @@ echo '{"items":['
 first=true
 while IFS= read -r cmd; do
   # Get the description from the help text by finding the line with the command
-  # Use word boundaries to match exact command name, take only first match
-  description=$(grep "echo \"  $cmd[[:space:]]" "$layouts_file" | head -1 | sed -E 's/.*echo "  [a-z-]+[[:space:]]+-[[:space:]]+//' | tr -d '"')
+  # Use word boundaries to match exact command name, extract from help text only
+  # The pattern matches: echo "  command      - description"
+  description=$(sed -n '/echo "Commands:"/,/exit 1/p' "$layouts_file" | grep "echo \"  $cmd[[:space:]]" | head -1 | sed -E 's/.*echo "  [a-z0-9-]+[[:space:]]+-[[:space:]]+//' | tr -d '"')
   
   # If no description found, use a default
   [[ -z "$description" ]] && description="Run $cmd layout"

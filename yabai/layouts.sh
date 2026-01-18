@@ -117,14 +117,62 @@ float)
 float-center)
   float_centered
   ;;
+left-50)
+  echo "Handled by alfred-execute-layout.sh"
+  ;;
+right-50)
+  echo "Handled by alfred-execute-layout.sh"
+  ;;
+left-30)
+  echo "Handled by alfred-execute-layout.sh"
+  ;;
+right-30)
+  echo "Handled by alfred-execute-layout.sh"
+  ;;
+left-70)
+  echo "Handled by alfred-execute-layout.sh"
+  ;;
+right-70)
+  echo "Handled by alfred-execute-layout.sh"
+  ;;
+top-50)
+  echo "Handled by alfred-execute-layout.sh"
+  ;;
+bottom-50)
+  echo "Handled by alfred-execute-layout.sh"
+  ;;
+top-30)
+  echo "Handled by alfred-execute-layout.sh"
+  ;;
+bottom-30)
+  echo "Handled by alfred-execute-layout.sh"
+  ;;
+top-70)
+  echo "Handled by alfred-execute-layout.sh"
+  ;;
+bottom-70)
+  echo "Handled by alfred-execute-layout.sh"
+  ;;
 *)
-  echo "Usage: $0 {maximize|zoom-ghostty|float|float-center}"
+  echo "Usage: $0 {maximize|zoom-ghostty|float|float-center|left-50|right-50|left-30|right-30|left-70|right-70|top-50|bottom-50|top-30|bottom-30|top-70|bottom-70}"
   echo ""
   echo "Commands:"
   echo "  maximize      - Toggle fullscreen for the focused window"
   echo "  zoom-ghostty  - Layout Zoom (25% top) and Ghostty (75% bottom)"
   echo "  float         - Toggle floating mode for focused window"
   echo "  float-center  - Toggle float and center window at 50% size"
+  echo "  left-50       - Window 50% width, aligned left"
+  echo "  right-50      - Window 50% width, aligned right"
+  echo "  left-30       - Window 30% width, aligned left"
+  echo "  right-30      - Window 30% width, aligned right"
+  echo "  left-70       - Window 70% width, aligned left"
+  echo "  right-70      - Window 70% width, aligned right"
+  echo "  top-50        - Window 50% height, aligned top"
+  echo "  bottom-50     - Window 50% height, aligned bottom"
+  echo "  top-30        - Window 30% height, aligned top"
+  echo "  bottom-30     - Window 30% height, aligned bottom"
+  echo "  top-70        - Window 70% height, aligned top"
+  echo "  bottom-70     - Window 70% height, aligned bottom"
   exit 1
   ;;
 esac
