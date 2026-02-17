@@ -1,16 +1,19 @@
 # Lazy-load nvm - only initialize when actually used
 export NVM_DIR="$HOME/.config/nvm"
 if [ -s "$NVM_DIR/nvm.sh" ]; then
+  # Define commands that should trigger nvm initialization
+  local nvm_commands=(nvm node npm npx yarn claude-code-acp)
+
   # Initialize nvm once when any node-related command is first used
   _load_nvm() {
-    unset -f nvm node npm npx
+    # Unset all wrapper functions
+    unset -f "${nvm_commands[@]}"
     source "$NVM_DIR/nvm.sh"
     [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
   }
 
   # Create wrapper functions that trigger nvm initialization
-  nvm() { _load_nvm && nvm "$@"; }
-  node() { _load_nvm && node "$@"; }
-  npm() { _load_nvm && npm "$@"; }
-  npx() { _load_nvm && npx "$@"; }
+  for cmd in "${nvm_commands[@]}"; do
+    eval "${cmd}() { _load_nvm && ${cmd} \"\$@\"; }"
+  done
 fi
