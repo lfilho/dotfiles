@@ -24,8 +24,32 @@ return {
   },
   {
     "carlos-algms/agentic.nvim",
+    init = function()
+      -- Add nvm node binaries to PATH for lazy-loaded setups
+      local nvm_dir = vim.env.NVM_DIR or (vim.env.HOME .. "/.config/nvm")
+      local node_bin
+
+      -- Try default version, fallback to latest installed
+      local default_file = nvm_dir .. "/alias/default"
+      if vim.fn.filereadable(default_file) == 1 then
+        local version = vim.fn.readfile(default_file)[1]
+        node_bin = version and (nvm_dir .. "/versions/node/" .. version .. "/bin")
+      end
+
+      if not node_bin or vim.fn.isdirectory(node_bin) == 0 then
+        local versions = vim.fn.readdir(nvm_dir .. "/versions/node")
+        node_bin = #versions > 0 and (nvm_dir .. "/versions/node/" .. versions[#versions] .. "/bin")
+      end
+
+      if node_bin and vim.fn.isdirectory(node_bin) == 1 then
+        vim.env.PATH = node_bin .. ":" .. vim.env.PATH
+      end
+    end,
     opts = {
       provider = "claude-acp", -- Uses existing Claude CLI credentials
+      settings = {
+        move_cursor_to_chat_on_submit = false,
+      },
       keymaps = {
         prompt = {
           submit = {
@@ -98,7 +122,7 @@ return {
         highlight_border = "Folded",
         sign = false,
         border = "thin",
-        position = "right",
+        position = "center",
         width = "block",
         above = "▁",
         below = "─",
