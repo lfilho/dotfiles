@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "WebSearch"
+      "WebSearch",
+      "WebFetch(domain:docs.astronvim.com)",
+      "Bash(curl -fsSL \"https://raw.githubusercontent.com/AstroNvim/astrocommunity/main/lua/astrocommunity/recipes/astrolsp-no-insert-inlay-hints/init.lua\")",
+      "Bash(curl -fsSL \"https://api.github.com/repos/AstroNvim/astrocommunity/contents/lua/astrocommunity/recipes\")",
+      "Bash(python3 -c \"import json,sys; items=json.load\\(sys.stdin\\); [print\\(i['name']\\) for i in items if isinstance\\(items, list\\)]\")"
     ]
   }
 }
