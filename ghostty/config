@@ -1,4 +1,5 @@
 # Appearance
+############
 
 # macos-icon = custom-style
 # macos-icon-ghost-color = #04B575
@@ -29,6 +30,8 @@ quick-terminal-size = 60%,60%
 quick-terminal-position = center
 
 # Shaders
+#########
+
 custom-shader-animation = true
 custom-shader = "shaders/tesla_coil.glsl"
 # custom-shader = "shaders/glow.glsl"
@@ -57,7 +60,27 @@ keybind = opt+down=resize_split:down,10
 keybind = global:cmd+opt+j=new_window
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
 
+keybind = resize/arrow_up=resize_split:up,10
+keybind = resize/arrow_down=resize_split:down,10
+keybind = resize/arrow_left=resize_split:left,10
+keybind = resize/arrow_right=resize_split:right,10
+keybind = resize/escape=deactivate_key_table
+keybind = resize/catch_all=ignore
+
+keybind = cmd+w=activate_key_table:resize
+
+
+# Notifications
+###############
+
+notify-on-command-finish = unfocused
+notify-on-command-finish-action = no-bell,notify
+notify-on-command-finish-after = 2s
+
+# 
+
 # Other
+#######
 
 auto-update = check
 mouse-hide-while-typing = true
