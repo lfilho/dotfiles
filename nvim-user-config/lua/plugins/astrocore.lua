@@ -128,6 +128,7 @@ return {
         tabstop = 4,
         undofile = true,
         updatetime = 300,
+        winborder = "rounded",
         wrap = false,
         wrapscan = true,
         writebackup = false,
@@ -136,6 +137,19 @@ return {
         -- configure global vim variables (vim.g)
         -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
         -- This can be found in the `lua/lazy_setup.lua` file
+      },
+    },
+    -- Treesitter parsers to auto-install (moved from treesitter.lua for v6 compatibility)
+    treesitter = {
+      ensure_installed = {
+        "lua",
+        "vim",
+        "css",
+        "typescript",
+        "javascript",
+        "python",
+        "html",
+        "yaml",
       },
     },
     -- Mappings can be configured through AstroCore as well.
