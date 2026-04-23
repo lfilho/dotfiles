@@ -10,6 +10,7 @@ return {
   { import = "astrocommunity.editing-support.conform-nvim" },
   { import = "astrocommunity.git.codediff-nvim" },
   { import = "astrocommunity.git.openingh-nvim" },
+  { import = "astrocommunity.motion.tabout-nvim" },
   { import = "astrocommunity.motion.vim-matchup" },
   { import = "astrocommunity.pack.astro" },
   { import = "astrocommunity.pack.bash" },

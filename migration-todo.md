@@ -5,5 +5,3 @@
 Check community versions for the bellow:
 https://github.com/folke/trouble.nvim
 
-https://github.com/abecodes/tabout.nvim -- ver se nao conflita com algo
-
