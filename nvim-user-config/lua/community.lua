@@ -20,4 +20,5 @@ return {
   { import = "astrocommunity.pack.yaml" },
   { import = "astrocommunity.recipes.astrolsp-no-insert-inlay-hints" },
   { import = "astrocommunity.recipes.vscode" },
+  { import = "astrocommunity.search.grug-far-nvim" },
 }

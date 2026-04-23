@@ -195,6 +195,11 @@ This will update all plugins to their latest versions and update `lazy-lock.json
 |--------|------|-------------|
 | `/` | Normal | Search forward (with regex mode `\v`) |
 | `?` | Normal | Search backward (with regex mode `\v`) |
+| `<Leader>ss` | Normal | Search/Replace across workspace (grug-far) |
+| `<Leader>se` | Normal | Search filtered by current file extension |
+| `<Leader>sf` | Normal | Search restricted to current file |
+| `<Leader>sw` | Normal/Visual | Search/replace word under cursor or selection |
+| `gS` | Neo-tree/Oil | Search within selected directory |
 
 **Note**: Searches use Perl/Python style regex by default (`\v` mode)
 
