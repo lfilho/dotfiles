@@ -2,6 +2,3 @@
   - Maybe disable https://github.com/famiu/bufdelete.nvim ?
 - how to use the debugger https://github.com/mfussenegger/nvim-dap
 
-Check community versions for the bellow:
-https://github.com/folke/trouble.nvim
-
