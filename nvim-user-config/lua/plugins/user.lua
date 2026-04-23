@@ -111,6 +111,7 @@ return {
     ---@type render.md.UserConfig
     opts = {
       latex = { enabled = false },
+      html = { comment = { conceal = false } },
       file_types = { "markdown", "md", "codecompanion", "AgenticChat", "AgenticInput", "AgenticCode", "AgenticFiles" },
       render_modes = { "n", "no", "c", "t", "i", "ic" },
       checkbox = {
