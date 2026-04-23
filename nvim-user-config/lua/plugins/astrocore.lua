@@ -209,6 +209,40 @@ return {
           desc = "Close buffer from tabline",
         },
 
+        -- Remap split/sort shortcuts: bs=hsplit, bv=vsplit, bS=sort (was b\ / b| / bs)
+        ["<Leader>b\\"] = false,
+        ["<Leader>b|"] = false,
+        ["<Leader>bs"] = {
+          function()
+            require("astroui.status.heirline").buffer_picker(function(bufnr)
+              vim.cmd.split()
+              vim.api.nvim_win_set_buf(0, bufnr)
+            end)
+          end,
+          desc = "Horizontal split buffer from tabline",
+        },
+        ["<Leader>bv"] = {
+          function()
+            require("astroui.status.heirline").buffer_picker(function(bufnr)
+              vim.cmd.vsplit()
+              vim.api.nvim_win_set_buf(0, bufnr)
+            end)
+          end,
+          desc = "Vertical split buffer from tabline",
+        },
+        -- Move sort submenu from bS* (was bs*)
+        ["<Leader>bse"] = false,
+        ["<Leader>bsr"] = false,
+        ["<Leader>bsp"] = false,
+        ["<Leader>bsi"] = false,
+        ["<Leader>bsm"] = false,
+        ["<Leader>bS"] = { desc = require("astroui").get_icon("Sort", 1, true) .. "Sort Buffers" },
+        ["<Leader>bSe"] = { function() require("astrocore.buffer").sort "extension" end, desc = "By extension" },
+        ["<Leader>bSr"] = { function() require("astrocore.buffer").sort "unique_path" end, desc = "By relative path" },
+        ["<Leader>bSp"] = { function() require("astrocore.buffer").sort "full_path" end, desc = "By full path" },
+        ["<Leader>bSi"] = { function() require("astrocore.buffer").sort "bufnr" end, desc = "By buffer number" },
+        ["<Leader>bSm"] = { function() require("astrocore.buffer").sort "modified" end, desc = "By modification" },
+
         ["g;"] = { "g;zz", desc = "Jump to previous position" },
         ["g,"] = { "g,zz", desc = "Jump to next position" },
         ["<C-o>"] = { "<C-o>zz", desc = "Jump to next position" },

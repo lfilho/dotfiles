@@ -188,6 +188,25 @@ This will update all plugins to their latest versions and update `lazy-lock.json
 |--------|------|-------------|
 | `<Leader>bd` | Normal | Close buffer (interactive picker) |
 | `<Leader>c` | Normal | Close current buffer |
+| `<Leader>bs` | Normal | Horizontal split — pick buffer from tabline |
+| `<Leader>bv` | Normal | Vertical split — pick buffer from tabline |
+| `<Leader>bS` | Normal | Sort buffers submenu (`e`xt / `r`el-path / `p`ath / `i`d / `m`odified) |
+
+### File Explorer (Neo-tree)
+
+Open with `<Leader>e`; focus/unfocus with `<Leader>o`.
+
+| Keymap | Description |
+|--------|-------------|
+| `<CR>` / `l` | Open file in current window |
+| `s` | Open in horizontal split |
+| `v` | Open in vertical split |
+| `<C-s>` | Open in horizontal split (same as `s`) |
+| `<C-v>` | Open in vertical split (same as `v`) |
+| `t` | Open in new tab |
+| `w` | Open with window picker |
+| `h` | Collapse / go to parent directory |
+| `O` | Open with system default app |
 
 ### Search & Replace
 
