@@ -264,6 +264,7 @@ return {
       require("mini.ai").setup({
         custom_textobjects = {
           b = { { "%b()", "%b[]", "%b{}" }, "^.%s*().-()%s*.$" },
+          ["_"] = { "_().-()_" },
           -- a = ts_spec({ a = '@parameter.outer', i = '@parameter.outer' }),
           o = ts_spec({
             a = { "@block.outer", "@conditional.outer", "@loop.outer" },
