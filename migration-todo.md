@@ -1,4 +1,0 @@
-- close window/split with a keymap (before it was Q, space-c closes the buffer only, keeping the split)
-  - Maybe disable https://github.com/famiu/bufdelete.nvim ?
-- how to use the debugger https://github.com/mfussenegger/nvim-dap
-
