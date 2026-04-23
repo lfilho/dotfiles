@@ -15,9 +15,5 @@
 -- Update READMe
 --   after is done via polish
 --
--- Setup auto wrap for this files:
--- augroup AutoWrapFiles
---     autocmd!
---     autocmd FileType {tex,markdown,text} call SetupWrapping()
--- augroup END
+-- ✅ Auto wrap for tex, markdown, text files (done - see astrocore.lua autocmds)
 -- test bamboo them for iterm

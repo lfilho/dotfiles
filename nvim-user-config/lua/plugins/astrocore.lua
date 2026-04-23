@@ -152,6 +152,20 @@ return {
         "yaml",
       },
     },
+    -- Autocommands
+    autocmds = {
+      auto_wrap_files = {
+        {
+          event = "FileType",
+          pattern = { "tex", "markdown", "text" },
+          desc = "Enable line wrapping for prose filetypes",
+          callback = function()
+            vim.opt_local.wrap = true
+            vim.opt_local.linebreak = true
+          end,
+        },
+      },
+    },
     -- Mappings can be configured through AstroCore as well.
     -- NOTE: keycodes follow the casing in the vimdocs. For example, `<Leader>` must be capitalized
     mappings = {
