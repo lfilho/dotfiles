@@ -394,6 +394,7 @@ These are custom plugins configured in this dotfiles repo:
 - **tabular** - Align text in tabular format
 - **cosco.vim** - Smart comma/semicolon insertion with `,;`
 - **img-clip.nvim** - Paste images from clipboard with `<Leader>up`
+- **package-info.nvim** - Show package versions inline in `package.json` (use `:PackageInfo*` commands)
 - **bullets.vim** - Auto-format markdown lists and checkboxes
 
 ### Adding More Plugins

@@ -502,6 +502,12 @@ return {
     },
   },
   {
+    "vuki656/package-info.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    ft = "json",
+    opts = {},
+  },
+  {
     "bullets-vim/bullets.vim",
     ft = { "markdown", "text", "gitcommit", "scratch" },
     config = function()
