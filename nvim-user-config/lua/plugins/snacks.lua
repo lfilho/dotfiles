@@ -2,7 +2,23 @@ return {
   {
     "folke/snacks.nvim",
     opts = {
+      picker = {
+        sources = {
+          notifications = {
+            win = {
+              preview = {
+                wo = {
+                  wrap = true,
+                },
+              },
+            },
+          },
+        },
+      },
       styles = {
+        notification = {
+          wo = { wrap = true },
+        },
         snacks_image = {
           relative = "editor",
           col = -1,
