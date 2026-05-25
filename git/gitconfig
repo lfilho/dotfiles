@@ -91,13 +91,10 @@
   prompt = false
   keepBackup = false
   conflictstyle = diff3
-[mergetool "vimdiff"]
-  cmd="nvim -d -c 'Gvdiffsplit' $MERGED"     # use fugitive.vim for 3-way merge
-  keepbackup=false
 [merge]
   summary = true
   verbosity = 1
-  tool = vimdiff
+  tool = nvimdiff2
 [apply]
   whitespace = nowarn
 [branch]
