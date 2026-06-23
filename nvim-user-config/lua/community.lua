@@ -9,7 +9,7 @@ return {
   { import = "astrocommunity.debugging.nvim-dap-repl-highlights" },
   { import = "astrocommunity.debugging.nvim-dap-virtual-text" },
   { import = "astrocommunity.diagnostics.trouble-nvim" },
-  { import = "astrocommunity.editing-support.codecompanion-nvim" },
+  { import = "astrocommunity.ai.codecompanion-nvim" },
   { import = "astrocommunity.editing-support.conform-nvim" },
   { import = "astrocommunity.git.codediff-nvim" },
   { import = "astrocommunity.git.openingh-nvim" },
