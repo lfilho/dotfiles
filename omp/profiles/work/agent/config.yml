@@ -1,48 +1,76 @@
-providers: 
-  webSearchOrder: 
-    - anthropic
-    - gemini
-    - codex
 setupVersion: 2
-startup: 
+startup:
   checkUpdate: true
   changelogMode: expanded
-modelRoles: 
+modelRoles:
   slow: anthropic/claude-opus-4-8
   default: anthropic/claude-sonnet-5
-# Safety net, not the isolation boundary (that's the profile itself: this
-# file lives under ~/.omp/profiles/work/agent/, entirely separate storage
-# from the personal profile, including its own credential store). Still
-# worth keeping so a stray ollama/lm-studio discovery never shows up as a
-# pickable default here.
 enabledModels:
   - anthropic/*
   - ollama/*
   - llama.cpp/*
   - lm-studio/*
 defaultThinkingLevel: auto
-composer: 
+composer:
   shape: box
+theme:
+  dark: dark-catppuccin
 symbolPreset: nerd
-terminal: 
+tui:
+  textSizing: true
+task:
+  showResolvedModelBadge: true
+statusLine:
+  preset: custom
+  leftSegments:
+    - model
+    - mode
+    - path
+    - git
+    - pr
+  rightSegments:
+    - session_name
+    - context_pct
+    - cost
+  separator: powerline-thin
+  showHookStatus: true
+  segmentOptions:
+    model:
+      showThinkingLevel: true
+    path:
+      abbreviate: true
+      maxLength: 40
+      stripWorkPrefix: true
+    git:
+      showBranch: true
+      showStaged: true
+      showUnstaged: true
+      showUntracked: true
+  sessionAccent: true
+  transparent: false
+terminal:
   showProgress: true
-display: 
+display:
+  shimmer: classic
   showTokenUsage: true
   cacheMissMarker: true
-task: 
-  showResolvedModelBadge: true
 omitThinking: true
 textVerbosity: low
-tier: 
+tier:
   anthropic: none
 personality: pragmatic
 steeringMode: one-at-a-time
-read: 
+read:
   renderMarkdown: true
   toolResultPreview: true
-github: 
+github:
   enabled: true
-security: 
+security:
   enabled: true
-tools: 
+tools:
   approvalMode: yolo
+providers:
+  webSearchOrder:
+    - anthropic
+    - gemini
+    - codex
