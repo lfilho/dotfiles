@@ -1,0 +1,38 @@
+providers: 
+  webSearchOrder: 
+    - anthropic
+    - gemini
+    - codex
+setupVersion: 2
+startup: 
+  checkUpdate: true
+  changelogMode: expanded
+modelRoles: 
+  slow: anthropic/claude-opus-4-8
+  default: anthropic/claude-sonnet-5
+defaultThinkingLevel: auto
+composer: 
+  shape: box
+symbolPreset: nerd
+terminal: 
+  showProgress: true
+display: 
+  showTokenUsage: true
+  cacheMissMarker: true
+task: 
+  showResolvedModelBadge: true
+omitThinking: true
+textVerbosity: low
+tier: 
+  anthropic: none
+personality: pragmatic
+steeringMode: one-at-a-time
+read: 
+  renderMarkdown: true
+  toolResultPreview: true
+github: 
+  enabled: true
+security: 
+  enabled: true
+tools: 
+  approvalMode: yolo

@@ -1,0 +1,8 @@
+{
+  "name": "omp-plugins",
+  "private": true,
+  "dependencies": {
+    "omp-vim": "github:thiblahute/omp-vim",
+    "yaml": "^2.9.0"
+  }
+}

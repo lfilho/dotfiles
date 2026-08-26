@@ -24,14 +24,22 @@ task :install => [:submodule_init, :submodules] do
 
   run %{ ln -nfs ~/.yadr/nvim-user-config ~/.config/nvim}
 
-  run %{ mkdir -p ~/.config/ranger }
-  run %{ mkdir -p ~/.config/lazygit }
   run %{ ln -nfs ~/.yadr/ranger ~/.config/ranger }
   run %{ ln -nfs ~/.yadr/ghostty ~/.config/ghostty }
   run %{ ln -nfs ~/.yadr/wezterm ~/.config/ }
   run %{ ln -nfs ~/.yadr/lazygit ~/.config/lazygit }
   run %{ ln -nfs ~/.yadr/eza ~/.config/eza }
   run %{ ln -nfs ~/.yadr/bat ~/.config/bat }
+  run %{ ln -nfs ~/.yadr/cmux ~/.config/cmux }
+
+  run %{ mkdir -p ~/.omp/agent }
+  run %{ mkdir -p ~/.omp/plugins }
+  run %{ ln -nfs ~/.yadr/omp/agent/config.yml ~/.omp/agent/config.yml }
+  run %{ ln -nfs ~/.yadr/omp/plugins/package.json ~/.omp/plugins/package.json }
+  run %{ ln -nfs ~/.yadr/omp/plugins/omp-plugins.lock.json ~/.omp/plugins/omp-plugins.lock.json }
+  run %{ ln -nfs ~/.yadr/omp/plugins/bun.lock ~/.omp/plugins/bun.lock }
+
+  run %{ ln -nfs ~/.yadr/warp ~/.warp }
   run %{ touch ~/.hushlogin }
 
   if $is_macos

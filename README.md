@@ -95,6 +95,9 @@ Here are the differences in a nutshell (also make sure you read the [What's incl
 - Linux support. It's still very far from ideal, but it's my intention to leave the repo working for both MacOS and Linux as well as we can. The initial effort is done via the Docker support. The community can take it from there and help improve things.
 - Themes and colors, but defaulting to Catppuccin everywhere possible.
 - Moder tools like bat, delta, eza, atuin, etc
+- Warp terminal configuration (settings, keybindings, custom Catppuccin theme)
+- OMP (Oh My Pi) AI coding agent configuration synced across machines
+- cmux terminal/IDE configuration
 
 ## What's included, how to learn, how to customize?
 

@@ -1,0 +1,7 @@
+---
+"pane_group:navigate_left": alt-cmd-h
+"input:open_completion_suggestions": ctrl-space
+"pane_group:navigate_down": alt-cmd-j
+"editor_view:insert_autosuggestion": tab
+"pane_group:navigate_up": alt-cmd-k
+"pane_group:navigate_right": alt-cmd-l

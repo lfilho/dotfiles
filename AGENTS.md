@@ -75,8 +75,8 @@ Git Clone → Automated Install → Homebrew Packages → Symlink Configs → Pr
 | Source | Destination | Purpose |
 |--------|-------------|---------|
 | `~/.yadr/nvim-user-config` | `~/.config/nvim` | NeoVim configuration |
-| `~/.yadr/ranger` | `~/.config/ranger` | Ranger file manager |
 | `~/.yadr/ghostty` | `~/.config/ghostty` | Ghostty terminal |
+| `~/.yadr/cmux` | `~/.config/cmux` | cmux terminal/IDE config |
 | `~/.yadr/wezterm` | `~/.config/wezterm` | WezTerm terminal |
 | `~/.yadr/eza` | `~/.config/eza` | Eza (modern ls) |
 | `~/.yadr/bat` | `~/.config/bat` | Bat syntax highlighter |
@@ -84,6 +84,9 @@ Git Clone → Automated Install → Homebrew Packages → Symlink Configs → Pr
 | `~/.yadr/yabai/yabairc` | `~/.config/yabai/yabairc` | Yabai window manager (macOS) |
 | `~/.yadr/zsh/prezto` | `~/.zprezto` | Prezto framework |
 | `~/.yadr/git/*` | `~/.gitconfig`, etc. | Git configuration |
+| `~/.yadr/omp/agent/config.yml` | `~/.omp/agent/config.yml` | OMP shared agent config |
+| `~/.yadr/omp/plugins/*` | `~/.omp/plugins/*` | OMP plugin manifest/lockfile |
+| `~/.yadr/warp` | `~/.warp` | Warp terminal settings, keybindings, theme |
 
 ---
 
@@ -105,7 +108,9 @@ Git Clone → Automated Install → Homebrew Packages → Symlink Configs → Pr
 ├── eza/                    # Eza configuration
 ├── yabai/                  # Yabai window manager (macOS)
 ├── vimify/                 # Vim keybindings for CLI tools
-├── ctags/                  # CTags for code navigation
+├── omp/                    # OMP (Oh My Pi) AI coding agent config
+├── cmux/                   # cmux terminal/IDE config
+├── warp/                   # Warp terminal configuration
 ├── ruby/                   # Ruby gem config
 ├── fonts/                  # Patched Powerline fonts
 ├── bin/                    # Custom scripts
@@ -134,8 +139,9 @@ Git Clone → Automated Install → Homebrew Packages → Symlink Configs → Pr
 | `git/gitconfig` | Git aliases/settings | Adding git customizations |
 | `ghostty/config` | Ghostty terminal config | Terminal appearance changes |
 | `README.md` | Main documentation | Feature additions, major changes |
-| `nvim-user-config/README.md` | NeoVim guide | NeoVim customization changes, plugin list updates |
 | `ghostty/README.md` | Ghostty guide | Ghostty shader/config changes |
+| `omp/agent/config.yml` | OMP agent config | Model roles, personality, tool approval mode |
+| `warp/settings.toml` | Warp terminal settings | Warp preferences/appearance changes |
 
 ---
 
@@ -311,6 +317,20 @@ git/
 - 15+ color schemes (Catppuccin variants, Gruvbox, GitHub Dark, etc.)
 - `bootstrap-iterm2.sh` - Auto-configuration script
 
+**Warp** (warp/):
+- `settings.toml` - App preferences: vim mode, compact spacing, vertical tabs, secret redaction, agent execution profile
+- `keybindings.yaml` - Custom pane navigation (`alt-cmd-h/j/k/l`)
+- `tab_configs/startup_config.toml` - Default new-tab layout
+- `themes/catppuccin_mocha.yaml` + `themes/pipboy.jpg` - Custom Catppuccin Mocha theme with Pip-Boy background
+- Whole directory symlinked (`~/.warp -> ~/.yadr/warp`), same pattern as `ghostty/`/`ranger/`, since nothing under `~/.warp` needs to stay out of git
+- See `warp/README.md` for install caveats (existing real `~/.warp` must be removed first)
+
+**cmux** (cmux/):
+- `cmux.json` - JSONC config; keys are commented out by default and fall back to GUI Settings until uncommented (file-managed opt-in per key)
+- Git-worktree-aware terminal/IDE with embedded browser and Claude Code/Cursor/Gemini automation integration
+- Whole directory symlinked (`~/.config/cmux -> ~/.yadr/cmux`), same pattern as `ghostty/`/`eza/`/`bat/`
+- See `cmux/README.md` for what's tracked vs. left as runtime/session state (window geometry, search index, activity logs)
+
 ### Window Management
 
 **Yabai** (yabai/) - macOS only:
@@ -324,6 +344,15 @@ git/
   - Window maximize toggle
   - Service management aliases (`ystart`, `ystop`, `yrestart`, `ystatus`)
 - See `yabai/README.md` for complete setup and usage guide
+
+### AI Coding Agents
+
+**OMP / Oh My Pi** (omp/):
+- Terminal-based AI coding harness (this document's own runtime)
+- `agent/config.yml` - Shared settings: personality, composer, display, tool approval mode, model roles
+- `plugins/package.json`, `plugins/omp-plugins.lock.json`, `plugins/bun.lock` - Installed plugin manifest/lockfile (e.g. `omp-vim`)
+- Individual files symlinked (not the whole directory), because `~/.omp/agent/` and `~/.omp/plugins/` also hold session databases and `node_modules` that must never enter git
+- See `omp/README.md` for the full tracked/ignored list
 
 ---
 
@@ -383,7 +412,10 @@ Edit `nvim-user-config/lua/plugins/user.lua` and add to the return array.
 | **Ghostty** | Terminal emulator | `ghostty/config` | GPU-accelerated |
 | **WezTerm** | Terminal emulator | `wezterm/wezterm.lua` | Alternative terminal |
 | **iTerm2** | Terminal (macOS) | `iTerm2/` | Automated setup |
+| **Warp** | Terminal emulator | `warp/settings.toml` | Alternative terminal |
+| **cmux** | Terminal/IDE | `cmux/cmux.json` | Git-worktree-aware, AI automation integration |
 | **yabai** | Window manager (macOS) | `yabai/yabairc` | Tiling window manager |
+| **OMP (Oh My Pi)** | AI coding agent | `omp/agent/config.yml` | Terminal-based coding harness |
 
 ### Editor & Development
 
