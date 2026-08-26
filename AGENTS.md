@@ -103,7 +103,7 @@ Git Clone → Automated Install → Homebrew Packages → Symlink Configs → Pr
 ├── ghostty/                # Ghostty terminal
 ├── wezterm/                # WezTerm terminal
 ├── iTerm2/                 # iTerm2 (macOS only)
-├── ranger/                 # Ranger file manager
+├── yazi/                   # Yazi file manager
 ├── bat/                    # Bat syntax themes
 ├── eza/                    # Eza configuration
 ├── yabai/                  # Yabai window manager (macOS)
@@ -179,7 +179,7 @@ YADR uses an automated installation system split into two files for simplicity:
 3. Install Homebrew and packages (via Brewfile)
 4. Install Python/Ruby/npm packages for NeoVim
 5. Create symlinks for config files (git, ruby, vimify, vim, zsh)
-6. Create modern config symlinks (nvim, ranger, ghostty, etc.)
+6. Create modern config symlinks (nvim, yazi, ghostty, etc.)
 7. Install Prezto framework and switch shell to zsh
 8. Install fonts
 9. Bootstrap iTerm2 (macOS only)
@@ -322,7 +322,7 @@ git/
 - `keybindings.yaml` - Custom pane navigation (`alt-cmd-h/j/k/l`)
 - `tab_configs/startup_config.toml` - Default new-tab layout
 - `themes/catppuccin_mocha.yaml` + `themes/pipboy.jpg` - Custom Catppuccin Mocha theme with Pip-Boy background
-- Whole directory symlinked (`~/.warp -> ~/.yadr/warp`), same pattern as `ghostty/`/`ranger/`, since nothing under `~/.warp` needs to stay out of git
+- Whole directory symlinked (`~/.warp -> ~/.yadr/warp`), same pattern as `ghostty/`/`yazi/`, since nothing under `~/.warp` needs to stay out of git
 - See `warp/README.md` for install caveats (existing real `~/.warp` must be removed first)
 
 **cmux** (cmux/):
@@ -432,7 +432,7 @@ Edit `nvim-user-config/lua/plugins/user.lua` and add to the return array.
 
 | Tool | Purpose | Config Location | Notes |
 |------|---------|----------------|-------|
-| **ranger** | File manager | `ranger/` | Vim-like navigation |
+| **yazi** | File manager | `yazi/` | Vim-like navigation, git status, image/pdf/archive previews |
 | **eza** | Modern ls | `eza/` | Replaces ls command |
 | **bat** | Syntax viewer | `bat/themes/` | Replaces cat |
 | **ripgrep** | Code search | Via fzf.zsh | Replaces grep |

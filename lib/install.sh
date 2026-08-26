@@ -469,14 +469,8 @@ create_config_symlinks() {
     echo "ln -nfs ${HOME}/.yadr/nvim-user-config ${HOME}/.config/nvim"
     ln -nfs "${HOME}/.yadr/nvim-user-config" "${HOME}/.config/nvim"
 
-    echo "mkdir -p ${HOME}/.config/ranger"
-    mkdir -p "${HOME}/.config/ranger"
-
-    echo "mkdir -p ${HOME}/.config/lazygit"
-    mkdir -p "${HOME}/.config/lazygit"
-
-    echo "ln -nfs ${HOME}/.yadr/ranger ${HOME}/.config/ranger"
-    ln -nfs "${HOME}/.yadr/ranger" "${HOME}/.config/ranger"
+    echo "ln -nfs ${HOME}/.yadr/yazi ${HOME}/.config/yazi"
+    ln -nfs "${HOME}/.yadr/yazi" "${HOME}/.config/yazi"
 
     echo "ln -nfs ${HOME}/.yadr/ghostty ${HOME}/.config/ghostty"
     ln -nfs "${HOME}/.yadr/ghostty" "${HOME}/.config/ghostty"

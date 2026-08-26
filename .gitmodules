@@ -3,10 +3,6 @@
 	url = https://github.com/sorin-ionescu/prezto.git
 	ignore = dirty
 
-[submodule "ranger/plugins/ranger_devicons"]
-	path = ranger/plugins/ranger_devicons
-	url = https://github.com/alexanderjeurissen/ranger_devicons
-	ignore = dirty
 [submodule "zsh/custom-modules/fzf-tab"]
 	path = zsh/custom-modules/fzf-tab
 	url = https://github.com/Aloxaf/fzf-tab

@@ -1,0 +1,18 @@
+# keymap.toml — keybindings.
+# Full reference: https://yazi-rs.github.io/docs/configuration/keymap
+#
+# Yazi's own default keymap (vim-style hjkl, gg/G, tabs, yank/paste, sort,
+# filter/search, etc.) already matches ranger's default behavior closely
+# enough that it needs no porting here. This file only overrides the one
+# binding ranger's config actually customized:
+#
+#   ranger: map zz fzf_fasd   ->   yazi default: Z = "plugin zoxide"
+#
+# Yazi ships a `Z` -> zoxide jump out of the box, but this setup uses `fasd`
+# (see zsh/fzf.zsh), not zoxide, so `Z` is repointed at the local fasd.yazi
+# plugin (plugins/fasd.yazi) instead of introducing a new dependency.
+
+[mgr]
+prepend_keymap = [
+	{ on = "Z", run = "plugin fasd", desc = "Jump to a frecent file/directory via fasd+fzf" },
+]

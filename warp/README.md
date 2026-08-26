@@ -16,7 +16,7 @@ Warp is a closed-source app that can write other state directly under `~/.warp` 
 
 ## Installation
 
-Unlike `omp/` (which mixes config with databases/caches that must stay out of git), nothing under `~/.warp` is runtime state that Warp needs to write outside of what's tracked here, so YADR symlinks the whole directory like it does for `ghostty/`, `ranger/`, etc.:
+Unlike `omp/` (which mixes config with databases/caches that must stay out of git), nothing under `~/.warp` is runtime state that Warp needs to write outside of what's tracked here, so YADR symlinks the whole directory like it does for `ghostty/`, `yazi/`, etc.:
 
 ```
 ~/.warp -> ~/.yadr/warp

@@ -75,13 +75,15 @@ brew 'spaceman-diff'           # Image diffs for git
 brew 'neovim'                  # Modern vim
 brew 'ctags'                   # Code navigation
 brew 'python3'                 # Python interpreter
-brew 'ranger'                  # Terminal file manager
+brew 'yazi'                    # Terminal file manager
 brew 'btop'                    # System monitor
 brew 'jq'                      # JSON manipulation tool
 
 # --- Media & Documentation ---
 brew 'ffmpeg'                  # Video processing
 brew 'imagemagick'             # Image processing
+brew 'poppler'                 # PDF toolkit (yazi PDF previews)
+brew 'sevenzip'                # 7-Zip (yazi archive previews)
 brew 'lame'                    # MP3 encoder
 brew 'podofo'                  # PDF toolkit
 

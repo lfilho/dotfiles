@@ -1,0 +1,11 @@
+# theme.toml — visual theme.
+# Uses the catppuccin-mocha flavor (installed via `ya pkg`, see package.toml)
+# to match the Catppuccin Mocha theme already used for delta/git (see
+# ~/.yadr/git/catppuccin.gitconfig) and Ghostty/Warp elsewhere in this repo.
+#
+# File icons are a Yazi core built-in (nvim-web-devicons-equivalent set,
+# independent of the flavor), replacing ranger's ranger_devicons plugin and
+# `default_linemode devicons` — no extra config needed, just a Nerd Font
+# (already installed via Brewfile's font-fira-code-nerd-font).
+[flavor]
+dark = "catppuccin-mocha"
