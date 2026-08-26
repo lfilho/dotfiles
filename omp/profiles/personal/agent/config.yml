@@ -1,0 +1,62 @@
+setupVersion: 2
+startup: 
+  checkUpdate: true
+  changelogMode: expanded
+modelRoles: 
+  default: opencode-go/kimi-k2.7-code
+enabledModels: 
+  - opencode-go/*
+  - ollama/*
+  - llama.cpp/*
+  - lm-studio/*
+defaultThinkingLevel: auto
+composer: 
+  shape: box
+symbolPreset: nerd
+terminal: 
+  showProgress: true
+display: 
+  showTokenUsage: true
+  cacheMissMarker: true
+task: 
+  showResolvedModelBadge: true
+omitThinking: true
+textVerbosity: low
+tier: 
+  anthropic: none
+personality: pragmatic
+steeringMode: one-at-a-time
+read: 
+  renderMarkdown: true
+  toolResultPreview: true
+github: 
+  enabled: true
+security: 
+  enabled: true
+tools: 
+  approvalMode: yolo
+providers: 
+  webSearchOrder: 
+    - public
+    - perplexity
+    - gemini
+    - anthropic
+    - codex
+    - xai
+    - zai
+    - exa
+    - tinyfish
+    - jina
+    - kagi
+    - tavily
+    - firecrawl
+    - brave
+    - kimi
+    - parallel
+    - synthetic
+    - searxng
+    - startpage
+    - duckduckgo
+    - ecosia
+    - google
+    - mojeek

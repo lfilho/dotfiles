@@ -10,6 +10,16 @@ startup:
 modelRoles: 
   slow: anthropic/claude-opus-4-8
   default: anthropic/claude-sonnet-5
+# Safety net, not the isolation boundary (that's the profile itself: this
+# file lives under ~/.omp/profiles/work/agent/, entirely separate storage
+# from the personal profile, including its own credential store). Still
+# worth keeping so a stray ollama/lm-studio discovery never shows up as a
+# pickable default here.
+enabledModels:
+  - anthropic/*
+  - ollama/*
+  - llama.cpp/*
+  - lm-studio/*
 defaultThinkingLevel: auto
 composer: 
   shape: box

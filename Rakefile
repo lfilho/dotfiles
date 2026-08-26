@@ -32,9 +32,11 @@ task :install => [:submodule_init, :submodules] do
   run %{ ln -nfs ~/.yadr/bat ~/.config/bat }
   run %{ ln -nfs ~/.yadr/cmux ~/.config/cmux }
 
-  run %{ mkdir -p ~/.omp/agent }
   run %{ mkdir -p ~/.omp/plugins }
-  run %{ ln -nfs ~/.yadr/omp/agent/config.yml ~/.omp/agent/config.yml }
+  run %{ mkdir -p ~/.omp/profiles/work/agent }
+  run %{ mkdir -p ~/.omp/profiles/personal/agent }
+  run %{ ln -nfs ~/.yadr/omp/profiles/work/agent/config.yml ~/.omp/profiles/work/agent/config.yml }
+  run %{ ln -nfs ~/.yadr/omp/profiles/personal/agent/config.yml ~/.omp/profiles/personal/agent/config.yml }
   run %{ ln -nfs ~/.yadr/omp/plugins/package.json ~/.omp/plugins/package.json }
   run %{ ln -nfs ~/.yadr/omp/plugins/omp-plugins.lock.json ~/.omp/plugins/omp-plugins.lock.json }
   run %{ ln -nfs ~/.yadr/omp/plugins/bun.lock ~/.omp/plugins/bun.lock }

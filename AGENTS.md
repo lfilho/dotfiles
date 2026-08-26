@@ -84,8 +84,10 @@ Git Clone → Automated Install → Homebrew Packages → Symlink Configs → Pr
 | `~/.yadr/yabai/yabairc` | `~/.config/yabai/yabairc` | Yabai window manager (macOS) |
 | `~/.yadr/zsh/prezto` | `~/.zprezto` | Prezto framework |
 | `~/.yadr/git/*` | `~/.gitconfig`, etc. | Git configuration |
-| `~/.yadr/omp/agent/config.yml` | `~/.omp/agent/config.yml` | OMP shared agent config |
-| `~/.yadr/omp/plugins/*` | `~/.omp/plugins/*` | OMP plugin manifest/lockfile |
+| `~/.yadr/omp/profiles/work/agent/config.yml` | `~/.omp/profiles/work/agent/config.yml` | OMP work profile (Anthropic) — fully isolated, own credential store |
+| `~/.yadr/omp/profiles/personal/agent/config.yml` | `~/.omp/profiles/personal/agent/config.yml` | OMP personal profile (OpenCode Go) — fully isolated, own credential store |
+| `~/.yadr/omp/plugins/*` | `~/.omp/plugins/*` | OMP plugin manifest/lockfile (shared, not profile-scoped) |
+| `~/.yadr/zsh/ai.zsh` | (sourced by `zsh/zshrc`) | Sets `OMP_PROFILE` from `$HOST_KIND`; defines `ai`/`aip` |
 | `~/.yadr/warp` | `~/.warp` | Warp terminal settings, keybindings, theme |
 
 ---
@@ -140,7 +142,7 @@ Git Clone → Automated Install → Homebrew Packages → Symlink Configs → Pr
 | `ghostty/config` | Ghostty terminal config | Terminal appearance changes |
 | `README.md` | Main documentation | Feature additions, major changes |
 | `ghostty/README.md` | Ghostty guide | Ghostty shader/config changes |
-| `omp/agent/config.yml` | OMP agent config | Model roles, personality, tool approval mode |
+| `omp/profiles/{work,personal}/agent/config.yml` | OMP profile configs | Model roles, personality, tool approval mode — edit both when changing shared settings |
 | `warp/settings.toml` | Warp terminal settings | Warp preferences/appearance changes |
 
 ---
@@ -349,10 +351,11 @@ git/
 
 **OMP / Oh My Pi** (omp/):
 - Terminal-based AI coding harness (this document's own runtime)
-- `agent/config.yml` - Shared settings: personality, composer, display, tool approval mode, model roles
-- `plugins/package.json`, `plugins/omp-plugins.lock.json`, `plugins/bun.lock` - Installed plugin manifest/lockfile (e.g. `omp-vim`)
-- Individual files symlinked (not the whole directory), because `~/.omp/agent/` and `~/.omp/plugins/` also hold session databases and `node_modules` that must never enter git
-- See `omp/README.md` for the full tracked/ignored list
+- No "global"/default-profile config by design — `profiles/work/agent/config.yml` and `profiles/personal/agent/config.yml` are two **fully duplicated** files (personality, composer, tool approval, model roles, `enabledModels`), each backing an OMP-native [named profile](https://ompcode.com/docs/config-usage#profiles) with its own isolated settings, sessions, and **credential store**
+- `plugins/package.json`, `plugins/omp-plugins.lock.json`, `plugins/bun.lock` - Installed plugin manifest/lockfile (e.g. `omp-vim`); shared across profiles (lives under `~/.omp/plugins/`, a sibling of `agent/`, not profile-scoped)
+- `ai`/`aip` shell functions (`zsh/ai.zsh`) - `ai` is the everyday entry point (`omp --profile work` or `--profile personal` based on `$HOST_KIND`); `aip` always forces the personal profile
+- Profile isolation is a structural fix for a real bug: a shared config + `PI_CONFIG_FILES` overlay let model-role writes leak across the work/personal split, since overlay writes always land on the global file. Verified live: writes under `--profile personal` never touch `--profile work`'s config.
+- See `omp/README.md` for the full tracked/ignored list and credential setup (profiles need separate `/login`/API keys)
 
 ---
 
@@ -368,7 +371,7 @@ git/
 | `~/.zsh.after/` | Zsh customizations (after YADR) | Late in zshrc |
 | `~/.zsh.prompts/` | Custom zsh prompts (`prompt_name_setup`) | When prompt loads |
 | `~/.gitconfig.user` | Personal git settings (user, email) | Git config include |
-| `~/.tmux.conf.user` | Personal tmux overrides | Tmux config source |
+| `~/.zsh.before/` (hostname hook) | Sets `HOST_KIND=work`/`personal` for OMP's profile toggle | `zsh/ai.zsh` reads it |
 
 ### How to Customize
 
@@ -415,7 +418,7 @@ Edit `nvim-user-config/lua/plugins/user.lua` and add to the return array.
 | **Warp** | Terminal emulator | `warp/settings.toml` | Alternative terminal |
 | **cmux** | Terminal/IDE | `cmux/cmux.json` | Git-worktree-aware, AI automation integration |
 | **yabai** | Window manager (macOS) | `yabai/yabairc` | Tiling window manager |
-| **OMP (Oh My Pi)** | AI coding agent | `omp/agent/config.yml` | Terminal-based coding harness |
+| **OMP (Oh My Pi)** | AI coding agent | `omp/profiles/{work,personal}/agent/config.yml` | `ai`/`aip` entry points, no global config |
 
 ### Editor & Development
 
