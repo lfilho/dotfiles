@@ -31,6 +31,7 @@ task :install => [:submodule_init, :submodules] do
   run %{ ln -nfs ~/.yadr/eza ~/.config/eza }
   run %{ ln -nfs ~/.yadr/bat ~/.config/bat }
   run %{ ln -nfs ~/.yadr/cmux ~/.config/cmux }
+  run %{ ln -nfs ~/.yadr/atuin ~/.config/atuin }
 
   run %{ mkdir -p ~/.omp/plugins }
   run %{ mkdir -p ~/.omp/profiles/work/agent }
