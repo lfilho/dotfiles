@@ -398,6 +398,20 @@ install_homebrew() {
         brewfile="test/Brewfile_ci"
     fi
 
+    # Homebrew >=6.0.0 refuses to load formulae/casks from non-official taps
+    # unless explicitly trusted (https://docs.brew.sh/Tap-Trust). Untrusted
+    # cask/formula files fail to load while brew indexes the whole tap, which
+    # aborts every `brew bundle` entry, not just the ones from that tap. Both
+    # Brewfiles tap jandedobbeleer/oh-my-posh, so trust it up front. Older
+    # Homebrew releases (e.g. pre-installed on GitHub's macOS runners) have no
+    # `trust` command; `brew trust` then fails and this is skipped as a no-op.
+    if brew trust &>/dev/null; then
+        echo "brew tap jandedobbeleer/oh-my-posh"
+        brew tap jandedobbeleer/oh-my-posh
+        echo "brew trust jandedobbeleer/oh-my-posh"
+        brew trust jandedobbeleer/oh-my-posh
+    fi
+
     echo "brew bundle install --file=${brewfile}"
     brew bundle install --file="${brewfile}"
 
