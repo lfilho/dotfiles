@@ -6,6 +6,26 @@ local cmd = vim.cmd
 ---@type LazySpec
 return {
   {
+    "smart-splits-nvim/smart-splits.nvim",
+    lazy = false,
+    dependencies = { "smart-splits-nvim/backend-ghostty" },
+    config = function()
+      require("smart-splits").setup({}) -- Your existing options.
+      require("ghostty-smart-splits").setup()
+      local splits = require("smart-splits")
+
+      map("n", "<C-h>", splits.move_cursor_left)
+      map("n", "<C-j>", splits.move_cursor_down)
+      map("n", "<C-k>", splits.move_cursor_up)
+      map("n", "<C-l>", splits.move_cursor_right)
+
+      map("n", "<M-h>", splits.resize_left)
+      map("n", "<M-j>", splits.resize_down)
+      map("n", "<M-k>", splits.resize_up)
+      map("n", "<M-l>", splits.resize_right)
+    end,
+  },
+  {
     "greggh/claude-code.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim", -- Required for git operations
@@ -13,7 +33,7 @@ return {
     config = function()
       require("claude-code").setup({
         git = {
-          use_git_root = false,                       -- Set CWD to git root when opening Claude Code (if in git project)
+          use_git_root = false, -- Set CWD to git root when opening Claude Code (if in git project)
         },
         command = "CLAUDE_CODE_USE_BEDROCK=1 claude", -- Command used to launch Claude Code
         window = {

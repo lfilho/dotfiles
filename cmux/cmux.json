@@ -8,38 +8,38 @@
   // cmux creates this template on launch when ~/.config/cmux/cmux.json is missing.
   // Legacy settings.json files are read only as fallback for keys not present here.
 
-  //   "app" : {
-  //     "appearance" : "system",
-  //     "appIcon" : "automatic",
-  //     "commandPaletteSearchesAllSurfaces" : false,
-  //     "focusPaneOnFirstClick" : false,
-  //     "iMessageMode" : false,
-  //     "keepWorkspaceOpenWhenClosingLastSurface" : false,
-  //     "language" : "system",
-  //     "menuBarOnly" : false,
-  //     "minimalMode" : false,
-  //     "newWorkspacePlacement" : "afterCurrent",
-  //     "openMarkdownInCmuxViewer" : false,
-  //     "preferredEditor" : "",
-  //     "renameSelectsExistingName" : true,
-  //     "reorderOnNotification" : true,
-  //     "sendAnonymousTelemetry" : true,
-  //     "warnBeforeQuit" : true
-  //   },
+  "app" : {
+    "appearance" : "dark",
+    "appIcon" : "dark",
+    //     "commandPaletteSearchesAllSurfaces" : false,
+    "focusPaneOnFirstClick" : true,
+    //     "iMessageMode" : false,
+    //     "keepWorkspaceOpenWhenClosingLastSurface" : false,
+    //     "language" : "system",
+    //     "menuBarOnly" : false,
+    //     "minimalMode" : false,
+    //     "newWorkspacePlacement" : "afterCurrent",
+    //     "openMarkdownInCmuxViewer" : false,
+    //     "preferredEditor" : "",
+    //     "renameSelectsExistingName" : true,
+    "reorderOnNotification" : false,
+    "sendAnonymousTelemetry" : false
+    //     "warnBeforeQuit" : true
+  },
 
   //   "terminal" : {
   //     "showScrollBar" : true
   //   },
 
-  //   "notifications" : {
-  //     "command" : "",
-  //     "customSoundFilePath" : "",
-  //     "dockBadge" : true,
-  //     "paneFlash" : true,
-  //     "showInMenuBar" : true,
-  //     "sound" : "default",
-  //     "unreadPaneRing" : true
-  //   },
+  "notifications" : {
+    //     "command" : "",
+    //     "customSoundFilePath" : "",
+    //     "dockBadge" : true,
+    //     "paneFlash" : true,
+    //     "showInMenuBar" : true,
+    "sound" : "Submarine"
+    //     "unreadPaneRing" : true
+  },
 
   //   "sidebar" : {
   //     "branchLayout" : "vertical",
@@ -81,13 +81,13 @@
   //     "selectionColor" : null
   //   },
 
-  //   "sidebarAppearance" : {
-  //     "darkModeTintColor" : null,
-  //     "lightModeTintColor" : null,
-  //     "matchTerminalBackground" : false,
-  //     "tintColor" : "#000000",
-  //     "tintOpacity" : 0.17999999999999999
-  //   },
+  "sidebarAppearance" : {
+    //     "darkModeTintColor" : null,
+    //     "lightModeTintColor" : null,
+    "matchTerminalBackground" : true
+    //     "tintColor" : "#000000",
+    //     "tintOpacity" : 0.17999999999999999
+  },
 
   //   "automation" : {
   //     "claudeBinaryPath" : "",
@@ -100,28 +100,30 @@
   //     "socketPassword" : ""
   //   },
 
-  //   "browser" : {
-  //     "defaultSearchEngine" : "google",
-  //     "hostsToOpenInEmbeddedBrowser" : [
-  // 
-  //     ],
-  //     "insecureHttpHostsAllowedInEmbeddedBrowser" : [
-  //       "localhost",
-  //       "127.0.0.1",
-  //       "::1",
-  //       "0.0.0.0",
-  //       "*.localtest.me"
-  //     ],
-  //     "interceptTerminalOpenCommandInCmuxBrowser" : true,
-  //     "openTerminalLinksInCmuxBrowser" : true,
-  //     "reactGrabVersion" : "0.1.29",
-  //     "showImportHintOnBlankTabs" : true,
-  //     "showSearchSuggestions" : true,
-  //     "theme" : "system",
-  //     "urlsToAlwaysOpenExternally" : [
-  // 
-  //     ]
-  //   },
+  "browser" : {
+    "defaultSearchEngine" : "ecosia",
+    "hostsToOpenInEmbeddedBrowser" : [
+      "localhost",
+      "127.0.0.1"
+    ],
+    //     "insecureHttpHostsAllowedInEmbeddedBrowser" : [
+    //       "localhost",
+    //       "127.0.0.1",
+    //       "::1",
+    //       "0.0.0.0",
+    //       "*.localtest.me"
+    //     ],
+    //     "interceptTerminalOpenCommandInCmuxBrowser" : true,
+    //     "openTerminalLinksInCmuxBrowser" : true,
+    //     "reactGrabVersion" : "0.1.29",
+    //     "showImportHintOnBlankTabs" : true,
+    //     "showSearchSuggestions" : true,
+    //     "theme" : "system",
+    "urlsToAlwaysOpenExternally" : [
+      "https://*.github.com*",
+      "https://github.com*"
+    ]
+  }
 
   //   "shortcuts" : {
   //     "bindings" : {

@@ -1,3 +1,4 @@
+############
 # Appearance
 ############
 
@@ -29,6 +30,7 @@ cursor-invert-fg-bg = true
 quick-terminal-size = 60%,60%
 quick-terminal-position = center
 
+#########
 # Shaders
 #########
 
@@ -45,33 +47,45 @@ custom-shader = "shaders/tesla_coil.glsl"
 # custom-shader = shaders/debug_cursor_static.glsl
 # custom-shader = shaders/manga_slash.glsl
 
+#############
 # Keybindings
 #############
 
-keybind = cmd+k=goto_split:top
-keybind = cmd+l=goto_split:right
-keybind = cmd+j=goto_split:bottom
-keybind = cmd+h=goto_split:left
+# Navigation
+## Outside Neovim.
+### Move
+keybind = performable:ctrl+h=goto_split:left
+keybind = performable:ctrl+j=goto_split:down
+keybind = performable:ctrl+k=goto_split:up
+keybind = performable:ctrl+l=goto_split:right
 
-keybind = opt+left=resize_split:left,10
-keybind = opt+right=resize_split:right,10
-keybind = opt+up=resize_split:up,10
-keybind = opt+down=resize_split:down,10
+### Resize
+keybind = performable:alt+h=resize_split:left,10
+keybind = performable:alt+j=resize_split:down,10
+keybind = performable:alt+k=resize_split:up,10
+keybind = performable:alt+l=resize_split:right,10
 
+## Inside Neovim.
+keybind = nvim/
+### Move
+keybind = nvim/ctrl+h=text:\x08
+keybind = nvim/ctrl+j=text:\x0a
+keybind = nvim/ctrl+k=text:\x0b
+keybind = nvim/ctrl+l=text:\x0c
+
+### Resize
+keybind = nvim/alt+h=esc:h
+keybind = nvim/alt+j=esc:j
+keybind = nvim/alt+k=esc:k
+keybind = nvim/alt+l=esc:l
+
+# Other
 keybind = global:cmd+opt+j=new_window
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
 
-keybind = resize/arrow_up=resize_split:up,10
-keybind = resize/arrow_down=resize_split:down,10
-keybind = resize/arrow_left=resize_split:left,10
-keybind = resize/arrow_right=resize_split:right,10
-keybind = resize/escape=deactivate_key_table
-keybind = resize/catch_all=ignore
-
-keybind = cmd+w=activate_key_table:resize
-
 keybind = cmd+shift+k=text:ai_cmd_helper\n
 
+###############
 # Notifications
 ###############
 
@@ -79,6 +93,7 @@ notify-on-command-finish = unfocused
 notify-on-command-finish-action = no-bell,notify
 notify-on-command-finish-after = 2s
 
+#######
 # Other
 #######
 
