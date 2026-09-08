@@ -4,6 +4,20 @@ startup:
   changelogMode: expanded
 modelRoles:
   default: opencode-go/kimi-k2.7-code
+  smol: opencode-go/qwen3.8-flash
+  slow: opencode-go/kimi-k3:max
+  plan: opencode-go/kimi-k3:high
+  vision: opencode-go/deepseek-v4-flash-vision-exp
+  commit: lm-studio/qwen2.5-7b-instruct-1m
+  tiny: lm-studio/qwen3-4b-instruct-2507
+  task: opencode-go/kimi-k2.7-code
+  advisor: opencode-go/qwen3.8-flash:medium
+retry:
+  fallbackChains:
+    commit:
+      - opencode-go/kimi-k2.7-code
+    tiny:
+      - opencode-go/qwen3.8-flash
 enabledModels:
   - opencode-go/*
   - ollama/*
@@ -46,7 +60,7 @@ statusLine:
       showUnstaged: true
       showUntracked: true
   sessionAccent: true
-  transparent: false
+  transparent: true
 terminal:
   showProgress: true
 display:

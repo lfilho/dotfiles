@@ -3,8 +3,21 @@ startup:
   checkUpdate: true
   changelogMode: expanded
 modelRoles:
-  slow: anthropic/claude-opus-4-8
   default: anthropic/claude-sonnet-5
+  smol: anthropic/claude-haiku-4-5
+  slow: anthropic/claude-opus-5:max
+  plan: anthropic/claude-opus-5:high
+  vision: anthropic/claude-sonnet-5
+  commit: lm-studio/qwen2.5-7b-instruct-1m
+  tiny: lm-studio/qwen3-4b-instruct-2507
+  task: anthropic/claude-sonnet-5
+  advisor: anthropic/claude-haiku-4-5:medium
+retry:
+  fallbackChains:
+    commit:
+      - anthropic/claude-sonnet-5
+    tiny:
+      - anthropic/claude-haiku-4-5
 enabledModels:
   - anthropic/*
   - ollama/*
@@ -47,7 +60,7 @@ statusLine:
       showUnstaged: true
       showUntracked: true
   sessionAccent: true
-  transparent: false
+  transparent: true
 terminal:
   showProgress: true
 display:
