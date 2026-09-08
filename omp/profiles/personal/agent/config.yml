@@ -67,6 +67,7 @@ display:
   shimmer: classic
   showTokenUsage: true
   cacheMissMarker: true
+  showTurnTime: true
 omitThinking: true
 textVerbosity: low
 tier:
@@ -107,4 +108,3 @@ providers:
     - ecosia
     - google
     - mojeek
-
