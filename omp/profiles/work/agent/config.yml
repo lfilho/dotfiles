@@ -5,8 +5,8 @@ startup:
 modelRoles:
   default: anthropic/claude-sonnet-5
   smol: anthropic/claude-haiku-4-5
-  slow: anthropic/claude-opus-5:max
-  plan: anthropic/claude-opus-5:high
+  slow: anthropic/claude-opus-5.5:max
+  plan: anthropic/claude-opus-5.5:high
   vision: anthropic/claude-sonnet-5
   commit: lm-studio/qwen2.5-7b-instruct-1m
   tiny: lm-studio/qwen3-4b-instruct-2507
@@ -31,11 +31,14 @@ theme:
 symbolPreset: nerd
 tui:
   textSizing: true
+  vimMode: true
+  vimModeDisplay: icon
 task:
   showResolvedModelBadge: true
 statusLine:
   preset: custom
   leftSegments:
+    - vim
     - model
     - mode
     - path

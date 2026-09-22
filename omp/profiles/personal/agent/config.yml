@@ -31,11 +31,14 @@ theme:
 symbolPreset: nerd
 tui:
   textSizing: true
+  vimMode: true
+  vimModeDisplay: icon
 task:
   showResolvedModelBadge: true
 statusLine:
   preset: custom
   leftSegments:
+    - vim
     - model
     - mode
     - path
