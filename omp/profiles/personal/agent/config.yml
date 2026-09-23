@@ -3,21 +3,50 @@ startup:
   checkUpdate: true
   changelogMode: expanded
 modelRoles:
-  default: opencode-go/kimi-k2.7-code
-  smol: opencode-go/qwen3.8-flash
-  slow: opencode-go/kimi-k3:max
-  plan: opencode-go/kimi-k3:high
+  default: opencode-go/gpt-5.6-luna
+  smol: opencode-go/deepseek-v4.1-flash:auto
+  slow: opencode-go/glm-5.3:max
+  plan: opencode-go/glm-5.3:high
   vision: opencode-go/deepseek-v4-flash-vision-exp
   commit: lm-studio/qwen2.5-7b-instruct-1m
-  tiny: lm-studio/qwen3-4b-instruct-2507
-  task: opencode-go/kimi-k2.7-code
-  advisor: opencode-go/qwen3.8-flash:medium
+  tiny: opencode-go/deepseek-v4.1-flash:auto
+  task: opencode-go/glm-5.3-flash
+  advisor: opencode-go/glm-5:auto
+  web: web/public
 retry:
   fallbackChains:
     commit:
-      - opencode-go/kimi-k2.7-code
+      - opencode-go/glm-5.3-flash
     tiny:
-      - opencode-go/qwen3.8-flash
+      - opencode-go/glm-5.3-flash
+    web:
+      - web/perplexity
+      - google/gemini-2.5-flash
+      - anthropic/claude-haiku-4-5
+      - openai-codex/gpt-5.6-luna
+      - xai/grok-4.5
+      - web/zai
+      - web/exa
+      - web/tinyfish
+      - web/jina
+      - web/kagi
+      - web/tavily
+      - web/firecrawl
+      - web/brave
+      - web/kimi
+      - web/parallel
+      - web/synthetic
+      - web/searxng
+      - web/startpage
+      - web/duckduckgo
+      - web/ecosia
+      - web/google
+      - web/mojeek
+      - google-antigravity/gemini-2.5-flash
+      - openai-codex/gpt-5.6
+      - openai-codex/gpt-5.5
+      - xai-oauth/grok-4.5
+      - web/ollama
 enabledModels:
   - opencode-go/*
   - ollama/*
@@ -86,28 +115,3 @@ security:
   enabled: true
 tools:
   approvalMode: yolo
-providers:
-  webSearchOrder:
-    - public
-    - perplexity
-    - gemini
-    - anthropic
-    - codex
-    - xai
-    - zai
-    - exa
-    - tinyfish
-    - jina
-    - kagi
-    - tavily
-    - firecrawl
-    - brave
-    - kimi
-    - parallel
-    - synthetic
-    - searxng
-    - startpage
-    - duckduckgo
-    - ecosia
-    - google
-    - mojeek
