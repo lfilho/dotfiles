@@ -87,7 +87,7 @@ Git Clone → Automated Install → Homebrew Packages → Symlink Configs → Pr
 | `~/.yadr/omp/profiles/work/agent/config.yml` | `~/.omp/profiles/work/agent/config.yml` | OMP work profile (Anthropic) — fully isolated, own credential store |
 | `~/.yadr/omp/profiles/personal/agent/config.yml` | `~/.omp/profiles/personal/agent/config.yml` | OMP personal profile (OpenCode Go) — fully isolated, own credential store |
 | `~/.yadr/omp/plugins/*` | `~/.omp/plugins/*` | OMP plugin manifest/lockfile (shared, not profile-scoped) |
-| `~/.yadr/zsh/ai.zsh` | (sourced by `zsh/zshrc`) | Sets `OMP_PROFILE` from `$HOST_KIND`; defines `ai`/`aip` |
+| `~/.yadr/zsh/ai.zsh` | (sourced by `zsh/zshrc`) | Sets `OMP_PROFILE` from a real `claude` executable outside terminal shims; defines `ai`/`aip` |
 | `~/.yadr/warp` | `~/.warp` | Warp terminal settings, keybindings, theme |
 
 ---
@@ -353,7 +353,7 @@ git/
 - Terminal-based AI coding harness (this document's own runtime)
 - No "global"/default-profile config by design — `profiles/work/agent/config.yml` and `profiles/personal/agent/config.yml` are two **fully duplicated** files (personality, composer, tool approval, model roles, `enabledModels`), each backing an OMP-native [named profile](https://ompcode.com/docs/config-usage#profiles) with its own isolated settings, sessions, and **credential store**
 - `plugins/package.json`, `plugins/omp-plugins.lock.json`, `plugins/bun.lock` - Installed plugin manifest/lockfile (e.g. `omp-vim`); shared across profiles (lives under `~/.omp/plugins/`, a sibling of `agent/`, not profile-scoped)
-- `ai`/`aip` shell functions (`zsh/ai.zsh`) - `ai` is the everyday entry point (`omp --profile work` or `--profile personal` based on `$HOST_KIND`); `aip` always forces the personal profile
+- `ai`/`aip` shell functions (`zsh/ai.zsh`) - `ai` is the everyday entry point (`omp --profile work` when a real `claude` CLI is available outside terminal shims, otherwise `--profile personal`); `aip` always forces the personal profile
 - Profile isolation is a structural fix for a real bug: a shared config + `PI_CONFIG_FILES` overlay let model-role writes leak across the work/personal split, since overlay writes always land on the global file. Verified live: writes under `--profile personal` never touch `--profile work`'s config.
 - See `omp/README.md` for the full tracked/ignored list and credential setup (profiles need separate `/login`/API keys)
 
@@ -371,7 +371,6 @@ git/
 | `~/.zsh.after/` | Zsh customizations (after YADR) | Late in zshrc |
 | `~/.zsh.prompts/` | Custom zsh prompts (`prompt_name_setup`) | When prompt loads |
 | `~/.gitconfig.user` | Personal git settings (user, email) | Git config include |
-| `~/.zsh.before/` (hostname hook) | Sets `HOST_KIND=work`/`personal` for OMP's profile toggle | `zsh/ai.zsh` reads it |
 
 ### How to Customize
 

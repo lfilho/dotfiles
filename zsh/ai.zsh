@@ -20,31 +20,32 @@ ai_cmd_helper() {
 # (ai.zsh, not omp.zsh) since the underlying harness may change later --
 # only this file needs to change, not every callsite of `ai`/`aip`.
 #
-# No "global" default-profile config -- every machine uses one of two
-# named OMP profiles (~/.omp/profiles/work/agent/config.yml or
-# .../personal/agent/config.yml), each fully isolated by OMP itself
-# (separate settings, sessions, and credential store per profile; see
-# omp/README.md). $HOST_KIND is set by an untracked ~/.zsh.before/ hook
-# that hardcodes this machine's own hostname check -- never hardcode a
-# real hostname in this tracked file. Unset/unrecognized -> "work" (the
-# same fail-safe default as before).
-if [[ "$HOST_KIND" == "personal" ]]; then
-  export OMP_PROFILE=personal
-else
+# The work profile is available wherever the Claude CLI is installed. Terminal
+# environments may inject a `claude` shim on every machine, so inspect PATH
+# entries directly and ignore shim directories when looking for the real CLI.
+claude_path=""
+for claude_dir in ${(s.:.)PATH}; do
+  [[ -n "$claude_dir" && "$claude_dir" == */cmux-cli-shims/* ]] && continue
+  if [[ -x "$claude_dir/claude" ]]; then
+    claude_path="$claude_dir/claude"
+    break
+  fi
+done
+if [[ -n "$claude_path" ]]; then
   export OMP_PROFILE=work
+else
+  export OMP_PROFILE=personal
 fi
+unset claude_dir claude_path
 
 # Everyday entry point: omp under whichever profile this machine defaults
 # to.
 ai() {
-  if [[ "$HOST_KIND" == "personal" ]]; then
-    omp --profile personal "$@"
-  else
-    omp --profile work "$@"
-  fi
+  omp --profile "$OMP_PROFILE" "$@"
 }
 
-# Force the personal profile from any machine, regardless of host.
+# Force the personal profile from any machine, regardless of the default.
 aip() {
   omp --profile personal "$@"
 }
+

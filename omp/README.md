@@ -35,29 +35,20 @@ Edit the files in `~/.yadr/omp/` (not `~/.omp/`) so changes are picked up by git
 
 ## Activation: `zsh/ai.zsh`
 
-Tracked, identical on every machine (appended to the existing `zsh/ai.zsh`, which also has `ai_cmd_helper` — a Cursor Cmd+K-style helper, unrelated). Named `ai.zsh`, not `omp.zsh`, deliberately: the harness behind `ai`/`aip` may change later, and only this file would need to change, not every callsite. Exports `OMP_PROFILE` (`work` or `personal`) based on `$HOST_KIND`, which comes from an **untracked** `~/.zsh.before/` hook that hardcodes each machine's own hostname — never hardcode a real hostname in the tracked file:
-
-```bash
-# ~/.zsh.before/<any-name>.zsh (untracked; content is machine-specific)
-if [[ "$(hostname)" == "<this-machine's-actual-hostname>" ]]; then
-  export HOST_KIND=work
-else
-  export HOST_KIND=personal
-fi
-```
-
-A machine with no hook at all leaves `$HOST_KIND` unset, which resolves to `work` — same fail-safe default as before.
+Tracked, identical on every machine (appended to the existing `zsh/ai.zsh`, which also has `ai_cmd_helper` — a Cursor Cmd+K-style helper, unrelated). Named `ai.zsh`, not `omp.zsh`, deliberately: the harness behind `ai`/`aip` may change later, and only this file would need to change, not every callsite. It exports `OMP_PROFILE` as `work` when a real `claude` executable is found in `PATH` outside terminal shim directories, and `personal` otherwise.
 
 Two functions, also in `zsh/ai.zsh`:
 
 ```bash
-ai()  { … omp --profile work "$@" or --profile personal "$@", based on $HOST_KIND … }
-aip() { omp --profile personal "$@" }
+ai()  { omp --profile "$OMP_PROFILE" "$@"; }
+aip() { omp --profile personal "$@"; }
 ```
 
-- `ai` — the everyday entry point. Use this instead of bare `omp`.
-- `aip` — force the personal profile from any machine (e.g. from work), regardless of `$HOST_KIND`.
+- `ai` — the everyday entry point. It selects the work profile when a real Claude CLI is present, otherwise the personal profile. Use this instead of bare `omp`.
+- `aip` — force the personal profile from any machine.
 - Bare `omp` (no `--profile`) uses OMP's actual default profile, which this repo does not configure at all — intentionally bare/unconfigured, since `ai`/`aip` are the real entry points.
+
+The profile check runs when `zsh/ai.zsh` is sourced. Install or remove the Claude CLI and reload the shell to change the selected default.
 
 ## Credentials (do this once per profile, per machine)
 
