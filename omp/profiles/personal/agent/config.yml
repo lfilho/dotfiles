@@ -3,7 +3,7 @@ startup:
   checkUpdate: true
   changelogMode: expanded
 modelRoles:
-  default: opencode-go/gpt-5.6-luna
+  default: opencode-go/deepseek-v4.1-flash
   smol: opencode-go/deepseek-v4.1-flash:auto
   slow: opencode-go/glm-5.3:max
   plan: opencode-go/glm-5.3:high
