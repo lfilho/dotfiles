@@ -1,9 +1,8 @@
-setupVersion: 2
+setupVersion: 3
 startup:
   checkUpdate: true
   changelogMode: expanded
 modelRoles:
-  default: anthropic/claude-sonnet-5
   smol: anthropic/claude-haiku-4-5
   slow: anthropic/claude-opus-5.5:max
   plan: anthropic/claude-opus-5.5:high
@@ -12,12 +11,30 @@ modelRoles:
   tiny: lm-studio/qwen3-4b-instruct-2507
   task: anthropic/claude-sonnet-5
   advisor: anthropic/claude-haiku-4-5:medium
+  web: anthropic/claude-haiku-4-5
+  default: anthropic/claude-sonnet-5-5
 retry:
   fallbackChains:
     commit:
       - anthropic/claude-sonnet-5
     tiny:
       - anthropic/claude-haiku-4-5
+    web:
+      - google-gemini-cli/gemini-2.5-flash
+      - google-antigravity/gemini-2.5-flash
+      - google/gemini-2.5-flash
+      - openai-codex/gpt-5.6-luna
+      - web/parallel
+      - web/hosted
+      - web/exa
+      - web/firecrawl
+      - web/searxng
+      - web/startpage
+      - web/duckduckgo
+      - web/ecosia
+      - web/google
+      - web/mojeek
+      - web/public
 enabledModels:
   - anthropic/*
   - ollama/*
@@ -35,6 +52,7 @@ tui:
   vimModeDisplay: icon
 task:
   showResolvedModelBadge: true
+  prewalk: true
 statusLine:
   preset: custom
   leftSegments:
@@ -86,10 +104,9 @@ security:
   enabled: true
 tools:
   approvalMode: yolo
-providers:
-  webSearchOrder:
-    - anthropic
-    - gemini
-    - codex
 browser:
   relay: true
+prewalk:
+  enabled: true
+update:
+  auto: false
