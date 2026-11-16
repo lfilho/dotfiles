@@ -204,7 +204,12 @@ return {
     config = function()
       require("note2cal").setup({
         debug = false,
-        calendar_name = "Work",
+        provider = "google",
+        google = {
+          calendar_id = "primary",
+          security = "os-key-store",
+        },
+
         highlights = {
           at_symbol = "WarningMsg",
           at_text = "Number",
