@@ -1,4 +1,4 @@
-setupVersion: 2
+setupVersion: 3
 startup:
   checkUpdate: true
   changelogMode: expanded
@@ -43,8 +43,7 @@ retry:
       - web/google
       - web/mojeek
       - google-antigravity/gemini-2.5-flash
-      - openai-codex/gpt-5.6
-      - openai-codex/gpt-5.5
+      - openai-codex/gpt-5.6-sol
       - xai-oauth/grok-4.5
       - web/ollama
 enabledModels:
@@ -55,6 +54,7 @@ enabledModels:
 defaultThinkingLevel: auto
 composer:
   shape: box
+  tokenRate: true
 theme:
   dark: dark-catppuccin
 symbolPreset: nerd
@@ -115,3 +115,6 @@ security:
   enabled: true
 tools:
   approvalMode: yolo
+update:
+  auto: false
+hideThinkingBlock: true
