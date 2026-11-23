@@ -1,0 +1,12 @@
+{
+  "name": "block-schedule-alfred-workflow",
+  "private": true,
+  "description": "Alfred workflow: `block [minutes] <content>` books the next free slot on Google Calendar.",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "build": "./build.sh"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

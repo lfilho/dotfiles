@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="a-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4F8CFF"/>
+      <stop offset="1" stop-color="#5B3FD9"/>
+    </linearGradient>
+    <linearGradient id="a-block" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFC857"/>
+      <stop offset="1" stop-color="#FF9A1F"/>
+    </linearGradient>
+  </defs>
+  <rect x="16" y="16" width="480" height="480" rx="108" fill="url(#a-bg)"/>
+  <!-- calendar sheet with a header band -->
+  <rect x="88" y="108" width="336" height="312" rx="40" fill="#FFFFFF"/>
+  <path d="M88 148a40 40 0 0 1 40-40h256a40 40 0 0 1 40 40v48H88z" fill="#2A2480"/>
+  <!-- binder rings -->
+  <rect x="160" y="80" width="30" height="68" rx="15" fill="#FFFFFF"/>
+  <rect x="322" y="80" width="30" height="68" rx="15" fill="#FFFFFF"/>
+  <!-- other meetings (muted) with the booked block between them -->
+  <rect x="124" y="222" width="176" height="26" rx="13" fill="#D5D9EE"/>
+  <rect x="124" y="266" width="264" height="80" rx="22" fill="url(#a-block)"/>
+  <rect x="124" y="364" width="212" height="26" rx="13" fill="#D5D9EE"/>
+</svg>
